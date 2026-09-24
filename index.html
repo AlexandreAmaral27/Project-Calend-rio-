@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Família Barroso | Calendário 2027</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilo/style.css">
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo">
+        <span class="crown">♛</span>
+
+        <div>
+            <span class="logo-family">Família</span>
+            <strong>BARROSO</strong>
+        </div>
+    </div>
+
+    <nav id="menu">
+
+        <a href="#inicio">Início</a>
+
+        <a href="#calendario">
+            Calendário
+        </a>
+
+        <a href="#aniversarios">
+            Aniversários
+        </a>
+
+        <a href="#memorias">
+            Memórias
+        </a>
+
+        <a href="#dedicatorias">
+            Dedicatórias
+        </a>
+
+    </nav>
+
+    <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Abrir menu"
+    >
+        ☰
+    </button>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <span class="tag">
+            CALENDÁRIO DIGITAL • 2027
+        </span>
+
+        <h1>
+            Família
+            <span>Barroso</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Juntos somos mais fortes.
+        </p>
+
+        <p>
+            Um espaço digital para guardar
+            datas, aniversários, memórias e
+            momentos especiais da família.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#calendario"
+                class="btn btn-primary"
+            >
+                Ver calendário
+            </a>
+
+            <button
+                class="btn btn-light"
+                id="openQr"
+            >
+                Abrir QR Code
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="family-box">
+
+        <div class="family-icon">
+            FB
+        </div>
+
+        <div>
+
+            <small>
+                O nosso maior tesouro
+            </small>
+
+            <h2>
+                Família Barroso
+            </h2>
+
+            <p>
+                Mais sonhos.<br>
+                Mais conquistas.<br>
+                Sempre juntos!
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CALENDÁRIO
+========================= -->
+
+<section
+    class="section"
+    id="calendario"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-tag">
+                CALENDÁRIO ANUAL
+            </span>
+
+            <h2>
+                2027
+            </h2>
+
+        </div>
+
+        <button
+            class="btn btn-outline"
+            id="todayBtn"
+        >
+            Hoje
+        </button>
+
+    </div>
+
+
+    <div class="calendar-layout">
+
+        <!-- MESES -->
+
+        <div
+            class="months"
+            id="months"
+        ></div>
+
+
+        <!-- LATERAL -->
+
+        <aside class="sidebar">
+
+
+            <!-- ANIVERSÁRIOS -->
+
+            <div class="side-card birthdays">
+
+                <div class="side-title">
+
+                    <span>♛</span>
+
+                    <h3>
+                        Aniversários
+                    </h3>
+
+                </div>
+
+                <div
+                    id="birthdayList"
+                ></div>
+
+            </div>
+
+
+            <!-- MEMÓRIAS -->
+
+            <div class="side-card memories">
+
+                <div class="side-title">
+
+                    <span>♥</span>
+
+                    <h3>
+                        Memórias
+                    </h3>
+
+                </div>
+
+                <div
+                    id="memoryList"
+                ></div>
+
+            </div>
+
+
+            <!-- QR -->
+
+            <div class="qr-card">
+
+                <div id="qrSmall"></div>
+
+                <h3>
+                    APONTE A CÂMERA
+                </h3>
+
+                <p>
+                    E acesse o nosso
+                    calendário digital
+                </p>
+
+                <button
+                    class="qr-button"
+                    id="openQr2"
+                >
+                    Ver QR Code
+                </button>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ANIVERSÁRIOS
+========================= -->
+
+<section
+    class="section blue-section"
+    id="aniversarios"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-tag">
+                PESSOAS ESPECIAIS
+            </span>
+
+            <h2>
+                Aniversários
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="birthday-grid"
+        id="birthdayCards"
+    ></div>
+
+</section>
+
+
+
+<!-- =========================
+     MEMÓRIAS
+========================= -->
+
+<section
+    class="section"
+    id="memorias"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-tag blue-text">
+                MOMENTOS ESPECIAIS
+            </span>
+
+            <h2>
+                Memórias
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="memory-grid"
+        id="memoryCards"
+    ></div>
+
+</section>
+
+
+
+<!-- =========================
+     DEDICATÓRIAS
+========================= -->
+
+<section
+    class="dedication-section"
+    id="dedicatorias"
+>
+
+    <div class="dedication-container">
+
+        <div>
+
+            <span class="section-tag blue-text">
+                UMA MENSAGEM ESPECIAL
+            </span>
+
+            <h2>
+                Deixe uma dedicatória ❤️
+            </h2>
+
+            <p>
+                Escreva uma mensagem para alguém
+                da Família Barroso.
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            id="openDedication"
+        >
+            + Escrever dedicatória
+        </button>
+
+    </div>
+
+
+    <div
+        class="dedications"
+        id="dedications"
+    ></div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        <span>♛</span>
+
+        <strong>
+            FAMÍLIA BARROSO
+        </strong>
+
+    </div>
+
+    <p>
+        O papel guarda a memória.
+        O QR mantém a conexão. ❤️
+    </p>
+
+    <small>
+        Calendário Digital • 2027
+    </small>
+
+</footer>
+
+
+
+<!-- =========================
+     MODAL QR CODE
+========================= -->
+
+<div
+    class="modal"
+    id="qrModal"
+>
+
+    <div class="modal-content qr-modal">
+
+        <button
+            class="close"
+            data-close="qrModal"
+        >
+            ×
+        </button>
+
+        <span class="section-tag blue-text">
+            QR CODE DO CALENDÁRIO
+        </span>
+
+        <h2>
+            Família Barroso 2027
+        </h2>
+
+        <div id="qrLarge"></div>
+
+        <p>
+            Aponte a câmera do celular
+            para acessar o calendário.
+        </p>
+
+        <small id="qrUrl"></small>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     MODAL DEDICATÓRIA
+========================= -->
+
+<div
+    class="modal"
+    id="dedicationModal"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            data-close="dedicationModal"
+        >
+            ×
+        </button>
+
+        <span class="section-tag blue-text">
+            NOVA DEDICATÓRIA
+        </span>
+
+        <h2>
+            Deixe uma mensagem ❤️
+        </h2>
+
+
+        <form id="dedicationForm">
+
+            <label>
+                Seu nome
+
+                <input
+                    type="text"
+                    id="author"
+                    placeholder="Ex.: Alexandre"
+                    maxlength="40"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Para quem?
+
+                <select
+                    id="recipient"
+                    required
+                ></select>
+
+            </label>
+
+
+            <label>
+                Mensagem
+
+                <textarea
+                    id="message"
+                    rows="5"
+                    maxlength="250"
+                    placeholder="Escreva uma mensagem especial..."
+                    required
+                ></textarea>
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary full"
+            >
+                Publicar dedicatória
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- QR CODE LIBRARY -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- JS -->
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
