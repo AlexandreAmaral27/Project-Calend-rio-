@@ -1,41 +1,2082 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Família Barroso | Calendário 2027</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Famílias | Calendário Familiar 2027</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="estilo/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- QR CODE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- HTML2CANVAS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- JSPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#f7f9fc;
+    color:#102a43;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:78px;
+
+    padding:0 6%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(255,255,255,.96);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid #e5eaf0;
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.crown{
+
+    width:45px;
+    height:45px;
+
+    border-radius:13px;
+
+    display:grid;
+    place-items:center;
+
+    background:#0f2f52;
+
+    color:#fff;
+
+    font-size:24px;
+}
+
+.logo-family{
+
+    display:block;
+
+    font-family:Pacifico,cursive;
+
+    font-size:15px;
+
+    color:#174a7c;
+}
+
+.logo strong{
+
+    display:block;
+
+    font-size:18px;
+
+    letter-spacing:2px;
+}
+
+
+#menu{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+}
+
+#menu a{
+
+    color:#52677b;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+#menu a:hover{
+
+    color:#0f2f52;
+}
+
+
+.menu-btn{
+
+    display:none;
+
+    border:0;
+
+    background:none;
+
+    font-size:28px;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn{
+
+    border:0;
+
+    border-radius:12px;
+
+    padding:13px 18px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+
+    background:#0f2f52;
+
+    color:#fff;
+
+    box-shadow:0 8px 20px rgba(15,47,82,.18);
+}
+
+.btn-primary:hover{
+    background:#174a7c;
+}
+
+.btn-outline{
+
+    background:#fff;
+
+    color:#0f2f52;
+
+    border:1px solid #ccd7e2;
+}
+
+.btn-light{
+
+    background:#fff;
+
+    color:#0f2f52;
+}
+
+.btn-danger{
+
+    background:#fff0f0;
+
+    color:#b42318;
+
+    border:1px solid #ffd0d0;
+}
+
+.full{
+    width:100%;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    min-height:580px;
+
+    padding:90px 7%;
+
+    display:grid;
+
+    grid-template-columns:1.3fr .7fr;
+
+    gap:60px;
+
+    align-items:center;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(255,255,255,.15),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #0b2946,
+            #174a7c
+        );
+
+    color:#fff;
+}
+
+.hero-content{
+    max-width:700px;
+}
+
+.tag{
+
+    display:inline-flex;
+
+    padding:8px 13px;
+
+    border-radius:30px;
+
+    background:#e8f1fa;
+
+    color:#174a7c;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+}
+
+.hero .tag{
+
+    background:rgba(255,255,255,.12);
+
+    color:#fff;
+}
+
+.hero h1{
+
+    margin:20px 0 10px;
+
+    font-size:64px;
+
+    line-height:1;
+
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    display:block;
+    color:#d8e8f7;
+}
+
+.hero-subtitle{
+
+    font-family:Pacifico,cursive;
+
+    font-size:27px;
+
+    margin:20px 0;
+}
+
+.hero p{
+
+    color:rgba(255,255,255,.78);
+
+    line-height:1.8;
+
+    max-width:620px;
+}
+
+.hero-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+
+.family-box{
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.1);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+}
+
+.family-icon{
+
+    width:85px;
+    height:85px;
+
+    border-radius:25px;
+
+    display:grid;
+    place-items:center;
+
+    background:#fff;
+
+    color:#0f2f52;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    margin-bottom:25px;
+}
+
+.family-box small{
+    color:rgba(255,255,255,.65);
+}
+
+.family-box h2{
+    margin:8px 0 15px;
+}
+
+.family-box p{
+    color:rgba(255,255,255,.75);
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+
+    padding:90px 7%;
+}
+
+.section-header{
+
+    max-width:1250px;
+
+    margin:0 auto 40px;
+
+    display:flex;
+
+    align-items:end;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+.section-header h2{
+
+    margin-top:12px;
+
+    font-size:42px;
+
+    letter-spacing:-1.5px;
+}
+
+.section-tag{
+
+    color:#174a7c;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+}
+
+.blue-text{
+    color:#174a7c;
+}
+
+
+/* =====================================================
+   FAMÍLIAS
+===================================================== */
+
+.families-section{
+
+    padding:100px 7%;
+
+    background:#f7f9fc;
+}
+
+.families-header{
+
+    max-width:800px;
+
+    margin:0 auto 40px;
+
+    text-align:center;
+}
+
+.families-header h2{
+
+    font-size:43px;
+
+    margin:15px 0;
+
+    letter-spacing:-1.5px;
+}
+
+.families-header p{
+
+    color:#64748b;
+
+    line-height:1.8;
+}
+
+
+/* SEARCH */
+
+.family-search{
+
+    max-width:1250px;
+
+    margin:0 auto 35px;
+}
+
+.search-box{
+
+    height:56px;
+
+    background:#fff;
+
+    border:1px solid #dce5ee;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.04);
+}
+
+.search-box span{
+
+    font-size:25px;
+
+    margin-right:10px;
+
+    color:#64748b;
+}
+
+.search-box input{
+
+    width:100%;
+
+    border:0;
+
+    outline:0;
+
+    font-size:15px;
+}
+
+
+/* GRID */
+
+.families-grid{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(285px,1fr));
+
+    gap:24px;
+}
+
+
+/* FAMILY CARD */
+
+.family-card{
+
+    background:#fff;
+
+    border:1px solid #e1e8ef;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(15,23,42,.06);
+
+    transition:.3s;
+}
+
+.family-card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:0 25px 55px rgba(15,23,42,.11);
+}
+
+.family-card-top{
+
+    position:relative;
+
+    padding:28px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f2f52,
+            #1b5a91
+        );
+}
+
+.family-crown{
+
+    font-size:27px;
+
+    margin-bottom:15px;
+}
+
+.family-card-top h3{
+    font-size:24px;
+}
+
+.family-card-top p{
+
+    margin-top:7px;
+
+    color:rgba(255,255,255,.7);
+
+    font-size:13px;
+}
+
+.family-year-badge{
+
+    position:absolute;
+
+    right:18px;
+    top:18px;
+
+    padding:6px 11px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    font-size:11px;
+}
+
+.family-card-body{
+    padding:23px;
+}
+
+.family-stats{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.family-stat{
+
+    padding:13px;
+
+    border-radius:12px;
+
+    background:#f6f8fb;
+}
+
+.family-stat strong{
+
+    display:block;
+
+    color:#0f2f52;
+
+    font-size:20px;
+}
+
+.family-stat span{
+
+    color:#718096;
+
+    font-size:11px;
+}
+
+.next-birthday{
+
+    padding:13px;
+
+    margin-bottom:18px;
+
+    border-radius:13px;
+
+    background:#fff7ed;
+
+    border:1px solid #fed7aa;
+}
+
+.next-birthday small{
+
+    color:#9a3412;
+
+    display:block;
+
+    margin-bottom:4px;
+
+    font-size:11px;
+}
+
+.next-birthday strong{
+    color:#7c2d12;
+}
+
+.family-card-buttons{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:9px;
+}
+
+.family-card-buttons .btn{
+
+    padding:11px 8px;
+
+    font-size:11px;
+}
+
+
+/* =====================================================
+   CREATE FAMILY
+===================================================== */
+
+.create-family-box{
+
+    max-width:1250px;
+
+    margin:40px auto 0;
+
+    padding:25px;
+
+    border:2px dashed #cbd5e1;
+
+    border-radius:20px;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+.create-family-box > div{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.create-icon{
+
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    background:#e8f1fa;
+
+    color:#174a7c;
+
+    font-size:28px;
+}
+
+.create-family-box h3{
+    margin-bottom:5px;
+}
+
+.create-family-box p{
+
+    color:#64748b;
+
+    font-size:13px;
+}
+
+
+/* =====================================================
+   CALENDÁRIO
+===================================================== */
+
+.calendar-layout{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 300px;
+
+    gap:25px;
+}
+
+.months{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+}
+
+.month{
+
+    background:#fff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:17px;
+
+    padding:15px;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.04);
+}
+
+.month-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:13px;
+}
+
+.month-header h3{
+
+    font-size:16px;
+
+    color:#0f2f52;
+}
+
+.weekdays,
+.month-days{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:4px;
+
+    text-align:center;
+}
+
+.weekdays span{
+
+    font-size:8px;
+
+    font-weight:800;
+
+    color:#94a3b8;
+
+    padding-bottom:4px;
+}
+
+.calendar-day{
+
+    min-height:27px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:7px;
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.calendar-day:hover{
+    background:#edf4fa;
+}
+
+.empty-day{
+    min-height:27px;
+}
+
+.birthday-day{
+
+    background:#fff0f3;
+
+    color:#be123c;
+
+    font-weight:800;
+}
+
+.event-day{
+
+    background:#e8f1fa;
+
+    color:#0f2f52;
+
+    font-weight:800;
+}
+
+.birthday-day.event-day{
+
+    background:linear-gradient(
+        135deg,
+        #fff0f3,
+        #e8f1fa
+    );
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+}
+
+.side-card{
+
+    background:#fff;
+
+    border:1px solid #e1e8ef;
+
+    border-radius:18px;
+
+    padding:20px;
+}
+
+.side-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    margin-bottom:15px;
+}
+
+.side-title span{
+    font-size:20px;
+}
+
+.side-title h3{
+    font-size:15px;
+}
+
+.birthday-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:11px 0;
+
+    border-bottom:1px solid #edf1f5;
+}
+
+.birthday-item:last-child{
+    border-bottom:0;
+}
+
+.birthday-item strong{
+
+    display:block;
+
+    font-size:12px;
+}
+
+.birthday-item small{
+
+    display:block;
+
+    color:#94a3b8;
+
+    font-size:10px;
+
+    margin-top:3px;
+}
+
+.birthday-item > span{
+
+    font-size:10px;
+
+    color:#be123c;
+
+    white-space:nowrap;
+}
+
+.memory-item{
+
+    padding:9px 0;
+
+    border-bottom:1px solid #edf1f5;
+
+    font-size:12px;
+
+    color:#52677b;
+}
+
+.qr-card{
+
+    background:#0f2f52;
+
+    color:#fff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+}
+
+#qrSmall{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:15px;
+}
+
+#qrSmall img{
+
+    background:#fff;
+
+    padding:8px;
+
+    border-radius:10px;
+}
+
+.qr-card h3{
+    font-size:13px;
+}
+
+.qr-card p{
+
+    color:rgba(255,255,255,.65);
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    margin:8px 0 15px;
+}
+
+.qr-button{
+
+    width:100%;
+
+    border:0;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    color:#0f2f52;
+
+    font-weight:700;
+}
+
+
+/* =====================================================
+   ANIVERSÁRIOS
+===================================================== */
+
+.blue-section{
+
+    background:#edf4fa;
+}
+
+.birthday-grid{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+}
+
+.birthday-card{
+
+    background:#fff;
+
+    border:1px solid #dce7f0;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.birthday-icon{
+
+    width:48px;
+    height:48px;
+
+    flex-shrink:0;
+
+    border-radius:14px;
+
+    display:grid;
+
+    place-items:center;
+
+    background:#fff0f3;
+
+    font-size:22px;
+}
+
+.birthday-card h3{
+    font-size:14px;
+}
+
+.birthday-card p{
+
+    margin:4px 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+}
+
+.birthday-card strong{
+
+    color:#be123c;
+
+    font-size:11px;
+}
+
+
+/* =====================================================
+   MEMÓRIAS
+===================================================== */
+
+.memory-grid{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+}
+
+.memory-card{
+
+    padding:25px;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    border:1px solid #e1e8ef;
+}
+
+.memory-card span{
+
+    font-size:25px;
+
+    color:#174a7c;
+}
+
+.memory-card h3{
+
+    margin:12px 0 7px;
+
+    font-size:15px;
+}
+
+.memory-card p{
+
+    color:#64748b;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   DEDICATÓRIAS
+===================================================== */
+
+.dedication-section{
+
+    padding:90px 7%;
+
+    background:#fff;
+}
+
+.dedication-container{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    background:#edf4fa;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+}
+
+.dedication-container h2{
+
+    margin:12px 0;
+
+    font-size:32px;
+}
+
+.dedication-container p{
+    color:#64748b;
+}
+
+.dedications{
+
+    max-width:1250px;
+
+    margin:30px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap:15px;
+}
+
+.dedication-card{
+
+    padding:20px;
+
+    border-radius:16px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+}
+
+.dedication-card strong{
+
+    display:block;
+
+    margin-bottom:7px;
+}
+
+.dedication-card small{
+
+    color:#174a7c;
+
+    display:block;
+
+    margin-bottom:10px;
+}
+
+.dedication-card p{
+
+    color:#52677b;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:50px 7%;
+
+    background:#0b2239;
+
+    color:#fff;
+
+    text-align:center;
+}
+
+.footer-logo{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:12px;
+}
+
+.footer-logo span{
+    font-size:25px;
+}
+
+.footer-logo strong{
+    letter-spacing:2px;
+}
+
+footer p{
+
+    color:rgba(255,255,255,.6);
+
+    font-size:13px;
+
+    margin-bottom:10px;
+}
+
+footer small{
+    color:rgba(255,255,255,.4);
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:2000;
+
+    background:rgba(4,18,31,.7);
+
+    backdrop-filter:blur(8px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-content{
+
+    width:min(900px,100%);
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    position:relative;
+
+    box-shadow:0 30px 100px rgba(0,0,0,.25);
+}
+
+.modal-content.small{
+    width:min(550px,100%);
+}
+
+.close{
+
+    position:absolute;
+
+    right:20px;
+
+    top:17px;
+
+    width:38px;
+    height:38px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#f1f5f9;
+
+    font-size:24px;
+
+    color:#475569;
+}
+
+
+/* =====================================================
+   VISÃO GERAL
+===================================================== */
+
+.overview-header{
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f2f52,
+            #174a7c
+        );
+
+    color:#fff;
+
+    margin:20px 0;
+}
+
+.overview-header h2{
+
+    font-size:32px;
+
+    margin:10px 0;
+}
+
+.overview-header p{
+
+    color:rgba(255,255,255,.7);
+
+    font-size:13px;
+}
+
+.overview-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+    margin-top:20px;
+}
+
+.overview-actions button{
+    flex:1;
+    min-width:150px;
+}
+
+.overview-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+}
+
+.overview-card{
+
+    padding:20px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    background:#fff;
+}
+
+.overview-card h3{
+
+    margin-bottom:15px;
+
+    font-size:15px;
+}
+
+.overview-card.full-width{
+
+    grid-column:1/-1;
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:11px 0;
+
+    border-bottom:1px solid #edf1f5;
+
+    font-size:12px;
+}
+
+.info-row:last-child{
+    border-bottom:0;
+}
+
+.info-row span{
+    color:#64748b;
+}
+
+.info-row strong{
+    color:#0f2f52;
+}
+
+
+/* =====================================================
+   FORMULÁRIOS
+===================================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#475569;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    padding:12px 14px;
+
+    border:1px solid #d8e1ea;
+
+    border-radius:10px;
+
+    outline:0;
+
+    font-size:13px;
+
+    background:#fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:#174a7c;
+
+    box-shadow:0 0 0 3px rgba(23,74,124,.08);
+}
+
+.form-actions{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+}
+
+
+/* =====================================================
+   QR MODAL
+===================================================== */
+
+.qr-modal{
+
+    width:min(450px,100%);
+
+    text-align:center;
+}
+
+#qrLarge{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin:25px 0;
+}
+
+#qrLarge img{
+
+    background:#fff;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    border:1px solid #e2e8f0;
+}
+
+.qr-modal p{
+
+    color:#64748b;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+#qrUrl{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#94a3b8;
+
+    font-size:10px;
+
+    word-break:break-all;
+}
+
+
+/* =====================================================
+   DAY MODAL
+===================================================== */
+
+.day-title{
+
+    margin:20px 0;
+
+    font-size:27px;
+}
+
+.day-event{
+
+    padding:15px;
+
+    border-radius:13px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    margin-bottom:10px;
+}
+
+.day-event.birthday{
+
+    background:#fff0f3;
+
+    border-color:#fecdd3;
+}
+
+.day-event.event{
+
+    background:#e8f1fa;
+
+    border-color:#cbdff0;
+}
+
+.day-event strong{
+
+    display:block;
+
+    font-size:13px;
+
+    margin-bottom:5px;
+}
+
+.day-event small{
+
+    color:#64748b;
+
+    font-size:11px;
+}
+
+
+/* =====================================================
+   PDF
+===================================================== */
+
+.pdf-calendar{
+
+    width:420mm;
+
+    min-height:297mm;
+
+    background:#fff;
+
+    padding:10mm;
+
+    position:absolute;
+
+    left:-99999px;
+
+    top:0;
+
+    color:#102a43;
+}
+
+.pdf-calendar-header{
+
+    text-align:center;
+
+    margin-bottom:8mm;
+}
+
+.pdf-calendar-header h1{
+    font-size:28px;
+}
+
+.pdf-calendar-header p{
+
+    color:#64748b;
+
+    margin-top:5px;
+}
+
+.pdf-months{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:5mm;
+}
+
+.pdf-month{
+
+    border:1px solid #d9e1ea;
+
+    border-radius:4mm;
+
+    padding:4mm;
+
+    page-break-inside:avoid;
+}
+
+.pdf-month h3{
+
+    text-align:center;
+
+    margin-bottom:3mm;
+
+    font-size:15px;
+}
+
+.pdf-days{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:1.5mm;
+
+    text-align:center;
+}
+
+.pdf-day-name{
+
+    font-weight:800;
+
+    font-size:8px;
+
+    color:#64748b;
+}
+
+.pdf-day{
+
+    min-height:8mm;
+
+    padding:1mm;
+
+    border-radius:2mm;
+
+    font-size:8px;
+}
+
+.pdf-day.birthday{
+
+    background:#ffe4e8;
+
+    color:#9f1239;
+
+    font-weight:800;
+}
+
+.pdf-day.event{
+
+    background:#e8f1fa;
+
+    color:#0f2f52;
+
+    font-weight:800;
+}
+
+.pdf-footer{
+
+    margin-top:6mm;
+
+    padding-top:3mm;
+
+    border-top:1px solid #d9e1ea;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:9px;
+}
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:1000px){
+
+    .hero{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .calendar-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .sidebar{
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+    }
+
+}
+
+@media(max-width:800px){
+
+    #menu{
+
+        position:absolute;
+
+        left:0;
+        right:0;
+        top:78px;
+
+        background:#fff;
+
+        padding:20px;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        display:none;
+
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    #menu.active{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .months{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .sidebar{
+
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:47px;
+    }
+
+    .section-header{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .dedication-container{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .overview-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:550px){
+
+    .header{
+        padding:0 5%;
+    }
+
+    .hero{
+
+        padding:70px 5%;
+    }
+
+    .section,
+    .families-section,
+    .dedication-section{
+
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .months{
+
+        grid-template-columns:1fr;
+    }
+
+    .family-card-buttons{
+
+        grid-template-columns:1fr;
+    }
+
+    .create-family-box{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .create-family-box .btn{
+
+        width:100%;
+    }
+
+    .families-header h2{
+
+        font-size:32px;
+    }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print{
+
+    @page{
+
+        size:A3 landscape;
+
+        margin:0;
+    }
+
+    body{
+        margin:0;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      HEADER
-========================= -->
+===================================================== -->
 
 <header class="header">
 
     <div class="logo">
+
         <span class="crown">♛</span>
 
         <div>
-            <span class="logo-family">Família</span>
-            <strong>BARROSO</strong>
+
+            <span class="logo-family">
+                Famílias
+            </span>
+
+            <strong>
+                CALENDÁRIO
+            </strong>
+
         </div>
+
     </div>
+
 
     <nav id="menu">
 
-        <a href="#inicio">Início</a>
+        <a href="#inicio">
+            Início
+        </a>
+
+        <a href="#familias">
+            Famílias
+        </a>
 
         <a href="#calendario">
             Calendário
@@ -55,10 +2096,10 @@
 
     </nav>
 
+
     <button
         class="menu-btn"
         id="menuBtn"
-        aria-label="Abrir menu"
     >
         ☰
     </button>
@@ -66,21 +2107,29 @@
 </header>
 
 
-<!-- =========================
-     HERO
-========================= -->
 
-<section class="hero" id="inicio">
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="inicio"
+>
 
     <div class="hero-content">
 
         <span class="tag">
-            CALENDÁRIO DIGITAL • 2027
+            CALENDÁRIO FAMILIAR DIGITAL • 2027
         </span>
 
         <h1>
-            Família
-            <span>Barroso</span>
+
+            As datas que
+            <span>
+                nos unem.
+            </span>
+
         </h1>
 
         <p class="hero-subtitle">
@@ -88,25 +2137,29 @@
         </p>
 
         <p>
-            Um espaço digital para guardar
-            datas, aniversários, memórias e
-            momentos especiais da família.
+
+            Crie, organize e partilhe o calendário
+            da sua família. Aniversários, feriados,
+            reuniões, memórias e momentos especiais
+            num único lugar.
+
         </p>
+
 
         <div class="hero-buttons">
 
             <a
-                href="#calendario"
-                class="btn btn-primary"
+                href="#familias"
+                class="btn btn-light"
             >
-                Ver calendário
+                Ver famílias
             </a>
 
             <button
                 class="btn btn-light"
-                id="openQr"
+                onclick="openCurrentQR()"
             >
-                Abrir QR Code
+                ▣ QR Code
             </button>
 
         </div>
@@ -120,23 +2173,21 @@
             FB
         </div>
 
-        <div>
+        <small>
+            O nosso maior tesouro
+        </small>
 
-            <small>
-                O nosso maior tesouro
-            </small>
+        <h2>
+            Família Barroso
+        </h2>
 
-            <h2>
-                Família Barroso
-            </h2>
+        <p>
 
-            <p>
-                Mais sonhos.<br>
-                Mais conquistas.<br>
-                Sempre juntos!
-            </p>
+            Mais sonhos.<br>
+            Mais conquistas.<br>
+            Mais momentos juntos.
 
-        </div>
+        </p>
 
     </div>
 
@@ -144,9 +2195,100 @@
 
 
 
-<!-- =========================
+<!-- =====================================================
+     FAMÍLIAS
+===================================================== -->
+
+<section
+    class="families-section"
+    id="familias"
+>
+
+    <div class="families-header">
+
+        <span class="section-tag">
+            CALENDÁRIOS FAMILIARES
+        </span>
+
+        <h2>
+            Momentos que unem famílias.
+        </h2>
+
+        <p>
+
+            Escolha uma família para visualizar
+            todas as informações do seu calendário.
+
+        </p>
+
+    </div>
+
+
+    <div class="family-search">
+
+        <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+                type="text"
+                id="familySearch"
+                placeholder="Pesquisar família..."
+            >
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="families-grid"
+        id="familiesGrid"
+    ></div>
+
+
+    <div class="create-family-box">
+
+        <div>
+
+            <span class="create-icon">
+                +
+            </span>
+
+            <div>
+
+                <h3>
+                    Crie o calendário da sua família
+                </h3>
+
+                <p>
+
+                    Adicione membros, aniversários,
+                    datas comemorativas e memórias.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            id="createFamilyBtn"
+        >
+            + Criar calendário
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
      CALENDÁRIO
-========================= -->
+===================================================== -->
 
 <section
     class="section"
@@ -161,23 +2303,40 @@
                 CALENDÁRIO ANUAL
             </span>
 
-            <h2>
-                2027
+            <h2 id="calendarFamilyTitle">
+                Família Barroso
             </h2>
+
+            <p id="calendarYear">
+                Calendário 2027
+            </p>
 
         </div>
 
-        <button
-            class="btn btn-outline"
-            id="todayBtn"
-        >
-            Hoje
-        </button>
+
+        <div>
+
+            <button
+                class="btn btn-outline"
+                onclick="scrollToToday()"
+            >
+                Hoje
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="downloadCurrentPDF()"
+            >
+                📄 Baixar PDF A3
+            </button>
+
+        </div>
 
     </div>
 
 
     <div class="calendar-layout">
+
 
         <!-- MESES -->
 
@@ -187,18 +2346,16 @@
         ></div>
 
 
-        <!-- LATERAL -->
+        <!-- SIDEBAR -->
 
         <aside class="sidebar">
 
 
-            <!-- ANIVERSÁRIOS -->
-
-            <div class="side-card birthdays">
+            <div class="side-card">
 
                 <div class="side-title">
 
-                    <span>♛</span>
+                    <span>🎂</span>
 
                     <h3>
                         Aniversários
@@ -213,9 +2370,7 @@
             </div>
 
 
-            <!-- MEMÓRIAS -->
-
-            <div class="side-card memories">
+            <div class="side-card">
 
                 <div class="side-title">
 
@@ -234,24 +2389,24 @@
             </div>
 
 
-            <!-- QR -->
-
             <div class="qr-card">
 
                 <div id="qrSmall"></div>
 
                 <h3>
-                    APONTE A CÂMERA
+                    CALENDÁRIO DIGITAL
                 </h3>
 
                 <p>
-                    E acesse o nosso
-                    calendário digital
+
+                    Aponte a câmera para
+                    abrir este calendário.
+
                 </p>
 
                 <button
                     class="qr-button"
-                    id="openQr2"
+                    onclick="openCurrentQR()"
                 >
                     Ver QR Code
                 </button>
@@ -266,9 +2421,9 @@
 
 
 
-<!-- =========================
+<!-- =====================================================
      ANIVERSÁRIOS
-========================= -->
+===================================================== -->
 
 <section
     class="section blue-section"
@@ -301,9 +2456,9 @@
 
 
 
-<!-- =========================
+<!-- =====================================================
      MEMÓRIAS
-========================= -->
+===================================================== -->
 
 <section
     class="section"
@@ -314,7 +2469,7 @@
 
         <div>
 
-            <span class="section-tag blue-text">
+            <span class="section-tag">
                 MOMENTOS ESPECIAIS
             </span>
 
@@ -336,9 +2491,9 @@
 
 
 
-<!-- =========================
+<!-- =====================================================
      DEDICATÓRIAS
-========================= -->
+===================================================== -->
 
 <section
     class="dedication-section"
@@ -349,8 +2504,8 @@
 
         <div>
 
-            <span class="section-tag blue-text">
-                UMA MENSAGEM ESPECIAL
+            <span class="section-tag">
+                MENSAGENS
             </span>
 
             <h2>
@@ -358,15 +2513,16 @@
             </h2>
 
             <p>
-                Escreva uma mensagem para alguém
-                da Família Barroso.
+                Escreva uma mensagem especial
+                para alguém da família.
             </p>
 
         </div>
 
+
         <button
             class="btn btn-primary"
-            id="openDedication"
+            onclick="openDedicationModal()"
         >
             + Escrever dedicatória
         </button>
@@ -383,9 +2539,9 @@
 
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -394,7 +2550,7 @@
         <span>♛</span>
 
         <strong>
-            FAMÍLIA BARROSO
+            FAMÍLIAS • CALENDÁRIO
         </strong>
 
     </div>
@@ -412,9 +2568,602 @@
 
 
 
-<!-- =========================
-     MODAL QR CODE
-========================= -->
+<!-- =====================================================
+     MODAL VISÃO GERAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="overviewModal"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            onclick="closeModal('overviewModal')"
+        >
+            ×
+        </button>
+
+
+        <span class="section-tag">
+            VISÃO GERAL DO CALENDÁRIO
+        </span>
+
+
+        <div
+            id="overviewContent"
+        ></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL CRIAR FAMÍLIA
+===================================================== -->
+
+<div
+    class="modal"
+    id="familyModal"
+>
+
+    <div class="modal-content small">
+
+        <button
+            class="close"
+            onclick="closeModal('familyModal')"
+        >
+            ×
+        </button>
+
+
+        <span class="section-tag">
+            NOVA FAMÍLIA
+        </span>
+
+        <h2 style="margin-top:12px;">
+            Criar calendário
+        </h2>
+
+
+        <form
+            id="familyForm"
+            class="form-grid"
+        >
+
+            <div class="form-group full">
+
+                <label>
+                    Nome da família
+                </label>
+
+                <input
+                    type="text"
+                    id="familyName"
+                    placeholder="Ex.: Família Santos"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Ano
+                </label>
+
+                <input
+                    type="number"
+                    id="familyYear"
+                    value="2027"
+                    min="2027"
+                    max="2100"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Descrição
+                </label>
+
+                <input
+                    type="text"
+                    id="familyDescription"
+                    placeholder="Nossa família"
+                >
+
+            </div>
+
+
+            <div class="form-actions full">
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    onclick="closeModal('familyModal')"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Criar família
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL ADICIONAR MEMBRO
+===================================================== -->
+
+<div
+    class="modal"
+    id="memberModal"
+>
+
+    <div class="modal-content small">
+
+        <button
+            class="close"
+            onclick="closeModal('memberModal')"
+        >
+            ×
+        </button>
+
+        <span class="section-tag">
+            NOVO MEMBRO
+        </span>
+
+        <h2 style="margin-top:12px;">
+            Adicionar pessoa
+        </h2>
+
+
+        <form
+            id="memberForm"
+            class="form-grid"
+        >
+
+            <div class="form-group full">
+
+                <label>
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="memberName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Data de nascimento
+                </label>
+
+                <input
+                    type="date"
+                    id="memberBirth"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Relação
+                </label>
+
+                <select id="memberRelation">
+
+                    <option>
+                        Pai
+                    </option>
+
+                    <option>
+                        Mãe
+                    </option>
+
+                    <option>
+                        Filho
+                    </option>
+
+                    <option>
+                        Filha
+                    </option>
+
+                    <option>
+                        Avô
+                    </option>
+
+                    <option>
+                        Avó
+                    </option>
+
+                    <option>
+                        Tio
+                    </option>
+
+                    <option>
+                        Tia
+                    </option>
+
+                    <option>
+                        Sobrinho
+                    </option>
+
+                    <option>
+                        Sobrinha
+                    </option>
+
+                    <option>
+                        Primo
+                    </option>
+
+                    <option>
+                        Prima
+                    </option>
+
+                    <option>
+                        Amigo próximo
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-actions full">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Adicionar membro
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL EVENTO
+===================================================== -->
+
+<div
+    class="modal"
+    id="eventModal"
+>
+
+    <div class="modal-content small">
+
+        <button
+            class="close"
+            onclick="closeModal('eventModal')"
+        >
+            ×
+        </button>
+
+        <span class="section-tag">
+            NOVA DATA
+        </span>
+
+        <h2 style="margin-top:12px;">
+            Adicionar evento
+        </h2>
+
+
+        <form
+            id="eventForm"
+            class="form-grid"
+        >
+
+            <div class="form-group full">
+
+                <label>
+                    Nome da data
+                </label>
+
+                <input
+                    type="text"
+                    id="eventTitle"
+                    placeholder="Ex.: Reunião da família"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Data
+                </label>
+
+                <input
+                    type="date"
+                    id="eventDate"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Tipo
+                </label>
+
+                <select id="eventType">
+
+                    <option value="comemorativa">
+                        Comemorativa
+                    </option>
+
+                    <option value="reuniao">
+                        Reunião
+                    </option>
+
+                    <option value="feriado">
+                        Feriado
+                    </option>
+
+                    <option value="especial">
+                        Especial
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Descrição
+                </label>
+
+                <textarea
+                    id="eventDescription"
+                    rows="3"
+                    placeholder="Detalhes da data..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-actions full">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Adicionar data
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL MEMÓRIA
+===================================================== -->
+
+<div
+    class="modal"
+    id="memoryModal"
+>
+
+    <div class="modal-content small">
+
+        <button
+            class="close"
+            onclick="closeModal('memoryModal')"
+        >
+            ×
+        </button>
+
+        <span class="section-tag">
+            NOVA MEMÓRIA
+        </span>
+
+        <h2 style="margin-top:12px;">
+            Guardar memória
+        </h2>
+
+
+        <form
+            id="memoryForm"
+            class="form-grid"
+        >
+
+            <div class="form-group full">
+
+                <label>
+                    Título
+                </label>
+
+                <input
+                    type="text"
+                    id="memoryTitle"
+                    placeholder="Ex.: Viagem em família"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Descrição
+                </label>
+
+                <textarea
+                    id="memoryDescription"
+                    rows="4"
+                    placeholder="Conte um pouco sobre este momento..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-actions full">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Guardar memória
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL DEDICATÓRIA
+===================================================== -->
+
+<div
+    class="modal"
+    id="dedicationModal"
+>
+
+    <div class="modal-content small">
+
+        <button
+            class="close"
+            onclick="closeModal('dedicationModal')"
+        >
+            ×
+        </button>
+
+        <span class="section-tag">
+            NOVA DEDICATÓRIA
+        </span>
+
+        <h2 style="margin-top:12px;">
+            Deixe uma mensagem ❤️
+        </h2>
+
+
+        <form
+            id="dedicationForm"
+            class="form-grid"
+        >
+
+            <div class="form-group">
+
+                <label>
+                    Seu nome
+                </label>
+
+                <input
+                    type="text"
+                    id="dedicationAuthor"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Para quem?
+                </label>
+
+                <select
+                    id="dedicationRecipient"
+                    required
+                ></select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Mensagem
+                </label>
+
+                <textarea
+                    id="dedicationMessage"
+                    rows="5"
+                    maxlength="300"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-actions full">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Publicar dedicatória
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL QR
+===================================================== -->
 
 <div
     class="modal"
@@ -425,25 +3174,33 @@
 
         <button
             class="close"
-            data-close="qrModal"
+            onclick="closeModal('qrModal')"
         >
             ×
         </button>
 
-        <span class="section-tag blue-text">
-            QR CODE DO CALENDÁRIO
+        <span class="section-tag">
+            QR CODE
         </span>
 
-        <h2>
-            Família Barroso 2027
+        <h2
+            id="qrTitle"
+            style="margin-top:12px;"
+        >
+            Calendário
         </h2>
+
 
         <div id="qrLarge"></div>
 
+
         <p>
-            Aponte a câmera do celular
-            para acessar o calendário.
+
+            Aponte a câmera do telemóvel
+            para abrir o calendário.
+
         </p>
+
 
         <small id="qrUrl"></small>
 
@@ -453,82 +3210,37 @@
 
 
 
-<!-- =========================
-     MODAL DEDICATÓRIA
-========================= -->
+<!-- =====================================================
+     MODAL DIA
+===================================================== -->
 
 <div
     class="modal"
-    id="dedicationModal"
+    id="dayModal"
 >
 
-    <div class="modal-content">
+    <div class="modal-content small">
 
         <button
             class="close"
-            data-close="dedicationModal"
+            onclick="closeModal('dayModal')"
         >
             ×
         </button>
 
-        <span class="section-tag blue-text">
-            NOVA DEDICATÓRIA
+
+        <span class="section-tag">
+            DETALHES DO DIA
         </span>
 
-        <h2>
-            Deixe uma mensagem ❤️
-        </h2>
+
+        <h2
+            class="day-title"
+            id="dayTitle"
+        ></h2>
 
 
-        <form id="dedicationForm">
-
-            <label>
-                Seu nome
-
-                <input
-                    type="text"
-                    id="author"
-                    placeholder="Ex.: Alexandre"
-                    maxlength="40"
-                    required
-                >
-
-            </label>
-
-
-            <label>
-                Para quem?
-
-                <select
-                    id="recipient"
-                    required
-                ></select>
-
-            </label>
-
-
-            <label>
-                Mensagem
-
-                <textarea
-                    id="message"
-                    rows="5"
-                    maxlength="250"
-                    placeholder="Escreva uma mensagem especial..."
-                    required
-                ></textarea>
-
-            </label>
-
-
-            <button
-                type="submit"
-                class="btn btn-primary full"
-            >
-                Publicar dedicatória
-            </button>
-
-        </form>
+        <div id="dayContent"></div>
 
     </div>
 
@@ -536,13 +3248,2891 @@
 
 
 
-<!-- QR CODE LIBRARY -->
+<script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+/* =====================================================
+   DADOS
+===================================================== */
 
-<!-- JS -->
+const defaultFamilies = [
 
-<script src="js/script.js"></script>
+    {
+        id:"barroso",
+
+        name:"Família Barroso",
+
+        year:2027,
+
+        description:"Nossa família, nossas memórias.",
+
+        members:12,
+
+        birthdays:[
+
+            {
+                name:"Alexandre Barroso",
+                date:"1999-02-14",
+                relation:"Filho"
+            },
+
+            {
+                name:"Maria Barroso",
+                date:"1980-05-21",
+                relation:"Mãe"
+            },
+
+            {
+                name:"João Barroso",
+                date:"1975-08-10",
+                relation:"Pai"
+            },
+
+            {
+                name:"Ana Barroso",
+                date:"2004-12-03",
+                relation:"Filha"
+            }
+
+        ],
+
+        events:[
+
+            {
+                date:"2027-01-01",
+                title:"Ano Novo",
+                type:"feriado",
+                description:"Primeiro dia do ano."
+            },
+
+            {
+                date:"2027-02-14",
+                title:"Dia dos Namorados",
+                type:"comemorativa",
+                description:"Dia especial para celebrar o amor."
+            },
+
+            {
+                date:"2027-04-02",
+                title:"Sexta-feira Santa",
+                type:"feriado",
+                description:"Feriado."
+            },
+
+            {
+                date:"2027-05-01",
+                title:"Dia do Trabalhador",
+                type:"feriado",
+                description:"Dia do Trabalhador."
+            },
+
+            {
+                date:"2027-06-01",
+                title:"Dia da Criança",
+                type:"comemorativa",
+                description:"Dia especial para as crianças."
+            },
+
+            {
+                date:"2027-11-11",
+                title:"Dia da Independência de Angola",
+                type:"feriado",
+                description:"Feriado nacional."
+            },
+
+            {
+                date:"2027-12-25",
+                title:"Natal",
+                type:"feriado",
+                description:"Celebração do Natal."
+            }
+
+        ],
+
+        memories:[
+
+            {
+                title:"Almoço de família",
+                description:"Um domingo especial com toda a família."
+            },
+
+            {
+                title:"Viagem em família",
+                description:"Momento inesquecível juntos."
+            },
+
+            {
+                title:"Festa de aniversário",
+                description:"Uma celebração cheia de alegria."
+            }
+
+        ],
+
+        dedications:[]
+
+    },
+
+
+    {
+        id:"silva",
+
+        name:"Família Silva",
+
+        year:2027,
+
+        description:"Uma família unida.",
+
+        members:9,
+
+        birthdays:[
+
+            {
+                name:"Carlos Silva",
+                date:"1992-03-18",
+                relation:"Filho"
+            },
+
+            {
+                name:"Patrícia Silva",
+                date:"1988-07-09",
+                relation:"Mãe"
+            },
+
+            {
+                name:"Pedro Silva",
+                date:"2010-10-22",
+                relation:"Filho"
+            }
+
+        ],
+
+        events:[
+
+            {
+                date:"2027-01-01",
+                title:"Ano Novo",
+                type:"feriado",
+                description:"Primeiro dia do ano."
+            },
+
+            {
+                date:"2027-03-08",
+                title:"Dia da Mulher",
+                type:"comemorativa",
+                description:"Dia Internacional da Mulher."
+            },
+
+            {
+                date:"2027-05-01",
+                title:"Dia do Trabalhador",
+                type:"feriado",
+                description:"Dia do Trabalhador."
+            },
+
+            {
+                date:"2027-11-11",
+                title:"Independência de Angola",
+                type:"feriado",
+                description:"Feriado nacional."
+            },
+
+            {
+                date:"2027-12-25",
+                title:"Natal",
+                type:"feriado",
+                description:"Celebração do Natal."
+            }
+
+        ],
+
+        memories:[
+
+            {
+                title:"Natal em família",
+                description:"Natal celebrado por toda a família."
+            },
+
+            {
+                title:"Aniversário da avó",
+                description:"Uma celebração muito especial."
+            },
+
+            {
+                title:"Reunião familiar",
+                description:"Toda a família reunida."
+            }
+
+        ],
+
+        dedications:[]
+
+    },
+
+
+    {
+        id:"costa",
+
+        name:"Família Costa",
+
+        year:2027,
+
+        description:"Família, amor e união.",
+
+        members:15,
+
+        birthdays:[
+
+            {
+                name:"Miguel Costa",
+                date:"1995-01-25",
+                relation:"Filho"
+            },
+
+            {
+                name:"Carla Costa",
+                date:"1985-06-12",
+                relation:"Mãe"
+            },
+
+            {
+                name:"Manuel Costa",
+                date:"1978-09-30",
+                relation:"Pai"
+            },
+
+            {
+                name:"Sofia Costa",
+                date:"2008-11-17",
+                relation:"Filha"
+            }
+
+        ],
+
+        events:[
+
+            {
+                date:"2027-01-01",
+                title:"Ano Novo",
+                type:"feriado",
+                description:"Primeiro dia do ano."
+            },
+
+            {
+                date:"2027-02-14",
+                title:"Dia dos Namorados",
+                type:"comemorativa",
+                description:"Dia especial."
+            },
+
+            {
+                date:"2027-05-01",
+                title:"Dia do Trabalhador",
+                type:"feriado",
+                description:"Dia do Trabalhador."
+            },
+
+            {
+                date:"2027-06-01",
+                title:"Dia da Criança",
+                type:"comemorativa",
+                description:"Dia da Criança."
+            },
+
+            {
+                date:"2027-11-11",
+                title:"Independência de Angola",
+                type:"feriado",
+                description:"Feriado nacional."
+            },
+
+            {
+                date:"2027-12-25",
+                title:"Natal",
+                type:"feriado",
+                description:"Natal."
+            }
+
+        ],
+
+        memories:[
+
+            {
+                title:"Casamento",
+                description:"Um dia inesquecível."
+            },
+
+            {
+                title:"Festa de família",
+                description:"Toda a família reunida."
+            },
+
+            {
+                title:"Viagem",
+                description:"Uma viagem especial."
+            }
+
+        ],
+
+        dedications:[]
+
+    },
+
+
+    {
+        id:"mateus",
+
+        name:"Família Mateus",
+
+        year:2027,
+
+        description:"Sempre juntos.",
+
+        members:7,
+
+        birthdays:[
+
+            {
+                name:"Daniel Mateus",
+                date:"1990-04-11",
+                relation:"Pai"
+            },
+
+            {
+                name:"Rosa Mateus",
+                date:"1994-09-15",
+                relation:"Mãe"
+            }
+
+        ],
+
+        events:[
+
+            {
+                date:"2027-01-01",
+                title:"Ano Novo",
+                type:"feriado",
+                description:"Primeiro dia do ano."
+            },
+
+            {
+                date:"2027-05-01",
+                title:"Dia do Trabalhador",
+                type:"feriado",
+                description:"Dia do Trabalhador."
+            },
+
+            {
+                date:"2027-11-11",
+                title:"Independência de Angola",
+                type:"feriado",
+                description:"Feriado nacional."
+            }
+
+        ],
+
+        memories:[
+
+            {
+                title:"Jantar de família",
+                description:"Uma noite especial."
+            },
+
+            {
+                title:"Férias",
+                description:"Dias especiais em família."
+            }
+
+        ],
+
+        dedications:[]
+
+    }
+
+];
+
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
+
+let storedFamilies =
+    localStorage.getItem("familyCalendars");
+
+let families =
+    storedFamilies
+        ? JSON.parse(storedFamilies)
+        : defaultFamilies;
+
+function saveFamilies(){
+
+    localStorage.setItem(
+        "familyCalendars",
+        JSON.stringify(families)
+    );
+
+}
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+let currentFamily =
+    families[0];
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const familiesGrid =
+    document.getElementById("familiesGrid");
+
+const monthsContainer =
+    document.getElementById("months");
+
+const birthdayList =
+    document.getElementById("birthdayList");
+
+const birthdayCards =
+    document.getElementById("birthdayCards");
+
+const memoryList =
+    document.getElementById("memoryList");
+
+const memoryCards =
+    document.getElementById("memoryCards");
+
+const calendarFamilyTitle =
+    document.getElementById("calendarFamilyTitle");
+
+const calendarYear =
+    document.getElementById("calendarYear");
+
+
+/* =====================================================
+   FORMATAR DATA
+===================================================== */
+
+function formatDate(date){
+
+    if(!date) return "";
+
+    const d =
+        new Date(
+            date + "T00:00:00"
+        );
+
+    return d.toLocaleDateString(
+        "pt-PT",
+        {
+            day:"2-digit",
+            month:"long"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PRÓXIMO ANIVERSÁRIO
+===================================================== */
+
+function getNextBirthday(family){
+
+    if(!family.birthdays.length)
+        return null;
+
+    const today =
+        new Date();
+
+    const year =
+        family.year;
+
+    const birthdays =
+        family.birthdays.map(
+            person => {
+
+                const original =
+                    new Date(
+                        person.date +
+                        "T00:00:00"
+                    );
+
+                let date =
+                    new Date(
+                        year,
+                        original.getMonth(),
+                        original.getDate()
+                    );
+
+                if(date < today){
+
+                    date =
+                        new Date(
+                            year + 1,
+                            original.getMonth(),
+                            original.getDate()
+                        );
+
+                    date.setFullYear(year);
+
+                }
+
+                return {
+                    ...person,
+                    birthday:date
+                };
+
+            }
+        );
+
+    birthdays.sort(
+        (a,b) =>
+            a.birthday - b.birthday
+    );
+
+    return birthdays[0];
+
+}
+
+
+/* =====================================================
+   RENDER FAMÍLIAS
+===================================================== */
+
+function renderFamilies(list=families){
+
+    familiesGrid.innerHTML="";
+
+
+    if(!list.length){
+
+        familiesGrid.innerHTML=`
+
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+                color:#64748b;
+            ">
+
+                Nenhuma família encontrada.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.forEach(
+        family => {
+
+            const next =
+                getNextBirthday(family);
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "family-card";
+
+
+            card.innerHTML=`
+
+                <div class="family-card-top">
+
+                    <span class="family-year-badge">
+                        ${family.year}
+                    </span>
+
+                    <div class="family-crown">
+                        ♛
+                    </div>
+
+                    <h3>
+                        ${family.name}
+                    </h3>
+
+                    <p>
+                        ${family.description || "Calendário familiar"}
+                    </p>
+
+                </div>
+
+
+                <div class="family-card-body">
+
+                    <div class="family-stats">
+
+                        <div class="family-stat">
+
+                            <strong>
+                                ${family.members}
+                            </strong>
+
+                            <span>
+                                membros
+                            </span>
+
+                        </div>
+
+
+                        <div class="family-stat">
+
+                            <strong>
+                                ${family.birthdays.length}
+                            </strong>
+
+                            <span>
+                                aniversários
+                            </span>
+
+                        </div>
+
+
+                        <div class="family-stat">
+
+                            <strong>
+                                ${family.events.length}
+                            </strong>
+
+                            <span>
+                                datas
+                            </span>
+
+                        </div>
+
+
+                        <div class="family-stat">
+
+                            <strong>
+                                ${family.memories.length}
+                            </strong>
+
+                            <span>
+                                memórias
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    ${
+                        next
+                        ?
+
+                        `
+
+                        <div class="next-birthday">
+
+                            <small>
+                                🎂 Próximo aniversário
+                            </small>
+
+                            <strong>
+                                ${next.name}
+                            </strong>
+
+                            <small>
+                                ${formatDate(next.date)}
+                            </small>
+
+                        </div>
+
+                        `
+
+                        :
+
+                        ""
+
+                    }
+
+
+                    <div class="family-card-buttons">
+
+       <a 
+    class="btn btn-primary"
+    href="calendario.html?familia=${family.id}"
+    target="_blank"
+>
+    Ver calendário
+</a>
+
+
+                        <button
+                            class="btn btn-outline"
+                            onclick="openOverview('${family.id}')"
+                        >
+                            👁 Visão geral
+                        </button>
+
+
+                        <button
+                            class="btn btn-outline"
+                            onclick="openQR('${family.id}')"
+                        >
+                            ▣ QR
+                        </button>
+
+
+                        <button
+                            class="btn btn-outline"
+                            onclick="downloadFamilyPDF('${family.id}')"
+                        >
+                            📄 PDF
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            familiesGrid.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ABRIR FAMÍLIA
+===================================================== */
+
+function openFamily(id){
+
+    const family =
+        families.find(
+            item => item.id === id
+        );
+
+    if(!family) return;
+
+    currentFamily =
+        family;
+
+    renderCalendar(family);
+
+    renderBirthdays(family);
+
+    renderMemories(family);
+
+    renderDedications(family);
+
+    document
+        .getElementById("calendario")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =====================================================
+   CALENDÁRIO
+===================================================== */
+
+function renderCalendar(family){
+
+    calendarFamilyTitle.textContent =
+        family.name;
+
+    calendarYear.textContent =
+        `Calendário ${family.year}`;
+
+    monthsContainer.innerHTML="";
+
+
+    const monthNames=[
+
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro"
+
+    ];
+
+
+    monthNames.forEach(
+        (monthName,monthIndex)=>{
+
+            const month =
+                document.createElement(
+                    "div"
+                );
+
+            month.className =
+                "month";
+
+
+            const firstDay =
+                new Date(
+                    family.year,
+                    monthIndex,
+                    1
+                );
+
+
+            const totalDays =
+                new Date(
+                    family.year,
+                    monthIndex+1,
+                    0
+                ).getDate();
+
+
+            let html=`
+
+                <div class="month-header">
+
+                    <h3>
+                        ${monthName}
+                    </h3>
+
+                </div>
+
+
+                <div class="weekdays">
+
+                    <span>Dom</span>
+                    <span>Seg</span>
+                    <span>Ter</span>
+                    <span>Qua</span>
+                    <span>Qui</span>
+                    <span>Sex</span>
+                    <span>Sáb</span>
+
+                </div>
+
+
+                <div class="month-days">
+
+            `;
+
+
+            for(
+                let i=0;
+                i<firstDay.getDay();
+                i++
+            ){
+
+                html+=`
+                    <span class="empty-day"></span>
+                `;
+
+            }
+
+
+            for(
+                let day=1;
+                day<=totalDays;
+                day++
+            ){
+
+                const date =
+                    `${family.year}-${String(
+                        monthIndex+1
+                    ).padStart(2,"0")}-${String(
+                        day
+                    ).padStart(2,"0")}`;
+
+
+                const birthday =
+                    family.birthdays.filter(
+                        person => {
+
+                            const d =
+                                new Date(
+                                    person.date+
+                                    "T00:00:00"
+                                );
+
+                            return(
+
+                                d.getMonth()
+                                === monthIndex
+
+                                &&
+
+                                d.getDate()
+                                === day
+
+                            );
+
+                        }
+                    );
+
+
+                const events =
+                    family.events.filter(
+                        event =>
+                            event.date === date
+                    );
+
+
+                let classes =
+                    "calendar-day";
+
+
+                if(birthday.length)
+                    classes +=
+                        " birthday-day";
+
+
+                if(events.length)
+                    classes +=
+                        " event-day";
+
+
+                const title = [
+
+                    ...birthday.map(
+                        p =>
+                            "🎂 " + p.name
+                    ),
+
+                    ...events.map(
+                        e =>
+                            "🎉 " + e.title
+                    )
+
+                ].join(" | ");
+
+
+                html+=`
+
+                    <span
+                        class="${classes}"
+                        title="${title}"
+                        onclick="openDay('${date}')"
+                    >
+
+                        ${day}
+
+                    </span>
+
+                `;
+
+            }
+
+
+            html+=`
+
+                </div>
+
+            `;
+
+
+            month.innerHTML =
+                html;
+
+
+            monthsContainer.appendChild(
+                month
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DIA
+===================================================== */
+
+function openDay(date){
+
+    const family =
+        currentFamily;
+
+
+    const d =
+        new Date(
+            date+"T00:00:00"
+        );
+
+
+    document.getElementById(
+        "dayTitle"
+    ).textContent =
+        d.toLocaleDateString(
+            "pt-PT",
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+
+    const birthdays =
+        family.birthdays.filter(
+            person => {
+
+                const b =
+                    new Date(
+                        person.date+
+                        "T00:00:00"
+                    );
+
+                return(
+
+                    b.getMonth()
+                    === d.getMonth()
+
+                    &&
+
+                    b.getDate()
+                    === d.getDate()
+
+                );
+
+            }
+        );
+
+
+    const events =
+        family.events.filter(
+            event =>
+                event.date === date
+        );
+
+
+    let html="";
+
+
+    birthdays.forEach(
+        person => {
+
+            html+=`
+
+                <div class="day-event birthday">
+
+                    <strong>
+                        🎂 Aniversário de ${person.name}
+                    </strong>
+
+                    <small>
+                        ${person.relation}
+                    </small>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    events.forEach(
+        event => {
+
+            html+=`
+
+                <div class="day-event event">
+
+                    <strong>
+                        🎉 ${event.title}
+                    </strong>
+
+                    <small>
+                        ${event.type}
+                        ${
+                            event.description
+                            ?
+                            " — "+event.description
+                            :
+                            ""
+                        }
+                    </small>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    if(!html){
+
+        html=`
+
+            <div class="day-event">
+
+                <strong>
+                    Nenhum evento marcado.
+                </strong>
+
+                <small>
+                    Este dia está livre no calendário.
+                </small>
+
+            </div>
+
+        `;
+
+    }
+
+
+    document.getElementById(
+        "dayContent"
+    ).innerHTML=html;
+
+
+    openModal("dayModal");
+
+}
+
+
+/* =====================================================
+   ANIVERSÁRIOS
+===================================================== */
+
+function renderBirthdays(family){
+
+    birthdayList.innerHTML="";
+
+    birthdayCards.innerHTML="";
+
+
+    family.birthdays.forEach(
+        person => {
+
+            birthdayList.innerHTML+=`
+
+                <div class="birthday-item">
+
+                    <div>
+
+                        <strong>
+                            ${person.name}
+                        </strong>
+
+                        <small>
+                            ${person.relation}
+                        </small>
+
+                    </div>
+
+                    <span>
+                        ${formatDate(person.date)}
+                    </span>
+
+                </div>
+
+            `;
+
+
+            birthdayCards.innerHTML+=`
+
+                <article class="birthday-card">
+
+                    <div class="birthday-icon">
+                        🎂
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            ${person.name}
+                        </h3>
+
+                        <p>
+                            ${person.relation}
+                        </p>
+
+                        <strong>
+                            ${formatDate(person.date)}
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   MEMÓRIAS
+===================================================== */
+
+function renderMemories(family){
+
+    memoryList.innerHTML="";
+
+    memoryCards.innerHTML="";
+
+
+    family.memories.forEach(
+        memory => {
+
+            memoryList.innerHTML+=`
+
+                <div class="memory-item">
+
+                    ♥ ${memory.title}
+
+                </div>
+
+            `;
+
+
+            memoryCards.innerHTML+=`
+
+                <article class="memory-card">
+
+                    <span>
+                        ♥
+                    </span>
+
+                    <h3>
+                        ${memory.title}
+                    </h3>
+
+                    <p>
+                        ${memory.description || ""}
+                    </p>
+
+                </article>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DEDICATÓRIAS
+===================================================== */
+
+function renderDedications(family){
+
+    const container =
+        document.getElementById(
+            "dedications"
+        );
+
+
+    container.innerHTML="";
+
+
+    (family.dedications || [])
+        .forEach(
+            dedication => {
+
+                container.innerHTML+=`
+
+                    <article class="dedication-card">
+
+                        <strong>
+                            ${dedication.author}
+                        </strong>
+
+                        <small>
+                            Para ${dedication.recipient}
+                        </small>
+
+                        <p>
+                            "${dedication.message}"
+                        </p>
+
+                    </article>
+
+                `;
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   VISÃO GERAL
+===================================================== */
+
+function openOverview(id){
+
+    const family =
+        families.find(
+            f => f.id === id
+        );
+
+    if(!family) return;
+
+
+    currentFamily =
+        family;
+
+
+    const next =
+        getNextBirthday(family);
+
+
+    const content =
+        document.getElementById(
+            "overviewContent"
+        );
+
+
+    content.innerHTML=`
+
+        <div class="overview-header">
+
+            <span>
+                CALENDÁRIO ${family.year}
+            </span>
+
+            <h2>
+                ${family.name}
+            </h2>
+
+            <p>
+                ${family.description || "Calendário familiar"}
+            </p>
+
+
+            <div class="overview-actions">
+
+                <button
+                    class="btn btn-light"
+                    onclick="openFamily('${family.id}');closeModal('overviewModal')"
+                >
+                    📅 Abrir calendário
+                </button>
+
+
+                <button
+                    class="btn btn-light"
+                    onclick="downloadFamilyPDF('${family.id}')"
+                >
+                    📄 Baixar PDF A3
+                </button>
+
+
+                <button
+                    class="btn btn-light"
+                    onclick="openQR('${family.id}')"
+                >
+                    ▣ QR Code
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="overview-grid">
+
+
+            <!-- ESTATÍSTICAS -->
+
+            <div class="overview-card">
+
+                <h3>
+                    📊 Informações
+                </h3>
+
+                <div class="info-row">
+
+                    <span>
+                        Membros
+                    </span>
+
+                    <strong>
+                        ${family.members}
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>
+                        Aniversários
+                    </span>
+
+                    <strong>
+                        ${family.birthdays.length}
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>
+                        Datas especiais
+                    </span>
+
+                    <strong>
+                        ${family.events.length}
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>
+                        Memórias
+                    </span>
+
+                    <strong>
+                        ${family.memories.length}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRÓXIMO -->
+
+            <div class="overview-card">
+
+                <h3>
+                    🎂 Próximo aniversário
+                </h3>
+
+                ${
+                    next
+
+                    ?
+
+                    `
+
+                    <div class="info-row">
+
+                        <span>
+                            Pessoa
+                        </span>
+
+                        <strong>
+                            ${next.name}
+                        </strong>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <span>
+                            Relação
+                        </span>
+
+                        <strong>
+                            ${next.relation}
+                        </strong>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <span>
+                            Data
+                        </span>
+
+                        <strong>
+                            ${formatDate(next.date)}
+                        </strong>
+
+                    </div>
+
+                    `
+
+                    :
+
+                    `
+                    <p>
+                        Nenhum aniversário cadastrado.
+                    </p>
+                    `
+
+                }
+
+            </div>
+
+
+            <!-- MEMBROS -->
+
+            <div class="overview-card full-width">
+
+                <h3>
+                    👨‍👩‍👧‍👦 Pessoas da família
+                </h3>
+
+
+                ${
+                    family.birthdays.length
+
+                    ?
+
+                    family.birthdays.map(
+                        person => `
+
+                        <div class="info-row">
+
+                            <span>
+                                ${person.relation}
+                            </span>
+
+                            <strong>
+                                ${person.name}
+                                —
+                                ${formatDate(person.date)}
+                            </strong>
+
+                        </div>
+
+                        `
+                    ).join("")
+
+                    :
+
+                    `
+                    <p>
+                        Nenhum membro cadastrado.
+                    </p>
+                    `
+
+                }
+
+            </div>
+
+
+            <!-- DATAS -->
+
+            <div class="overview-card full-width">
+
+                <h3>
+                    🎉 Datas comemorativas e eventos
+                </h3>
+
+
+                ${
+                    family.events.length
+
+                    ?
+
+                    family.events
+                    .sort(
+                        (a,b) =>
+                            a.date.localeCompare(b.date)
+                    )
+                    .map(
+                        event => `
+
+                        <div class="info-row">
+
+                            <span>
+                                ${formatDate(event.date)}
+                            </span>
+
+                            <strong>
+                                ${event.title}
+                            </strong>
+
+                        </div>
+
+                        `
+                    ).join("")
+
+                    :
+
+                    `
+                    <p>
+                        Nenhuma data cadastrada.
+                    </p>
+                    `
+
+                }
+
+            </div>
+
+
+            <!-- MEMÓRIAS -->
+
+            <div class="overview-card">
+
+                <h3>
+                    ♥ Memórias
+                </h3>
+
+
+                ${
+                    family.memories.length
+
+                    ?
+
+                    family.memories.map(
+                        memory => `
+
+                        <div class="info-row">
+
+                            <span>
+                                ♥
+                            </span>
+
+                            <strong>
+                                ${memory.title}
+                            </strong>
+
+                        </div>
+
+                        `
+                    ).join("")
+
+                    :
+
+                    `
+                    <p>
+                        Nenhuma memória.
+                    </p>
+                    `
+
+                }
+
+            </div>
+
+
+            <!-- DEDICATÓRIAS -->
+
+            <div class="overview-card">
+
+                <h3>
+                    💌 Dedicatórias
+                </h3>
+
+
+                ${
+                    family.dedications &&
+                    family.dedications.length
+
+                    ?
+
+                    family.dedications.map(
+                        d => `
+
+                        <div class="info-row">
+
+                            <span>
+                                ${d.author}
+                            </span>
+
+                            <strong>
+                                Para ${d.recipient}
+                            </strong>
+
+                        </div>
+
+                        `
+                    ).join("")
+
+                    :
+
+                    `
+                    <p style="color:#64748b;font-size:12px;">
+                        Ainda não existem dedicatórias.
+                    </p>
+                    `
+
+                }
+
+            </div>
+
+
+            <!-- AÇÕES ADMINISTRATIVAS -->
+
+            <div class="overview-card full-width">
+
+                <h3>
+                    ⚙ Gerir calendário
+                </h3>
+
+
+                <div class="overview-actions">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="openMemberModal()"
+                    >
+                        + Adicionar membro
+                    </button>
+
+
+                    <button
+                        class="btn btn-outline"
+                        onclick="openEventModal()"
+                    >
+                        + Adicionar data
+                    </button>
+
+
+                    <button
+                        class="btn btn-outline"
+                        onclick="openMemoryModal()"
+                    >
+                        + Adicionar memória
+                    </button>
+
+
+                    <button
+                        class="btn btn-outline"
+                        onclick="openDedicationModal()"
+                    >
+                        + Dedicatória
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    openModal("overviewModal");
+
+}
+
+
+/* =====================================================
+   CRIAR FAMÍLIA
+===================================================== */
+
+document
+    .getElementById("createFamilyBtn")
+    .addEventListener(
+        "click",
+        ()=>{
+            openModal("familyModal");
+        }
+    );
+
+
+document
+    .getElementById("familyForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "familyName"
+                ).value.trim();
+
+
+            const year =
+                Number(
+                    document.getElementById(
+                        "familyYear"
+                    ).value
+                );
+
+
+            const description =
+                document.getElementById(
+                    "familyDescription"
+                ).value.trim();
+
+
+            const id =
+                name
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+                .replace(
+                    /[^a-z0-9]+/g,
+                    "-"
+                )
+                +
+                "-" +
+                Date.now();
+
+
+            const newFamily={
+
+                id,
+
+                name,
+
+                year,
+
+                description,
+
+                members:0,
+
+                birthdays:[],
+
+                events:[],
+
+                memories:[],
+
+                dedications:[]
+
+            };
+
+
+            families.push(
+                newFamily
+            );
+
+
+            saveFamilies();
+
+
+            renderFamilies();
+
+
+            closeModal(
+                "familyModal"
+            );
+
+
+            this.reset();
+
+
+            openFamily(
+                newFamily.id
+            );
+
+        }
+    );
+/* =========================================
+   ABRIR CALENDÁRIO EM OUTRA ABA
+========================================= */
+
+function openFamilyPage(id) {
+
+    const family = families.find(
+        item => item.id === id
+    );
+
+    if (!family) {
+        alert("Família não encontrada.");
+        return;
+    }
+
+    /*
+     * Abre uma nova aba passando
+     * o ID da família pela URL
+     */
+
+    window.open(
+        `calendario.html?familia=${encodeURIComponent(id)}`,
+        "_blank"
+    );
+}
+
+/* =====================================================
+   ADICIONAR MEMBRO
+===================================================== */
+
+function openMemberModal(){
+
+    closeModal(
+        "overviewModal"
+    );
+
+    document.getElementById(
+        "memberForm"
+    ).reset();
+
+    openModal(
+        "memberModal"
+    );
+
+}
+
+
+document
+    .getElementById("memberForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+
+            const person={
+
+                name:
+                    document.getElementById(
+                        "memberName"
+                    ).value,
+
+                date:
+                    document.getElementById(
+                        "memberBirth"
+                    ).value,
+
+                relation:
+                    document.getElementById(
+                        "memberRelation"
+                    ).value
+
+            };
+
+
+            currentFamily
+                .birthdays
+                .push(person);
+
+
+            currentFamily.members =
+                Math.max(
+                    currentFamily.members,
+                    currentFamily.birthdays.length
+                );
+
+
+            saveFamilies();
+
+
+            renderAllCurrent();
+
+
+            closeModal(
+                "memberModal"
+            );
+
+
+            openOverview(
+                currentFamily.id
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   ADICIONAR EVENTO
+===================================================== */
+
+function openEventModal(){
+
+    closeModal(
+        "overviewModal"
+    );
+
+    document.getElementById(
+        "eventForm"
+    ).reset();
+
+    openModal(
+        "eventModal"
+    );
+
+}
+
+
+document
+    .getElementById("eventForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+
+            const event={
+
+                date:
+                    document.getElementById(
+                        "eventDate"
+                    ).value,
+
+                title:
+                    document.getElementById(
+                        "eventTitle"
+                    ).value,
+
+                type:
+                    document.getElementById(
+                        "eventType"
+                    ).value,
+
+                description:
+                    document.getElementById(
+                        "eventDescription"
+                    ).value
+
+            };
+
+
+            currentFamily.events.push(
+                event
+            );
+
+
+            saveFamilies();
+
+
+            renderAllCurrent();
+
+
+            closeModal(
+                "eventModal"
+            );
+
+
+            openOverview(
+                currentFamily.id
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   ADICIONAR MEMÓRIA
+===================================================== */
+
+function openMemoryModal(){
+
+    closeModal(
+        "overviewModal"
+    );
+
+    document.getElementById(
+        "memoryForm"
+    ).reset();
+
+    openModal(
+        "memoryModal"
+    );
+
+}
+
+
+document
+    .getElementById("memoryForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+
+            const memory={
+
+                title:
+                    document.getElementById(
+                        "memoryTitle"
+                    ).value,
+
+                description:
+                    document.getElementById(
+                        "memoryDescription"
+                    ).value
+
+            };
+
+
+            currentFamily.memories.push(
+                memory
+            );
+
+
+            saveFamilies();
+
+
+            renderAllCurrent();
+
+
+            closeModal(
+                "memoryModal"
+            );
+
+
+            openOverview(
+                currentFamily.id
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   DEDICATÓRIA
+===================================================== */
+
+function openDedicationModal(){
+
+    const select =
+        document.getElementById(
+            "dedicationRecipient"
+        );
+
+
+    select.innerHTML="";
+
+
+    currentFamily.birthdays
+        .forEach(
+            person => {
+
+                select.innerHTML+=`
+
+                    <option value="${person.name}">
+                        ${person.name}
+                    </option>
+
+                `;
+
+            }
+        );
+
+
+    openModal(
+        "dedicationModal"
+    );
+
+}
+
+
+document
+    .getElementById("dedicationForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+
+            if(!currentFamily.dedications)
+                currentFamily.dedications=[];
+
+
+            currentFamily.dedications.push({
+
+                author:
+                    document.getElementById(
+                        "dedicationAuthor"
+                    ).value,
+
+                recipient:
+                    document.getElementById(
+                        "dedicationRecipient"
+                    ).value,
+
+                message:
+                    document.getElementById(
+                        "dedicationMessage"
+                    ).value
+
+            });
+
+
+            saveFamilies();
+
+
+            renderDedications(
+                currentFamily
+            );
+
+
+            closeModal(
+                "dedicationModal"
+            );
+
+
+            this.reset();
+
+        }
+    );
+
+
+/* =====================================================
+   QR CODE
+===================================================== */
+
+function getFamilyURL(family){
+
+    const base =
+        window.location.origin +
+        window.location.pathname;
+
+    return (
+        base +
+        "?familia=" +
+        encodeURIComponent(
+            family.id
+        )
+    );
+
+}
+
+
+function generateQR(
+    element,
+    family
+){
+
+    element.innerHTML="";
+
+
+    new QRCode(
+        element,
+        {
+            text:getFamilyURL(family),
+            width:150,
+            height:150,
+            colorDark:"#0f2f52",
+            colorLight:"#ffffff"
+        }
+    );
+
+}
+
+
+function openQR(id){
+
+    const family =
+        families.find(
+            f => f.id === id
+        );
+
+    if(!family) return;
+
+
+    currentFamily =
+        family;
+
+
+    document.getElementById(
+        "qrTitle"
+    ).textContent =
+        `${family.name} • ${family.year}`;
+
+
+    generateQR(
+        document.getElementById(
+            "qrLarge"
+        ),
+        family
+    );
+
+
+    document.getElementById(
+        "qrUrl"
+    ).textContent =
+        getFamilyURL(family);
+
+
+    openModal(
+        "qrModal"
+    );
+
+}
+
+
+function openCurrentQR(){
+
+    openQR(
+        currentFamily.id
+    );
+
+}
+
+
+/* =====================================================
+   PDF A3
+===================================================== */
+
+function createPDFCalendar(family){
+
+    const container =
+        document.createElement(
+            "div"
+        );
+
+
+    container.className =
+        "pdf-calendar";
+
+
+    const months=[
+
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro"
+
+    ];
+
+
+    let html=`
+
+        <div class="pdf-calendar-header">
+
+            <h1>
+                ♛ ${family.name}
+            </h1>
+
+            <p>
+                Calendário Familiar ${family.year}
+            </p>
+
+        </div>
+
+
+        <div class="pdf-months">
+
+    `;
+
+
+    months.forEach(
+        (month,monthIndex)=>{
+
+            const firstDay =
+                new Date(
+                    family.year,
+                    monthIndex,
+                    1
+                );
+
+
+            const totalDays =
+                new Date(
+                    family.year,
+                    monthIndex+1,
+                    0
+                ).getDate();
+
+
+            html+=`
+
+                <div class="pdf-month">
+
+                    <h3>
+                        ${month}
+                    </h3>
+
+                    <div class="pdf-days">
+
+                        <span class="pdf-day-name">
+                            D
+                        </span>
+
+                        <span class="pdf-day-name">
+                            S
+                        </span>
+
+                        <span class="pdf-day-name">
+                            T
+                        </span>
+
+                        <span class="pdf-day-name">
+                            Q
+                        </span>
+
+                        <span class="pdf-day-name">
+                            Q
+                        </span>
+
+                        <span class="pdf-day-name">
+                            S
+                        </span>
+
+                        <span class="pdf-day-name">
+                            S
+                        </span>
+
+            `;
+
+
+            for(
+                let i=0;
+                i<firstDay.getDay();
+                i++
+            ){
+
+                html+=`
+                    <span></span>
+                `;
+
+            }
+
+
+            for(
+                let day=1;
+                day<=totalDays;
+                day++
+            ){
+
+                const date =
+                    `${family.year}-${String(
+                        monthIndex+1
+                    ).padStart(2,"0")}-${String(
+                        day
+                    ).padStart(2,"0")}`;
+
+
+                const birthday =
+                    family.birthdays.some(
+                        person => {
+
+                            const d =
+                                new Date(
+                                    person.date+
+                                    "T00:00:00"
+                                );
+
+                            return(
+
+                                d.getMonth()
+                                === monthIndex
+
+                                &&
+
+                                d.getDate()
+                                === day
+
+                            );
+
+                        }
+                    );
+
+
+                const event =
+                    family.events.some(
+                        item =>
+                            item.date === date
+                    );
+
+
+                let className =
+                    "pdf-day";
+
+
+                if(birthday)
+                    className +=
+                        " birthday";
+
+
+                if(event)
+                    className +=
+                        " event";
+
+
+                html+=`
+
+                    <span
+                        class="${className}"
+                    >
+                        ${day}
+                    </span>
+
+                `;
+
+            }
+
+
+            html+=`
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    html+=`
+
+        </div>
+
+
+        <div class="pdf-footer">
+
+            <span>
+                🎂 ${family.birthdays.length}
+                aniversários
+            </span>
+
+            <span>
+                🎉 ${family.events.length}
+                eventos
+            </span>
+
+            <span>
+                ${family.name} • ${family.year}
+            </span>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+
+    document.body.appendChild(
+        container
+    );
+
+
+    return container;
+
+}
+
+
+async function downloadFamilyPDF(id){
+
+    const family =
+        families.find(
+            f => f.id === id
+        );
+
+    if(!family) return;
+
+
+    const pdfCalendar =
+        createPDFCalendar(
+            family
+        );
+
+
+    try{
+
+        const canvas =
+            await html2canvas(
+                pdfCalendar,
+                {
+                    scale:2,
+                    backgroundColor:"#ffffff"
+                }
+            );
+
+
+        const {
+            jsPDF
+        } =
+            window.jspdf;
+
+
+        const pdf =
+            new jsPDF(
+                {
+                    orientation:"landscape",
+                    unit:"mm",
+                    format:"a3"
+                }
+            );
+
+
+        const image =
+            canvas.toDataURL(
+                "image/jpeg",
+                .95
+            );
+
+
+        pdf.addImage(
+            image,
+            "JPEG",
+            0,
+            0,
+            420,
+            297
+        );
+
+
+        pdf.save(
+
+            `${family.name
+                .replace(/\s+/g,"-")
+            }-${family.year}-A3.pdf`
+
+        );
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Não foi possível gerar o PDF."
+        );
+
+    }
+
+
+    pdfCalendar.remove();
+
+}
+
+
+function downloadCurrentPDF(){
+
+    downloadFamilyPDF(
+        currentFamily.id
+    );
+
+}
+
+
+/* =====================================================
+   PESQUISA
+===================================================== */
+
+document
+    .getElementById("familySearch")
+    .addEventListener(
+        "input",
+        function(){
+
+            const value =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const filtered =
+                families.filter(
+                    family =>
+                        family.name
+                            .toLowerCase()
+                            .includes(value)
+                );
+
+
+            renderFamilies(
+                filtered
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   MODAIS
+===================================================== */
+
+function openModal(id){
+
+    document
+        .getElementById(id)
+        .classList
+        .add("active");
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList
+        .remove("active");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* FECHAR AO CLICAR FORA */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(
+        modal => {
+
+            modal.addEventListener(
+                "click",
+                function(e){
+
+                    if(
+                        e.target ===
+                        modal
+                    ){
+
+                        closeModal(
+                            modal.id
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   RENDER ATUAL
+===================================================== */
+
+function renderAllCurrent(){
+
+    renderFamilies();
+
+    renderCalendar(
+        currentFamily
+    );
+
+    renderBirthdays(
+        currentFamily
+    );
+
+    renderMemories(
+        currentFamily
+    );
+
+    renderDedications(
+        currentFamily
+    );
+
+}
+
+
+/* =====================================================
+   HOJE
+===================================================== */
+
+function scrollToToday(){
+
+    const now =
+        new Date();
+
+    const month =
+        now.getMonth();
+
+    const months =
+        document.querySelectorAll(
+            ".month"
+        );
+
+    if(months[month]){
+
+        months[month]
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+    }
+
+}
+
+
+/* =====================================================
+   MENU MOBILE
+===================================================== */
+
+document
+    .getElementById("menuBtn")
+    .addEventListener(
+        "click",
+        ()=>{
+
+            document
+                .getElementById("menu")
+                .classList
+                .toggle("active");
+
+        }
+    );
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+renderAllCurrent();
+
+
+/* =====================================================
+   ABRIR FAMÍLIA PELO QR CODE
+===================================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const familyId =
+    params.get("familia");
+
+
+if(familyId){
+
+    const qrFamily =
+        families.find(
+            f => f.id === familyId
+        );
+
+
+    if(qrFamily){
+
+        currentFamily =
+            qrFamily;
+
+        renderAllCurrent();
+
+        setTimeout(
+            ()=>{
+                openOverview(
+                    qrFamily.id
+                );
+            },
+            500
+        );
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>

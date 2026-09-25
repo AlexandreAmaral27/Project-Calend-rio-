@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Família Barroso — Calendário A3</title>
+  <meta name="description" content="Calendário familiar digital com versão A3, QR Code, aniversários, memórias e mensagens.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar no-print">
+  <a class="brand" href="/">
+    <span class="crown">♛</span>
+    <span><small>Família</small><strong>BARROSO</strong></span>
+  </a>
+  <nav>
+    <a href="#calendar">Calendário</a>
+    <a href="#people">Aniversariantes</a>
+    <a href="#memories">Datas</a>
+    <a href="#messages">Felicitações</a>
+    <button id="adminOpen" class="btn btn-gold">Criar calendário</button>
+  </nav>
+  <button id="menuBtn" class="icon-btn">☰</button>
+</header>
+
+<main>
+<section id="landing" class="landing no-print">
+  <div>
+    <span class="eyebrow">CALENDÁRIO FAMILIAR • A3 • 2027</span>
+    <h1>Os nossos dias.<br><span>As nossas memórias.</span></h1>
+    <p>Crie um calendário familiar personalizado, marque aniversários, encontros e datas especiais, gere o PDF em A3 e partilhe o calendário através de um QR Code exclusivo.</p>
+    <div class="actions">
+      <button id="startCreate" class="btn btn-gold">Criar meu calendário</button>
+      <button id="showAccess" class="btn btn-light">Sou integrante</button>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="mini-year">20<br><b>27</b></div>
+    <div><strong>Família</strong><span>Juntos somos<br>mais fortes.</span></div>
+  </div>
+</section>
+
+<section id="calendarSection" class="section">
+  <div class="section-head no-print">
+    <div>
+      <span class="eyebrow blue">CALENDÁRIO DIGITAL</span>
+      <h2 id="calendarTitle">Família Barroso <span>2027</span></h2>
+      <p id="calendarStatus">Acesso público: visualização. Membros autorizados podem interagir.</p>
+    </div>
+    <div class="actions">
+      <button id="downloadPdf" class="btn btn-primary">Baixar PDF A3</button>
+      <button id="requestAccess" class="btn btn-outline">Pedir acesso</button>
+    </div>
+  </div>
+
+  <!-- ESTA FOLHA É A3 LANDSCAPE -->
+  <div id="a3Sheet" class="a3-sheet template-barroso">
+    <div class="sheet-top">
+      <div class="sheet-title">
+        <div class="crown-big">♛</div>
+        <div><div class="script">Família</div><h1 id="sheetFamily">BARROSO</h1><p>JUNTOS SOMOS <b>MAIS FORTES</b></p></div>
+      </div>
+      <div class="year-badge"><small>ANO</small><strong id="sheetYear">2027</strong><span>Mais sonhos<br>Mais conquistas<br>Sempre juntos!</span></div>
+    </div>
+
+    <div class="sheet-body">
+      <div id="monthsGrid" class="months-grid"></div>
+      <aside class="sheet-side">
+        <div class="side-panel blue-panel">
+          <h3>♛ ANIVERSÁRIOS</h3>
+          <div id="sheetBirthdays"></div>
+        </div>
+        <div class="side-panel green-panel">
+          <h3>♥ MEMÓRIAS</h3>
+          <div id="sheetMemories"></div>
+        </div>
+        <div class="qr-panel">
+          <p>APONTE A CÂMERA<br><b>DO SEU CELULAR</b></p>
+          <img id="qrImage" alt="QR Code exclusivo do calendário">
+          <small>Acesso ao calendário digital</small>
+        </div>
+      </aside>
+    </div>
+
+    <div class="sheet-footer">
+      <div class="footer-title">▣ Feriados Nacionais &amp; Pontos Legais</div>
+      <div id="holidaysFooter" class="holiday-columns"></div>
+      <div class="footer-family">A nossa família, o nosso maior tesouro! ♥ <span id="footerFamily">FAMÍLIA BARROSO</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="people" class="section no-print">
+  <div class="section-head">
+    <div><span class="eyebrow blue">PERFIS DA FAMÍLIA</span><h2>Aniversariantes</h2></div>
+    <button id="addPerson" class="btn btn-primary member-only">+ Adicionar integrante</button>
+  </div>
+  <div id="peopleGrid" class="cards"></div>
+</section>
+
+<section id="memories" class="section no-print soft">
+  <div class="section-head">
+    <div><span class="eyebrow blue">DATAS DA FAMÍLIA</span><h2>Encontros e dias comemorativos</h2></div>
+    <button id="addEvent" class="btn btn-primary member-only">+ Adicionar data</button>
+  </div>
+  <div id="eventsGrid" class="cards"></div>
+</section>
+
+<section id="messages" class="section no-print">
+  <div class="section-head">
+    <div><span class="eyebrow blue">MENSAGENS PERMANENTES</span><h2>Felicitações</h2></div>
+  </div>
+  <div id="messagesGrid" class="messages-grid"></div>
+</section>
+
+<section id="admin" class="section no-print hidden">
+  <div class="section-head">
+    <div><span class="eyebrow blue">ADMINISTRADOR</span><h2>Gestão do calendário</h2></div>
+  </div>
+  <div class="admin-grid">
+    <div class="panel">
+      <h3>Link e QR Code exclusivo</h3>
+      <p id="shareUrl"></p>
+      <button id="copyLink" class="btn btn-outline">Copiar link</button>
+    </div>
+    <div class="panel">
+      <h3>Pedidos de acesso</h3>
+      <div id="membersList"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- MODAL CRIAR -->
+<div id="createModal" class="modal">
+  <div class="modal-card">
+    <button class="modal-close" data-close="createModal">×</button>
+    <span class="eyebrow blue">NOVO CALENDÁRIO</span>
+    <h2>Criar calendário familiar</h2>
+    <form id="createForm">
+      <label>Nome da família<input id="familyName" required placeholder="Ex.: Família Barroso"></label>
+      <label>Ano<input id="familyYear" type="number" value="2027" min="2027" max="2100" required></label>
+      <label>Template
+        <select id="template"><option value="barroso">Família Barroso — Azul & Dourado</option><option value="royal">Royal Azul & Ouro</option><option value="memory">Memórias da Família</option></select>
+      </label>
+      <hr>
+      <label>Seu nome (administrador)<input id="adminName" required></label>
+      <label>Email<input id="adminEmail" type="email" required></label>
+      <label>Senha<input id="adminPassword" type="password" minlength="6" required></label>
+      <button class="btn btn-primary full">Criar calendário</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL ACESSO -->
+<div id="accessModal" class="modal">
+  <div class="modal-card">
+    <button class="modal-close" data-close="accessModal">×</button>
+    <span class="eyebrow blue">ACESSO DE INTEGRANTE</span>
+    <h2>Confirmar identidade</h2>
+    <form id="accessForm">
+      <input type="hidden" id="accessStep" value="request">
+      <label>Nome<input id="accessName" required></label>
+      <label>Email<input id="accessEmail" type="email" required></label>
+      <label>Telefone (opcional)<input id="accessPhone"></label>
+      <div id="otpArea" class="hidden"><label>Código OTP<input id="otp" inputmode="numeric" maxlength="6"></label></div>
+      <button id="accessButton" class="btn btn-primary full">Enviar código OTP</button>
+    </form>
+    <p class="help">Depois do OTP, o pedido fica pendente até o administrador autorizar.</p>
+  </div>
+</div>
+
+<!-- MODAL PESSOA -->
+<div id="personModal" class="modal">
+  <div class="modal-card">
+    <button class="modal-close" data-close="personModal">×</button>
+    <span class="eyebrow blue">NOVO PERFIL</span>
+    <h2>Adicionar aniversariante</h2>
+    <form id="personForm">
+      <label>Nome<input id="personName" required></label>
+      <label>Data de aniversário<input id="personBirth" type="date" required></label>
+      <label>Parentesco
+        <select id="personRelationship" required>
+          <option>Avô</option><option>Avó</option><option>Pai</option><option>Mãe</option><option>Filho</option><option>Filha</option><option>Irmão</option><option>Irmã</option><option>Tio</option><option>Tia</option><option>Sobrinho</option><option>Sobrinha</option><option>Primo</option><option>Prima</option><option>Amigo próximo</option><option>Outro</option>
+        </select>
+      </label>
+      <label>Bio / observação<textarea id="personBio" rows="3"></textarea></label>
+      <button class="btn btn-primary full">Guardar perfil</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL EVENTO -->
+<div id="eventModal" class="modal">
+  <div class="modal-card">
+    <button class="modal-close" data-close="eventModal">×</button>
+    <span class="eyebrow blue">NOVA DATA</span>
+    <h2>Encontro ou comemoração</h2>
+    <form id="eventForm">
+      <label>Título<input id="eventTitle" required placeholder="Ex.: Almoço da Família"></label>
+      <label>Data<input id="eventDate" type="date" required></label>
+      <label>Tipo
+        <select id="eventType"><option value="family">Encontro familiar</option><option value="commemorative">Data comemorativa</option><option value="memory">Memória</option><option value="other">Outro</option></select>
+      </label>
+      <label>Descrição<textarea id="eventDescription" rows="3"></textarea></label>
+      <button class="btn btn-primary full">Guardar data</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL FELICITAÇÃO -->
+<div id="messageModal" class="modal">
+  <div class="modal-card">
+    <button class="modal-close" data-close="messageModal">×</button>
+    <span class="eyebrow blue">FELICITAÇÃO</span>
+    <h2 id="messagePersonName">Enviar mensagem</h2>
+    <form id="messageForm">
+      <input type="hidden" id="messagePersonId">
+      <label>Mensagem<textarea id="messageText" rows="5" maxlength="500" required placeholder="Feliz aniversário! Que Deus abençoe..."></textarea></label>
+      <button class="btn btn-primary full">Guardar felicitação</button>
+    </form>
+  </div>
+</div>
+
+<footer class="no-print">
+  <strong>FAMÍLIA BARROSO</strong>
+  <p>Um calendário para imprimir. Uma memória para guardar.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

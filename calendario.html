@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Calendário Familiar</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="estilo/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           PÁGINA DO CALENDÁRIO
+        ========================================= */
+
+        .family-page {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f7f9fc,
+                    #ffffff
+                );
+
+        }
+
+
+        /* =========================================
+           TOPO
+        ========================================= */
+
+        .family-page-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f2f52,
+                    #174a7c
+                );
+
+            color: white;
+
+            padding: 35px 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .family-page-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+
+        .family-page-brand-icon {
+
+            width: 58px;
+            height: 58px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,.15);
+
+            border:
+                1px solid
+                rgba(255,255,255,.2);
+
+            display: grid;
+
+            place-items: center;
+
+            font-weight: 800;
+
+            font-size: 20px;
+
+        }
+
+
+        .family-page-brand h1 {
+
+            margin: 0;
+
+            font-size: 28px;
+
+        }
+
+
+        .family-page-brand p {
+
+            margin: 5px 0 0;
+
+            opacity: .75;
+
+        }
+
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #0f2f52;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: .25s;
+
+        }
+
+
+        .back-button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           AÇÕES
+        ========================================= */
+
+        .family-actions {
+
+            max-width: 1400px;
+
+            margin: 35px auto 0;
+
+            padding: 0 5%;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        /* =========================================
+           CALENDÁRIO
+        ========================================= */
+
+        .family-calendar-container {
+
+            max-width: 1400px;
+
+            margin: 30px auto;
+
+            padding: 0 5% 60px;
+
+        }
+
+
+        .calendar-title {
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .calendar-title span {
+
+            color: #174a7c;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .calendar-title h2 {
+
+            margin: 8px 0 5px;
+
+            font-size: 38px;
+
+            color: #102a43;
+
+        }
+
+
+        .calendar-title p {
+
+            color: #64748b;
+
+        }
+
+
+        /* =========================================
+           PERFIL DA FAMÍLIA
+        ========================================= */
+
+        .family-profile {
+
+            display: grid;
+
+            grid-template-columns: 280px 1fr;
+
+            gap: 30px;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+
+            background: white;
+
+            border: 1px solid #e4eaf1;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(15, 23, 42, .06);
+
+        }
+
+
+        .family-photo {
+
+            width: 100%;
+
+            height: 220px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            background: #e8f1fa;
+
+        }
+
+
+        .family-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+        #familyLocation {
+
+            color: #64748b;
+
+            margin: 10px 0;
+
+        }
+
+
+        #familyPhrase {
+
+            color: #174a7c;
+
+            font-weight: 700;
+
+            font-style: italic;
+
+            margin-top: 15px;
+
+        }
+
+
+        /* =========================================
+           MESES
+        ========================================= */
+
+        .family-months {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap: 22px;
+
+        }
+
+
+        .family-month {
+
+            background: white;
+
+            border:
+                1px solid
+                #e4eaf1;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .06
+                );
+
+        }
+
+
+        .family-month h3 {
+
+            text-align: center;
+
+            color: #0f2f52;
+
+            margin: 0 0 18px;
+
+            font-size: 19px;
+
+        }
+
+
+        .family-weekdays {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(7,1fr);
+
+            gap: 5px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .family-weekdays span {
+
+            text-align: center;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            color: #94a3b8;
+
+        }
+
+
+        .family-days {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(7,1fr);
+
+            gap: 5px;
+
+        }
+
+
+        .family-day {
+
+            min-height: 42px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            font-size: 13px;
+
+            background: #f8fafc;
+
+            cursor: pointer;
+
+        }
+
+
+        .family-day:hover {
+
+            background: #e8f1fa;
+
+        }
+
+
+        .family-day.empty {
+
+            background:
+                transparent;
+
+            cursor: default;
+
+        }
+
+
+        .family-day.birthday {
+
+            background: #fff1f2;
+
+            color: #be123c;
+
+            font-weight: 800;
+
+        }
+
+
+        .family-day.event {
+
+            background: #e8f1fa;
+
+            color: #174a7c;
+
+            font-weight: 800;
+
+        }
+
+
+        .family-day.birthday.event {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff1f2,
+                    #e8f1fa
+                );
+
+        }
+
+
+        .event-dot {
+
+            width: 5px;
+
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+
+            position: absolute;
+
+            bottom: 5px;
+
+        }
+
+
+        /* =========================================
+           INFORMAÇÕES
+        ========================================= */
+
+        .family-info {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 20px;
+
+            margin-top: 35px;
+
+        }
+
+
+        .info-card {
+
+            background: white;
+
+            border:
+                1px solid
+                #e4eaf1;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .05
+                );
+
+        }
+
+
+        .info-card h3 {
+
+            margin-top: 0;
+
+            color: #0f2f52;
+
+        }
+
+
+        .info-card ul {
+
+            padding-left: 20px;
+
+            color: #64748b;
+
+            line-height: 1.9;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================= */
+
+        @media(max-width:1000px) {
+
+            .family-months {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+            .family-info {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media(max-width:650px) {
+
+            .family-months {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .family-page-header {
+
+                padding: 25px 5%;
+
+            }
+
+            .calendar-title h2 {
+
+                font-size: 30px;
+
+            }
+
+            .family-profile {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .family-photo {
+
+                height: 250px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           IMPRESSÃO A3
+        ========================================= */
+
+        @media print {
+
+            @page {
+
+                size: A3 landscape;
+
+                margin: 10mm;
+
+            }
+
+            .family-page-header,
+            .family-actions {
+
+                display: none;
+
+            }
+
+            .family-calendar-container {
+
+                max-width: none;
+
+                padding: 0;
+
+            }
+
+            .family-months {
+
+                grid-template-columns:
+                    repeat(4,1fr);
+
+                gap: 8mm;
+
+            }
+
+            .family-month {
+
+                box-shadow: none;
+
+                break-inside: avoid;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="family-page">
+
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="family-page-header">
+
+        <div class="family-page-brand">
+
+            <div
+                class="family-page-brand-icon"
+                id="familyInitials"
+            >
+                FB
+            </div>
+
+            <div>
+
+                <h1 id="familyName">
+                    Família
+                </h1>
+
+                <p id="familyYear">
+                    Calendário 2027
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="index.html#familias"
+            class="back-button"
+        >
+            ← Voltar às famílias
+        </a>
+
+    </header>
+
+
+    <!-- =====================================
+         AÇÕES
+    ====================================== -->
+
+    <div class="family-actions">
+
+        <button
+            class="btn btn-outline"
+            onclick="window.print()"
+        >
+            🖨️ Imprimir
+        </button>
+
+
+        <button
+            class="btn btn-primary"
+            id="downloadPdf"
+        >
+            📄 Baixar PDF A3
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         CALENDÁRIO
+    ====================================== -->
+
+    <main class="family-calendar-container">
+
+
+        <div class="family-profile">
+
+            <div class="family-photo">
+
+                <img
+                    id="familyPhoto"
+                    src=""
+                    alt="Foto da família"
+                >
+
+            </div>
+
+
+            <div class="calendar-title">
+
+                <span>
+                    CALENDÁRIO FAMILIAR
+                </span>
+
+                <h2 id="calendarTitle">
+                    Família
+                </h2>
+
+                <p id="calendarDescription">
+                    Calendário familiar completo
+                </p>
+
+                <p id="familyLocation"></p>
+
+                <p id="familyPhrase"></p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="family-months"
+            id="familyMonths"
+        ></div>
+
+
+        <!-- =================================
+             INFORMAÇÕES
+        ================================== -->
+
+        <div class="family-info">
+
+
+            <!-- ANIVERSÁRIOS -->
+
+            <div class="info-card">
+
+                <h3>
+                    🎂 Aniversários
+                </h3>
+
+                <ul id="birthdayInfo"></ul>
+
+            </div>
+
+
+            <!-- DATAS -->
+
+            <div class="info-card">
+
+                <h3>
+                    🎉 Datas comemorativas
+                </h3>
+
+                <ul id="eventInfo"></ul>
+
+            </div>
+
+
+            <!-- MEMÓRIAS -->
+
+            <div class="info-card">
+
+                <h3>
+                    ❤️ Memórias
+                </h3>
+
+                <ul id="memoryInfo"></ul>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =========================================
+     PDF LIBRARIES
+========================================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+<script>
+
+/* =========================================
+   DADOS
+========================================= */
+
+const families = [
+
+    /* =========================================
+       FAMÍLIA BARROSO
+    ========================================= */
+
+    {
+        id: "barroso",
+
+        name: "Família Barroso",
+
+        year: 2027,
+
+        photo: "imagens/familias/familia-barros.jpg",
+
+        location: "Luanda, Angola",
+
+        phrase: "Onde existe família, existe amor.",
+
+        description:
+            "Uma família unida por amor, respeito e muitos momentos especiais.",
+
+        members: 12,
+
+        birthdays: [
+
+            {
+                name: "Alexandre Barroso",
+                date: "1999-02-14",
+                relation: "Filho"
+            },
+
+            {
+                name: "Maria Barroso",
+                date: "1980-05-21",
+                relation: "Mãe"
+            },
+
+            {
+                name: "João Barroso",
+                date: "1975-08-10",
+                relation: "Pai"
+            },
+
+            {
+                name: "Ana Barroso",
+                date: "2004-12-03",
+                relation: "Filha"
+            }
+
+        ],
+
+        events: [
+
+            {
+                date: "2027-01-01",
+                title: "Ano Novo"
+            },
+
+            {
+                date: "2027-02-14",
+                title: "Dia dos Namorados"
+            },
+
+            {
+                date: "2027-04-02",
+                title: "Sexta-feira Santa"
+            },
+
+            {
+                date: "2027-05-01",
+                title: "Dia do Trabalhador"
+            },
+
+            {
+                date: "2027-06-01",
+                title: "Dia da Criança"
+            },
+
+            {
+                date: "2027-11-11",
+                title: "Independência de Angola"
+            },
+
+            {
+                date: "2027-12-25",
+                title: "Natal"
+            }
+
+        ],
+
+        memories: [
+
+            "Almoço de família",
+
+            "Viagem em família",
+
+            "Festa de aniversário"
+
+        ]
+
+    },
+
+
+    /* =========================================
+       FAMÍLIA SILVA
+    ========================================= */
+
+    {
+        id: "silva",
+
+        name: "Família Silva",
+
+        year: 2027,
+
+        photo: "imagens/familias/familia-silva.jpg",
+
+        location: "Luanda, Angola",
+
+        phrase: "Juntos somos mais fortes.",
+
+        description:
+            "Uma família unida por amor, carinho e momentos inesquecíveis.",
+
+        members: 9,
+
+        birthdays: [
+
+            {
+                name: "Carlos Silva",
+                date: "1992-03-18",
+                relation: "Filho"
+            },
+
+            {
+                name: "Patrícia Silva",
+                date: "1988-07-09",
+                relation: "Mãe"
+            },
+
+            {
+                name: "Pedro Silva",
+                date: "2010-10-22",
+                relation: "Filho"
+            }
+
+        ],
+
+        events: [
+
+            {
+                date: "2027-01-01",
+                title: "Ano Novo"
+            },
+
+            {
+                date: "2027-03-08",
+                title: "Dia da Mulher"
+            },
+
+            {
+                date: "2027-05-01",
+                title: "Dia do Trabalhador"
+            },
+
+            {
+                date: "2027-11-11",
+                title: "Independência de Angola"
+            },
+
+            {
+                date: "2027-12-25",
+                title: "Natal"
+            }
+
+        ],
+
+        memories: [
+
+            "Natal em família",
+
+            "Aniversário da avó",
+
+            "Reunião familiar"
+
+        ]
+
+    },
+
+
+    /* =========================================
+       FAMÍLIA COSTA
+    ========================================= */
+
+    {
+        id: "costa",
+
+        name: "Família Costa",
+
+        year: 2027,
+
+        photo: "imagens/familias/familia-costa.jpg",
+
+        location: "Luanda, Angola",
+
+        phrase:
+            "Família é onde a vida começa e o amor nunca termina.",
+
+        description:
+            "Uma família cheia de união, alegria e momentos especiais.",
+
+        members: 15,
+
+        birthdays: [
+
+            {
+                name: "Miguel Costa",
+                date: "1995-01-25",
+                relation: "Filho"
+            },
+
+            {
+                name: "Carla Costa",
+                date: "1985-06-12",
+                relation: "Mãe"
+            },
+
+            {
+                name: "Manuel Costa",
+                date: "1978-09-30",
+                relation: "Pai"
+            },
+
+            {
+                name: "Sofia Costa",
+                date: "2008-11-17",
+                relation: "Filha"
+            }
+
+        ],
+
+        events: [
+
+            {
+                date: "2027-01-01",
+                title: "Ano Novo"
+            },
+
+            {
+                date: "2027-02-14",
+                title: "Dia dos Namorados"
+            },
+
+            {
+                date: "2027-05-01",
+                title: "Dia do Trabalhador"
+            },
+
+            {
+                date: "2027-06-01",
+                title: "Dia da Criança"
+            },
+
+            {
+                date: "2027-11-11",
+                title: "Independência de Angola"
+            },
+
+            {
+                date: "2027-12-25",
+                title: "Natal"
+            }
+
+        ],
+
+        memories: [
+
+            "Casamento",
+
+            "Festa de família",
+
+            "Viagem"
+
+        ]
+
+    },
+
+
+    /* =========================================
+       FAMÍLIA MATEUS
+    ========================================= */
+
+    {
+        id: "mateus",
+
+        name: "Família Mateus",
+
+        year: 2027,
+
+        photo: "imagens/familias/familia-mateus.jpg",
+
+        location: "Luanda, Angola",
+
+        phrase:
+            "O amor da família é o nosso maior tesouro.",
+
+        description:
+            "Uma família que valoriza a união, o carinho e os momentos partilhados.",
+
+        members: 7,
+
+        birthdays: [
+
+            {
+                name: "Daniel Mateus",
+                date: "1990-04-11",
+                relation: "Pai"
+            },
+
+            {
+                name: "Rosa Mateus",
+                date: "1994-09-15",
+                relation: "Mãe"
+            }
+
+        ],
+
+        events: [
+
+            {
+                date: "2027-01-01",
+                title: "Ano Novo"
+            },
+
+            {
+                date: "2027-05-01",
+                title: "Dia do Trabalhador"
+            },
+
+            {
+                date: "2027-11-11",
+                title: "Independência de Angola"
+            }
+
+        ],
+
+        memories: [
+
+            "Jantar de família",
+
+            "Férias"
+
+        ]
+
+    }
+
+];
+
+
+/* =========================================
+   PEGAR ID DA URL
+========================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const familyId =
+    params.get("familia");
+
+
+/* =========================================
+   ENCONTRAR FAMÍLIA
+========================================= */
+
+const family =
+    families.find(
+        item =>
+            item.id === familyId
+    );
+
+
+/* =========================================
+   VALIDAR
+========================================= */
+
+if (!family) {
+
+    document.body.innerHTML = `
+
+        <div style="
+            min-height:100vh;
+            display:grid;
+            place-items:center;
+            font-family:Montserrat;
+            text-align:center;
+            padding:30px;
+        ">
+
+            <div>
+
+                <h1>
+                    Família não encontrada
+                </h1>
+
+                <p>
+                    O calendário solicitado
+                    não existe.
+                </p>
+
+                <a
+                    href="index.html#familias"
+                    class="back-button"
+                >
+                    ← Voltar
+                </a>
+
+            </div>
+
+        </div>
+
+    `;
+
+    throw new Error(
+        "Família não encontrada"
+    );
+
+}
+
+
+/* =========================================
+   ELEMENTOS
+========================================= */
+
+const familyName =
+    document.getElementById(
+        "familyName"
+    );
+
+
+const familyYear =
+    document.getElementById(
+        "familyYear"
+    );
+
+
+const familyInitials =
+    document.getElementById(
+        "familyInitials"
+    );
+
+
+const calendarTitle =
+    document.getElementById(
+        "calendarTitle"
+    );
+
+
+const calendarDescription =
+    document.getElementById(
+        "calendarDescription"
+    );
+
+
+const familyPhoto =
+    document.getElementById(
+        "familyPhoto"
+    );
+
+
+const familyLocation =
+    document.getElementById(
+        "familyLocation"
+    );
+
+
+const familyPhrase =
+    document.getElementById(
+        "familyPhrase"
+    );
+
+
+const familyMonths =
+    document.getElementById(
+        "familyMonths"
+    );
+
+
+const birthdayInfo =
+    document.getElementById(
+        "birthdayInfo"
+    );
+
+
+const eventInfo =
+    document.getElementById(
+        "eventInfo"
+    );
+
+
+const memoryInfo =
+    document.getElementById(
+        "memoryInfo"
+    );
+
+
+/* =========================================
+   DADOS DA FAMÍLIA
+========================================= */
+
+familyName.textContent =
+    family.name;
+
+
+familyYear.textContent =
+    `Calendário ${family.year}`;
+
+
+calendarTitle.textContent =
+    family.name;
+
+
+calendarDescription.textContent =
+    `${family.members} membros • ${family.birthdays.length} aniversários • ${family.events.length} datas especiais`;
+
+
+familyPhoto.src =
+    family.photo;
+
+
+familyPhoto.alt =
+    `Foto da ${family.name}`;
+
+
+familyLocation.textContent =
+    `📍 ${family.location}`;
+
+
+familyPhrase.textContent =
+    `“${family.phrase}”`;
+
+
+/* =========================================
+   INICIAIS
+========================================= */
+
+const words =
+    family.name
+        .replace("Família ", "")
+        .split(" ");
+
+
+familyInitials.textContent =
+    words
+        .map(
+            word =>
+                word[0]
+        )
+        .join("")
+        .substring(0,2)
+        .toUpperCase();
+
+
+/* =========================================
+   MESES
+========================================= */
+
+const monthNames = [
+
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+
+];
+
+
+function renderCalendar() {
+
+    familyMonths.innerHTML = "";
+
+
+    monthNames.forEach(
+        (
+            monthName,
+            monthIndex
+        ) => {
+
+
+            const firstDay =
+                new Date(
+                    family.year,
+                    monthIndex,
+                    1
+                );
+
+
+            const totalDays =
+                new Date(
+                    family.year,
+                    monthIndex + 1,
+                    0
+                ).getDate();
+
+
+            const month =
+                document.createElement(
+                    "article"
+                );
+
+
+            month.className =
+                "family-month";
+
+
+            let html = `
+
+                <h3>
+                    ${monthName}
+                </h3>
+
+                <div class="family-weekdays">
+
+                    <span>D</span>
+                    <span>S</span>
+                    <span>T</span>
+                    <span>Q</span>
+                    <span>Q</span>
+                    <span>S</span>
+                    <span>S</span>
+
+                </div>
+
+                <div class="family-days">
+
+            `;
+
+
+            for (
+                let i = 0;
+                i < firstDay.getDay();
+                i++
+            ) {
+
+                html += `
+                    <span class="family-day empty"></span>
+                `;
+
+            }
+
+
+            for (
+                let day = 1;
+                day <= totalDays;
+                day++
+            ) {
+
+
+                const date =
+                    `${family.year}-${String(
+                        monthIndex + 1
+                    ).padStart(2,"0")}-${String(
+                        day
+                    ).padStart(2,"0")}`;
+
+
+                const birthday =
+                    family.birthdays.find(
+                        person => {
+
+
+                            const d =
+                                new Date(
+                                    person.date +
+                                    "T00:00:00"
+                                );
+
+
+                            return (
+
+                                d.getMonth()
+                                === monthIndex
+
+                                &&
+
+                                d.getDate()
+                                === day
+
+                            );
+
+                        }
+                    );
+
+
+                const events =
+                    family.events.filter(
+                        event =>
+                            event.date === date
+                    );
+
+
+                let classes =
+                    "family-day";
+
+
+                if (birthday) {
+
+                    classes +=
+                        " birthday";
+
+                }
+
+
+                if (events.length) {
+
+                    classes +=
+                        " event";
+
+                }
+
+
+                let title = "";
+
+
+                if (birthday) {
+
+                    title +=
+                        `🎂 ${birthday.name}`;
+
+                }
+
+
+                if (events.length) {
+
+                    if (title)
+                        title += " | ";
+
+
+                    title +=
+                        events
+                            .map(
+                                event =>
+                                    `🎉 ${event.title}`
+                            )
+                            .join(" | ");
+
+                }
+
+
+                html += `
+
+                    <span
+                        class="${classes}"
+                        title="${title}"
+                    >
+
+                        ${day}
+
+                        ${
+                            title
+                            ? `<span class="event-dot"></span>`
+                            : ""
+                        }
+
+                    </span>
+
+                `;
+
+            }
+
+
+            html += `
+                </div>
+            `;
+
+
+            month.innerHTML =
+                html;
+
+
+            familyMonths.appendChild(
+                month
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   ANIVERSÁRIOS
+========================================= */
+
+function renderBirthdays() {
+
+    birthdayInfo.innerHTML = "";
+
+
+    family.birthdays.forEach(
+        person => {
+
+
+            const li =
+                document.createElement(
+                    "li"
+                );
+
+
+            const date =
+                new Date(
+                    person.date +
+                    "T00:00:00"
+                );
+
+
+            const formatted =
+                date.toLocaleDateString(
+                    "pt-PT",
+                    {
+                        day: "2-digit",
+                        month: "long"
+                    }
+                );
+
+
+            li.innerHTML = `
+
+                <strong>
+                    ${person.name}
+                </strong>
+
+                — ${formatted}
+
+                <small>
+                    (${person.relation})
+                </small>
+
+            `;
+
+
+            birthdayInfo.appendChild(
+                li
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   EVENTOS
+========================================= */
+
+function renderEvents() {
+
+    eventInfo.innerHTML = "";
+
+
+    family.events.forEach(
+        event => {
+
+
+            const li =
+                document.createElement(
+                    "li"
+                );
+
+
+            const date =
+                new Date(
+                    event.date +
+                    "T00:00:00"
+                );
+
+
+            const formatted =
+                date.toLocaleDateString(
+                    "pt-PT",
+                    {
+                        day: "2-digit",
+                        month: "long"
+                    }
+                );
+
+
+            li.innerHTML = `
+
+                <strong>
+                    ${formatted}
+                </strong>
+
+                — ${event.title}
+
+            `;
+
+
+            eventInfo.appendChild(
+                li
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   MEMÓRIAS
+========================================= */
+
+function renderMemories() {
+
+    memoryInfo.innerHTML = "";
+
+
+    family.memories.forEach(
+        memory => {
+
+
+            const li =
+                document.createElement(
+                    "li"
+                );
+
+
+            li.textContent =
+                memory;
+
+
+            memoryInfo.appendChild(
+                li
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PDF A3
+========================================= */
+
+document
+    .getElementById("downloadPdf")
+    .addEventListener(
+        "click",
+        async () => {
+
+
+            const element =
+                document.querySelector(
+                    ".family-calendar-container"
+                );
+
+
+            const canvas =
+                await html2canvas(
+                    element,
+                    {
+
+                        scale: 2,
+
+                        useCORS: true,
+
+                        backgroundColor:
+                            "#ffffff"
+
+                    }
+                );
+
+
+            const {
+                jsPDF
+            } = window.jspdf;
+
+
+            const pdf =
+                new jsPDF({
+
+                    orientation:
+                        "landscape",
+
+                    unit:
+                        "mm",
+
+                    format:
+                        "a3"
+
+                });
+
+
+            const image =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    .95
+                );
+
+
+            pdf.addImage(
+                image,
+                "JPEG",
+                0,
+                0,
+                420,
+                297
+            );
+
+
+            pdf.save(
+                `${family.name
+                    .replace(/\s+/g,"-")
+                }-Calendario-${family.year}.pdf`
+            );
+
+        }
+    );
+
+
+/* =========================================
+   INICIALIZAR
+========================================= */
+
+renderCalendar();
+
+renderBirthdays();
+
+renderEvents();
+
+renderMemories();
+
+</script>
+
+
+</body>
+
+</html>
