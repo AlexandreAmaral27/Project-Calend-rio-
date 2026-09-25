@@ -564,6 +564,134 @@
 
 
         /* =========================================
+           FERIADOS NACIONAIS DE ANGOLA
+        ========================================= */
+
+        .family-day.national {
+            color: white;
+            font-weight: 800;
+            border: 2px solid transparent;
+        }
+
+        .family-day.national::after {
+            content: "";
+            position: absolute;
+            top: 4px;
+            right: 5px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.9);
+        }
+
+        .national-jan { background:#2563eb !important; }
+        .national-feb { background:#dc2626 !important; }
+        .national-mar { background:#db2777 !important; }
+        .national-apr { background:#16a34a !important; }
+        .national-may { background:#f59e0b !important; color:#172033 !important; }
+        .national-jun { background:#7c3aed !important; }
+        .national-sep { background:#0891b2 !important; }
+        .national-nov { background:#ea580c !important; }
+        .national-dec { background:#475569 !important; }
+
+        .national-legend {
+            margin-top: 25px;
+            padding: 20px;
+            background: white;
+            border: 1px solid #e4eaf1;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(15,23,42,.05);
+        }
+
+        .national-legend h3 {
+            margin: 0 0 15px;
+            color:#0f2f52;
+        }
+
+        .national-legend-list {
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .national-legend-item {
+            display:flex;
+            align-items:center;
+            gap:8px;
+            padding:8px 12px;
+            border-radius:10px;
+            background:#f8fafc;
+            color:#475569;
+            font-size:12px;
+            font-weight:700;
+        }
+
+        .national-color {
+            width:12px;
+            height:12px;
+            border-radius:50%;
+            flex:none;
+        }
+
+        /* =========================================
+           MEMÓRIAS EM DESTAQUE
+        ========================================= */
+
+        .memory-slider {
+            position:relative;
+            overflow:hidden;
+            border-radius:16px;
+        }
+
+        .memory-slide {
+            display:none;
+            animation: memoryFade .7s ease;
+        }
+
+        .memory-slide.active {
+            display:block;
+        }
+
+        .memory-image {
+            width:100%;
+            height:210px;
+            object-fit:cover;
+            display:block;
+            border-radius:14px;
+            background:#e8f1fa;
+        }
+
+        .memory-content {
+            padding:14px 4px 4px;
+        }
+
+        .memory-content h4 {
+            margin:0 0 6px;
+            color:#0f2f52;
+            font-size:17px;
+        }
+
+        .memory-content p {
+            margin:0;
+            color:#64748b;
+            line-height:1.6;
+            font-size:13px;
+        }
+
+        .memory-counter {
+            margin-top:12px;
+            text-align:center;
+            color:#94a3b8;
+            font-size:12px;
+            font-weight:700;
+        }
+
+        @keyframes memoryFade {
+            from { opacity:0; transform:translateX(12px); }
+            to { opacity:1; transform:translateX(0); }
+        }
+
+        /* =========================================
            RESPONSIVO
         ========================================= */
 
@@ -794,6 +922,11 @@
             id="familyMonths"
         ></div>
 
+        <div class="national-legend">
+            <h3>🇦🇴 Feriados nacionais de Angola</h3>
+            <div class="national-legend-list" id="nationalLegend"></div>
+        </div>
+
 
         <!-- =================================
              INFORMAÇÕES
@@ -836,7 +969,7 @@
                     ❤️ Memórias
                 </h3>
 
-                <ul id="memoryInfo"></ul>
+                <div id="memoryInfo" class="memory-slider"></div>
 
             </div>
 
@@ -864,6 +997,20 @@
 /* =========================================
    DADOS
 ========================================= */
+
+const angolaNationalHolidays = [
+
+    { date: "2027-01-01", title: "Ano Novo", className: "national-jan", color: "#2563eb" },
+    { date: "2027-02-04", title: "Dia do Início da Luta Armada de Libertação Nacional", className: "national-feb", color: "#dc2626" },
+    { date: "2027-03-08", title: "Dia Internacional da Mulher", className: "national-mar", color: "#db2777" },
+    { date: "2027-04-04", title: "Dia da Paz e da Reconciliação Nacional", className: "national-apr", color: "#16a34a" },
+    { date: "2027-05-01", title: "Dia Internacional do Trabalhador", className: "national-may", color: "#f59e0b" },
+    { date: "2027-06-01", title: "Dia Internacional da Criança", className: "national-jun", color: "#7c3aed" },
+    { date: "2027-09-17", title: "Dia do Herói Nacional", className: "national-sep", color: "#0891b2" },
+    { date: "2027-11-11", title: "Dia da Independência Nacional", className: "national-nov", color: "#ea580c" },
+    { date: "2027-12-25", title: "Dia de Natal", className: "national-dec", color: "#475569" }
+
+];
 
 const families = [
 
@@ -957,13 +1104,9 @@ const families = [
         ],
 
         memories: [
-
-            "Almoço de família",
-
-            "Viagem em família",
-
-            "Festa de aniversário"
-
+            { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
+            { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
+            { title: "Festa de aniversário", image: "imagens/familias/Reuniao-Familiar.webp", description: "Um aniversário cheio de alegria, carinho e boas lembranças." }
         ]
 
     },
@@ -1043,13 +1186,9 @@ const families = [
         ],
 
         memories: [
-
-            "Natal em família",
-
-            "Aniversário da avó",
-
-            "Reunião familiar"
-
+            { title: "Natal em família", image: "imagens/memorias/natal-familia.jpg", description: "Uma celebração especial com a família reunida." },
+            { title: "Aniversário da avó", image: "imagens/memorias/aniversario-avo.jpg", description: "Um dia marcado por carinho, sorrisos e união." },
+            { title: "Reunião familiar", image: "imagens/memorias/reuniao-familiar.jpg", description: "Um encontro para fortalecer os laços da família." }
         ]
 
     },
@@ -1141,13 +1280,9 @@ const families = [
         ],
 
         memories: [
-
-            "Casamento",
-
-            "Festa de família",
-
-            "Viagem"
-
+            { title: "Pedido de casamento", image: "imagens/memorias/pedido-casamento.jpg", description: "Um dos momentos mais marcantes e especiais da família." },
+            { title: "Festa de família", image: "imagens/memorias/festa-familia.jpg", description: "Uma celebração com muita alegria e pessoas queridas." },
+            { title: "Viagem", image: "imagens/memorias/viagem.jpg", description: "Uma viagem guardada para sempre nas memórias da família." }
         ]
 
     },
@@ -1212,11 +1347,8 @@ const families = [
         ],
 
         memories: [
-
-            "Jantar de família",
-
-            "Férias"
-
+            { title: "Jantar de família", image: "imagens/memorias/jantar-familia.jpg", description: "Uma noite tranquila e especial ao lado de quem amamos." },
+            { title: "Férias", image: "imagens/memorias/ferias-familia.jpg", description: "Dias de descanso, diversão e momentos inesquecíveis." }
         ]
 
     }
@@ -1370,6 +1502,11 @@ const eventInfo =
 const memoryInfo =
     document.getElementById(
         "memoryInfo"
+    );
+
+const nationalLegend =
+    document.getElementById(
+        "nationalLegend"
     );
 
 
@@ -1734,23 +1871,24 @@ function renderEvents() {
 
     eventInfo.innerHTML = "";
 
+    const allEvents = [
+        ...family.events.map(event => ({ ...event, national: false })),
+        ...angolaNationalHolidays.map(event => ({ ...event, national: true }))
+    ].sort((a,b) => a.date.localeCompare(b.date));
 
-    family.events.forEach(
+    allEvents.forEach(
         event => {
-
 
             const li =
                 document.createElement(
                     "li"
                 );
 
-
             const date =
                 new Date(
                     event.date +
                     "T00:00:00"
                 );
-
 
             const formatted =
                 date.toLocaleDateString(
@@ -1761,17 +1899,11 @@ function renderEvents() {
                     }
                 );
 
-
             li.innerHTML = `
-
-                <strong>
-                    ${formatted}
-                </strong>
-
+                ${event.national ? "🇦🇴 " : "🎉 "}
+                <strong>${formatted}</strong>
                 — ${event.title}
-
             `;
-
 
             eventInfo.appendChild(
                 li
@@ -1791,27 +1923,94 @@ function renderMemories() {
 
     memoryInfo.innerHTML = "";
 
-
     family.memories.forEach(
-        memory => {
+        (memory, index) => {
 
+            const slide =
+                document.createElement("div");
 
-            const li =
-                document.createElement(
-                    "li"
-                );
+            slide.className =
+                `memory-slide ${index === 0 ? "active" : ""}`;
 
+            slide.innerHTML = `
+                <img
+                    class="memory-image"
+                    src="${memory.image}"
+                    alt="${memory.title}"
+                    onerror="this.style.display='none';"
+                >
 
-            li.textContent =
-                memory;
+                <div class="memory-content">
+                    <h4>${memory.title}</h4>
+                    <p>${memory.description}</p>
+                </div>
+            `;
 
-
-            memoryInfo.appendChild(
-                li
-            );
+            memoryInfo.appendChild(slide);
 
         }
     );
+
+    if (family.memories.length > 1) {
+        const counter = document.createElement("div");
+        counter.className = "memory-counter";
+        counter.id = "memoryCounter";
+        memoryInfo.appendChild(counter);
+
+        let current = 0;
+
+        const updateMemory = () => {
+            const slides =
+                memoryInfo.querySelectorAll(".memory-slide");
+
+            slides.forEach(slide =>
+                slide.classList.remove("active")
+            );
+
+            slides[current].classList.add("active");
+
+            counter.textContent =
+                `${current + 1} / ${slides.length}`;
+        };
+
+        updateMemory();
+
+        setInterval(() => {
+            current =
+                (current + 1) % family.memories.length;
+
+            updateMemory();
+        }, 4000);
+    }
+
+}
+
+
+/* =========================================
+   LEGENDA DOS FERIADOS NACIONAIS
+========================================= */
+
+function renderNationalLegend() {
+
+    nationalLegend.innerHTML = "";
+
+    angolaNationalHolidays.forEach(holiday => {
+
+        const item = document.createElement("div");
+
+        item.className = "national-legend-item";
+
+        item.innerHTML = `
+            <span
+                class="national-color"
+                style="background:${holiday.color}"
+            ></span>
+            ${holiday.title}
+        `;
+
+        nationalLegend.appendChild(item);
+
+    });
 
 }
 
@@ -1907,6 +2106,8 @@ renderBirthdays();
 renderEvents();
 
 renderMemories();
+
+renderNationalLegend();
 
 </script>
 
