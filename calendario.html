@@ -505,6 +505,15 @@
            INFORMAÇÕES
         ========================================= */
 
+.family-info-top {
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .family-info-top .info-card {
+            min-height: 100%;
+        }
+
         .family-info {
 
             display: grid;
@@ -917,6 +926,18 @@
         </div>
 
 
+        <!-- ANIVERSÁRIOS E DATAS COMEMORATIVAS -->
+        <div class="family-info family-info-top">
+            <div class="info-card">
+                <h3>🎂 Aniversários</h3>
+                <ul id="birthdayInfo"></ul>
+            </div>
+            <div class="info-card">
+                <h3>🎉 Datas comemorativas</h3>
+                <ul id="eventInfo"></ul>
+            </div>
+        </div>
+
         <div
             class="family-months"
             id="familyMonths"
@@ -934,31 +955,6 @@
 
         <div class="family-info">
 
-
-            <!-- ANIVERSÁRIOS -->
-
-            <div class="info-card">
-
-                <h3>
-                    🎂 Aniversários
-                </h3>
-
-                <ul id="birthdayInfo"></ul>
-
-            </div>
-
-
-            <!-- DATAS -->
-
-            <div class="info-card">
-
-                <h3>
-                    🎉 Datas comemorativas
-                </h3>
-
-                <ul id="eventInfo"></ul>
-
-            </div>
 
 
             <!-- MEMÓRIAS -->
