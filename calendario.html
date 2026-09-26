@@ -930,6 +930,11 @@
                 <h3>🎉 Datas marcantes</h3>
                 <ul id="eventInfo"></ul>
             </div>
+
+           <div class="info-card">
+    <h3>🏆 Conquistas familiar</h3>
+    <ul id="achievementInfo"></ul>
+</div>
         </div>
 
         <div
@@ -1093,6 +1098,34 @@ const families = [
 
         ],
 
+        achievements: [
+    {
+        title: "Conclusão dos estudos",
+        date: "2027-01-20",
+        description: "Um importante passo alcançado por um dos membros da família."
+    },
+    {
+        title: "Compra da primeira casa",
+        date: "2027-03-15",
+        description: "Uma grande conquista para toda a família."
+    },
+    {
+        title: "Novo emprego",
+        date: "2027-05-10",
+        description: "Celebração de uma nova oportunidade profissional."
+    },
+    {
+        title: "Formatura na família",
+        date: "2027-07-22",
+        description: "Momento de orgulho e celebração pela formação concluída."
+    },
+    {
+        title: "Primeira viagem internacional",
+        date: "2027-10-08",
+        description: "Uma experiência especial vivida pela família."
+    }
+],
+
         memories: [
             { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
             { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
@@ -1173,6 +1206,11 @@ const families = [
                 title: "Natal"
             }
 
+        ],
+
+        achievements: [
+            // Adicione aqui as conquistas desta família.
+            // Exemplo: { title: "Conquista da família", date: "2027-03-20", description: "Descrição da conquista." }
         ],
 
         memories: [
@@ -1269,6 +1307,11 @@ const families = [
 
         ],
 
+        achievements: [
+            // Adicione aqui as conquistas desta família.
+            // Exemplo: { title: "Conquista da família", date: "2027-03-20", description: "Descrição da conquista." }
+        ],
+
         memories: [
            { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
             { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
@@ -1337,7 +1380,12 @@ const families = [
 
         ],
 
-           memories: [
+           achievements: [
+            // Adicione aqui as conquistas desta família.
+            // Exemplo: { title: "Conquista da família", date: "2027-03-20", description: "Descrição da conquista." }
+        ],
+
+        memories: [
            { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
             { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
             { title: "Festa de aniversário", image: "imagens/familias/Reuniao-Familiar.webp", description: "Um aniversário cheio de alegria, carinho e boas lembranças." }
@@ -1490,6 +1538,48 @@ const eventInfo =
         "eventInfo"
     );
 
+const achievementInfo = document.getElementById("achievementInfo");
+
+function renderAchievements() {
+
+    achievementInfo.innerHTML = "";
+
+    if (!family.achievements || family.achievements.length === 0) {
+        achievementInfo.innerHTML =
+            "<li>Nenhuma conquista registada ainda.</li>";
+        return;
+    }
+
+    family.achievements
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .forEach(achievement => {
+
+            const li = document.createElement("li");
+
+            const date = new Date(
+                achievement.date + "T00:00:00"
+            );
+
+            const formatted = date.toLocaleDateString(
+                "pt-PT",
+                {
+                    day: "2-digit",
+                    month: "long"
+                }
+            );
+
+            li.innerHTML = `
+                <strong>🏆 ${achievement.title}</strong>
+                — ${formatted}
+
+                <small style="display:block; margin-top:3px;">
+                    ${achievement.description}
+                </small>
+            `;
+
+            achievementInfo.appendChild(li);
+        });
+}
 
 const memoryInfo =
     document.getElementById(
@@ -1863,45 +1953,10 @@ function renderEvents() {
 
     eventInfo.innerHTML = "";
 
-    /*
-       Junta as datas da família com os feriados nacionais.
-       Quando a mesma data já existir em family.events e também
-       nos feriados nacionais, mantém apenas uma ocorrência.
-    */
-    const eventMap = new Map();
-
-    family.events.forEach(event => {
-        // Se houver duas datas da família no mesmo dia,
-        // mantém somente a primeira.
-        if (!eventMap.has(event.date)) {
-            eventMap.set(event.date, {
-                ...event,
-                national: false
-            });
-        }
-    });
-
-    angolaNationalHolidays.forEach(holiday => {
-        if (eventMap.has(holiday.date)) {
-            // A data já existe: transforma a existente em nacional
-            // para não aparecer duas vezes.
-            eventMap.set(holiday.date, {
-                ...eventMap.get(holiday.date),
-                national: true,
-                nationalTitle: holiday.title,
-                className: holiday.className,
-                color: holiday.color
-            });
-        } else {
-            eventMap.set(holiday.date, {
-                ...holiday,
-                national: true
-            });
-        }
-    });
-
-    const allEvents = Array.from(eventMap.values())
-        .sort((a,b) => a.date.localeCompare(b.date));
+    const allEvents = [
+        ...family.events.map(event => ({ ...event, national: false })),
+        ...angolaNationalHolidays.map(event => ({ ...event, national: true }))
+    ].sort((a,b) => a.date.localeCompare(b.date));
 
     allEvents.forEach(
         event => {
@@ -1938,6 +1993,58 @@ function renderEvents() {
 
         }
     );
+
+}
+
+
+/* =========================================
+   CONQUISTAS FAMILIARES
+========================================= */
+
+function renderAchievements() {
+
+    achievementInfo.innerHTML = "";
+
+    if (!family.achievements || family.achievements.length === 0) {
+
+        const li = document.createElement("li");
+
+        li.textContent = "Nenhuma conquista registada ainda.";
+
+        achievementInfo.appendChild(li);
+
+        return;
+
+    }
+
+    family.achievements
+        .slice()
+        .sort((a, b) => (a.date || "").localeCompare(b.date || ""))
+        .forEach(achievement => {
+
+            const li = document.createElement("li");
+
+            let dateText = "";
+
+            if (achievement.date) {
+                const date = new Date(achievement.date + "T00:00:00");
+
+                dateText = date.toLocaleDateString("pt-PT", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+            }
+
+            li.innerHTML = `
+                <strong>🏆 ${achievement.title}</strong>
+                ${dateText ? ` — ${dateText}` : ""}
+                ${achievement.description ? `<br><small>${achievement.description}</small>` : ""}
+            `;
+
+            achievementInfo.appendChild(li);
+
+        });
 
 }
 
@@ -2132,9 +2239,12 @@ renderBirthdays();
 
 renderEvents();
 
+renderAchievements();
+
 renderMemories();
 
 renderNationalLegend();
+renderAchievements();
 
 </script>
 
