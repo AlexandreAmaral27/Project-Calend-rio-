@@ -3063,6 +3063,11 @@ function renderBirthdays() {
    SEM FERIADOS NACIONAIS
 ========================================= */
 
+/* =========================================
+   DATAS MARCANTES
+   MOSTRA DIA + MÊS + ANO
+========================================= */
+
 function renderEvents() {
 
     eventInfo.innerHTML = "";
@@ -3076,7 +3081,6 @@ function renderEvents() {
         )
         .forEach(
             event => {
-
 
                 const li =
                     document.createElement(
@@ -3096,7 +3100,8 @@ function renderEvents() {
                         "pt-PT",
                         {
                             day: "2-digit",
-                            month: "long"
+                            month: "long",
+                            year: "numeric"
                         }
                     );
 
@@ -3122,10 +3127,14 @@ function renderEvents() {
         );
 
 }
-
+/* =========================================
+   CONQUISTAS FAMILIARES
+========================================= */
 
 /* =========================================
    CONQUISTAS FAMILIARES
+   MOSTRA MÊS + ANO
+   OCULTA O DIA
 ========================================= */
 
 function renderAchievements() {
@@ -3170,7 +3179,6 @@ function renderAchievements() {
         .forEach(
             achievement => {
 
-
                 const li =
                     document.createElement(
                         "li"
@@ -3193,7 +3201,6 @@ function renderAchievements() {
                         date.toLocaleDateString(
                             "pt-PT",
                             {
-                                day: "2-digit",
                                 month: "long",
                                 year: "numeric"
                             }
@@ -3234,7 +3241,6 @@ function renderAchievements() {
         );
 
 }
-
 
 /* =========================================
    MEMÓRIAS
