@@ -1033,6 +1033,256 @@
             }
 
         }
+        /* =========================================
+   CONTROLES DAS MEMÓRIAS
+========================================= */
+
+.memory-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 15px;
+
+}
+
+
+.memory-controls button {
+
+    border: none;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #0f2f52;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.memory-controls button:hover {
+
+    background: #174a7c;
+
+    transform: translateY(-2px);
+
+}
+
+
+.memory-slide {
+
+    cursor: pointer;
+
+}
+
+
+.memory-image {
+
+    transition: .3s;
+
+}
+
+
+.memory-slide:hover .memory-image {
+
+    transform: scale(1.02);
+
+}
+
+
+/* =========================================
+   MEMÓRIA EM TAMANHO GRANDE
+========================================= */
+
+.memory-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.85);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    z-index: 9999;
+
+}
+
+
+.memory-modal.active {
+
+    display: flex;
+
+}
+
+
+.memory-modal-content {
+
+    position: relative;
+
+    max-width: 1000px;
+
+    width: 100%;
+
+    max-height: 95vh;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    overflow: auto;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.35);
+
+}
+
+
+.memory-modal-image {
+
+    width: 100%;
+
+    max-height: 70vh;
+
+    object-fit: contain;
+
+    display: block;
+
+    border-radius: 14px;
+
+    background: #f1f5f9;
+
+}
+
+
+.memory-modal-info {
+
+    padding: 18px 5px 5px;
+
+}
+
+
+.memory-modal-info h3 {
+
+    margin: 0 0 8px;
+
+    color: #0f2f52;
+
+}
+
+
+.memory-modal-info p {
+
+    margin: 0;
+
+    color: #64748b;
+
+    line-height: 1.6;
+
+}
+
+
+.memory-close {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    z-index: 2;
+
+}
+
+
+.memory-close:hover {
+
+    background: #b91c1c;
+
+}
+
+
+.memory-modal-navigation {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 15px;
+
+}
+
+
+.memory-modal-navigation button {
+
+    border: none;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    background: #0f2f52;
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.memory-modal-navigation button:hover {
+
+    background: #174a7c;
+
+}
 
     </style>
 
@@ -1270,6 +1520,67 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
 </script>
 
+<!-- =========================================
+     MODAL DA MEMÓRIA
+========================================= -->
+
+<div
+    id="memoryModal"
+    class="memory-modal"
+>
+
+    <div class="memory-modal-content">
+
+        <button
+            class="memory-close"
+            onclick="closeMemoryModal()"
+            title="Fechar"
+        >
+            ✕
+        </button>
+
+
+        <img
+            id="memoryModalImage"
+            class="memory-modal-image"
+            src=""
+            alt=""
+        >
+
+
+        <div class="memory-modal-info">
+
+            <h3 id="memoryModalTitle">
+                Memória
+            </h3>
+
+
+            <p id="memoryModalDescription">
+            </p>
+
+        </div>
+
+
+        <div class="memory-modal-navigation">
+
+            <button
+                onclick="previousMemory()"
+            >
+                ◀ Anterior
+            </button>
+
+
+            <button
+                onclick="nextMemory()"
+            >
+                Próximo ▶
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
@@ -1490,6 +1801,12 @@ const families = [
                 relation: "Mãe"
             },
 
+             {
+                name: "Aneth Dima",
+                date: "1980-10-18",
+                relation: "Filha"
+            },
+
             {
                 name: "Rúben Dima",
                 date: "1975-12-17",
@@ -1499,22 +1816,22 @@ const families = [
             {
                 name: "Suzana",
                 date: "2004-04-04",
-                relation: "Parente"
+                relation: "Filha"
             },
               {
                 name: "Leonor",
                 date: "2004-07-29",
-                relation: "Parente"
+                relation: "Filha"
             },
               {
                 name: "Pedro Teca",
                 date: "2004-02-19",
-                relation: "Parente"
+                relation: "Filho"
             },
              {
                 name: "Esmara Carneiro",
                 date: "2004-08-31",
-                relation: "Parente"
+                relation: "Filha"
             }
             
 
@@ -1539,7 +1856,7 @@ const families = [
             },
 
             {
-                date: "2015-08-13",
+                date: "2015-12-13",
                 title: "Consagração Divina"
             }
 
@@ -1551,7 +1868,7 @@ const families = [
             {
                 title: "Primeiro Emprego",
 
-                date: "2027-01-20",
+                date: "1999-01",
 
                 description:
                     "Um importante passo alcançado por um dos membros da família."
@@ -1560,20 +1877,29 @@ const families = [
             {
                 title: "Realização da casa Própria",
 
-                date: "2027-03-15",
+                date: "2021-03-15",
 
                 description:
                     "Uma grande conquista para toda a família."
             },
+             {
+                title: "Realização da casa Própria",
 
-            {
-                title: "Nossa Primeira Viajem",
-
-                date: "2027-05-10",
+                date: "2025-05-10",
 
                 description:
-                    "Celebração de uma nova oportunidade profissional."
+                    "Mais uma grande conquista para toda a família."
+            },
+                 {
+                title: "Nossa primeira Viajem",
+
+                date: "2014-03-15",
+
+                description:
+                    "Selebração de uma nova Expriência."
             }
+
+           
 
         ],
 
@@ -2913,18 +3239,44 @@ function renderAchievements() {
 /* =========================================
    MEMÓRIAS
 ========================================= */
+/* =========================================
+   MEMÓRIAS
+   MANUAL — SEM TROCA AUTOMÁTICA
+========================================= */
+
+let currentMemory = 0;
+
 
 function renderMemories() {
 
     memoryInfo.innerHTML = "";
 
 
+    if (
+        !family.memories ||
+        family.memories.length === 0
+    ) {
+
+        memoryInfo.innerHTML = `
+            <p>
+                Nenhuma memória registada.
+            </p>
+        `;
+
+        return;
+
+    }
+
+
+    /* =====================================
+       SLIDES
+    ===================================== */
+
     family.memories.forEach(
         (
             memory,
             index
         ) => {
-
 
             const slide =
                 document.createElement(
@@ -2946,7 +3298,9 @@ function renderMemories() {
                     class="memory-image"
                     src="${memory.image}"
                     alt="${memory.title}"
-                    onerror="this.style.display='none';"
+                    onerror="
+                        this.style.display='none';
+                    "
                 >
 
 
@@ -2965,6 +3319,23 @@ function renderMemories() {
             `;
 
 
+            /* =============================
+               ABRIR MEMÓRIA GRANDE
+            ============================= */
+
+            slide.addEventListener(
+                "click",
+                () => {
+
+                    currentMemory =
+                        index;
+
+                    openMemoryModal();
+
+                }
+            );
+
+
             memoryInfo.appendChild(
                 slide
             );
@@ -2973,87 +3344,405 @@ function renderMemories() {
     );
 
 
+    /* =====================================
+       CONTROLES
+    ===================================== */
+
+    const controls =
+        document.createElement(
+            "div"
+        );
+
+
+    controls.className =
+        "memory-controls";
+
+
+    controls.innerHTML = `
+
+        <button
+            type="button"
+            onclick="previousMemory()"
+            title="Memória anterior"
+        >
+            ◀
+        </button>
+
+
+        <span
+            id="memoryCounter"
+            style="
+                min-width:70px;
+                text-align:center;
+                color:#64748b;
+                font-weight:700;
+                font-size:13px;
+            "
+        >
+            1 / ${family.memories.length}
+        </span>
+
+
+        <button
+            type="button"
+            onclick="nextMemory()"
+            title="Próxima memória"
+        >
+            ▶
+        </button>
+
+    `;
+
+
+    memoryInfo.appendChild(
+        controls
+    );
+
+
+    updateMemory();
+
+}
+
+
+/* =========================================
+   ATUALIZAR MEMÓRIA
+========================================= */
+
+function updateMemory() {
+
+    const slides =
+        memoryInfo.querySelectorAll(
+            ".memory-slide"
+        );
+
+
+    slides.forEach(
+        slide => {
+
+            slide.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
     if (
-        family.memories.length > 1
+        slides[currentMemory]
     ) {
 
-
-        const counter =
-            document.createElement(
-                "div"
+        slides[currentMemory]
+            .classList.add(
+                "active"
             );
 
-
-        counter.className =
-            "memory-counter";
+    }
 
 
-        counter.id =
-            "memoryCounter";
-
-
-        memoryInfo.appendChild(
-            counter
+    const counter =
+        document.getElementById(
+            "memoryCounter"
         );
 
 
-        let current = 0;
+    if (counter) {
 
-
-        const updateMemory = () => {
-
-
-            const slides =
-                memoryInfo.querySelectorAll(
-                    ".memory-slide"
-                );
-
-
-            slides.forEach(
-                slide =>
-                    slide.classList.remove(
-                        "active"
-                    )
-            );
-
-
-            slides[current]
-                .classList.add(
-                    "active"
-                );
-
-
-            counter.textContent =
-                `${current + 1} / ${slides.length}`;
-
-        };
-
-
-        updateMemory();
-
-
-        setInterval(
-            () => {
-
-                current =
-                    (
-                        current + 1
-                    )
-                    %
-                    family.memories.length;
-
-
-                updateMemory();
-
-            },
-            4000
-        );
+        counter.textContent =
+            `${currentMemory + 1} / ${family.memories.length}`;
 
     }
 
 }
 
 
+/* =========================================
+   MEMÓRIA ANTERIOR
+========================================= */
+
+function previousMemory() {
+
+    if (
+        !family.memories ||
+        family.memories.length === 0
+    ) {
+        return;
+    }
+
+
+    currentMemory--;
+
+    
+    if (
+        currentMemory < 0
+    ) {
+
+        currentMemory =
+            family.memories.length - 1;
+
+    }
+
+
+    updateMemory();
+
+
+    /* Se o modal estiver aberto */
+    const modal =
+        document.getElementById(
+            "memoryModal"
+        );
+
+
+    if (
+        modal &&
+        modal.classList.contains("active")
+    ) {
+
+        updateMemoryModal();
+
+    }
+
+}
+
+
+/* =========================================
+   PRÓXIMA MEMÓRIA
+========================================= */
+
+function nextMemory() {
+
+    if (
+        !family.memories ||
+        family.memories.length === 0
+    ) {
+        return;
+    }
+
+
+    currentMemory++;
+
+
+    if (
+        currentMemory >=
+        family.memories.length
+    ) {
+
+        currentMemory = 0;
+
+    }
+
+
+    updateMemory();
+
+
+    /* Se o modal estiver aberto */
+    const modal =
+        document.getElementById(
+            "memoryModal"
+        );
+
+
+    if (
+        modal &&
+        modal.classList.contains("active")
+    ) {
+
+        updateMemoryModal();
+
+    }
+
+}
+
+
+/* =========================================
+   ABRIR MEMÓRIA GRANDE
+========================================= */
+
+function openMemoryModal() {
+
+    const modal =
+        document.getElementById(
+            "memoryModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    updateMemoryModal();
+
+
+    modal.classList.add(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================
+   ATUALIZAR MODAL
+========================================= */
+
+function updateMemoryModal() {
+
+    const memory =
+        family.memories[
+            currentMemory
+        ];
+
+
+    if (!memory) {
+        return;
+    }
+
+
+    const image =
+        document.getElementById(
+            "memoryModalImage"
+        );
+
+
+    const title =
+        document.getElementById(
+            "memoryModalTitle"
+        );
+
+
+    const description =
+        document.getElementById(
+            "memoryModalDescription"
+        );
+
+
+    image.src =
+        memory.image;
+
+
+    image.alt =
+        memory.title;
+
+
+    title.textContent =
+        memory.title;
+
+
+    description.textContent =
+        memory.description;
+
+}
+
+
+/* =========================================
+   FECHAR MEMÓRIA GRANDE
+========================================= */
+
+function closeMemoryModal() {
+
+    const modal =
+        document.getElementById(
+            "memoryModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.remove(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================================
+   CLICAR FORA DA IMAGEM PARA FECHAR
+========================================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const modal =
+            document.getElementById(
+                "memoryModal"
+            );
+
+
+        if (
+            event.target === modal
+        ) {
+
+            closeMemoryModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   TECLADO
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        const modal =
+            document.getElementById(
+                "memoryModal"
+            );
+
+
+        if (
+            !modal ||
+            !modal.classList.contains(
+                "active"
+            )
+        ) {
+            return;
+        }
+
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeMemoryModal();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            previousMemory();
+
+        }
+
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            nextMemory();
+
+        }
+
+    }
+);
 
 /* =========================================
    LEGENDA DOS FERIADOS E PONTOS LEGAIS
