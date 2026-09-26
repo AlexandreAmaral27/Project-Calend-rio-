@@ -794,127 +794,248 @@
             flex:none;
 
         }
+/* =========================================
+   MEMÓRIAS EM DESTAQUE
+========================================= */
+
+.memory-slider {
+    position: relative;
+    border-radius: 16px;
+}
+
+.memory-slide {
+    display: none;
+    animation: memoryFade .35s ease;
+    cursor: pointer;
+}
+
+.memory-slide.active {
+    display: block;
+}
+
+.memory-image {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+    background: #e8f1fa;
+}
+
+.memory-content {
+    padding: 14px 4px 4px;
+}
+
+.memory-content h4 {
+    margin: 0 0 6px;
+    color: #0f2f52;
+    font-size: 17px;
+}
+
+.memory-content p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+.memory-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    gap: 10px;
+}
+
+.memory-arrow {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #0f2f52;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: .2s;
+}
+
+.memory-arrow:hover {
+    background: #174a7c;
+    transform: scale(1.05);
+}
+
+.memory-counter {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+}
 
 
-        /* =========================================
-           MEMÓRIAS EM DESTAQUE
-        ========================================= */
+/* =========================================
+   MEMÓRIA ABERTA
+========================================= */
 
-        .memory-slider {
+.memory-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, .88);
+    z-index: 20000;
+}
 
-            position:relative;
+.memory-modal.active {
+    display: flex;
+}
 
-            overflow:hidden;
+.memory-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 92vh;
+    background: white;
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: memoryModalOpen .25s ease;
+}
 
-            border-radius:16px;
+.memory-modal-image {
+    width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    border-radius: 15px;
+    background: #e8f1fa;
+}
 
-        }
+.memory-modal-title {
+    width: 100%;
+    margin-top: 14px;
+    color: #0f2f52;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.memory-modal-description {
+    width: 100%;
+    margin-top: 5px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.memory-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #dc2626;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.memory-modal-close:hover {
+    background: #b91c1c;
+}
+
+.memory-modal-controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.memory-modal-arrow {
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 50%;
+    background: #0f2f52;
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.memory-modal-arrow:hover {
+    background: #174a7c;
+    transform: scale(1.05);
+}
+
+.memory-modal-counter {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+@keyframes memoryFade {
+    from {
+        opacity: 0;
+        transform: translateX(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes memoryModalOpen {
+    from {
+        opacity: 0;
+        transform: scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 
-        .memory-slide {
+@media(max-width:650px) {
 
-            display:none;
+    .memory-image {
+        height: 190px;
+    }
 
-            animation:
-                memoryFade .7s ease;
+    .memory-modal {
+        padding: 10px;
+    }
 
-        }
+    .memory-modal-content {
+        padding: 12px;
+        border-radius: 18px;
+    }
 
+    .memory-modal-image {
+        max-height: 65vh;
+    }
 
-        .memory-slide.active {
+    .memory-modal-title {
+        font-size: 17px;
+    }
 
-            display:block;
-
-        }
-
-
-        .memory-image {
-
-            width:100%;
-
-            height:210px;
-
-            object-fit:cover;
-
-            display:block;
-
-            border-radius:14px;
-
-            background:#e8f1fa;
-
-        }
-
-
-        .memory-content {
-
-            padding:
-                14px 4px 4px;
-
-        }
-
-
-        .memory-content h4 {
-
-            margin:
-                0 0 6px;
-
-            color:#0f2f52;
-
-            font-size:17px;
-
-        }
-
-
-        .memory-content p {
-
-            margin:0;
-
-            color:#64748b;
-
-            line-height:1.6;
-
-            font-size:13px;
-
-        }
-
-
-        .memory-counter {
-
-            margin-top:12px;
-
-            text-align:center;
-
-            color:#94a3b8;
-
-            font-size:12px;
-
-            font-weight:700;
-
-        }
-
-
-        @keyframes memoryFade {
-
-            from {
-
-                opacity:0;
-
-                transform:
-                    translateX(12px);
-
-            }
-
-            to {
-
-                opacity:1;
-
-                transform:
-                    translateX(0);
-
-            }
-
-        }
-
+}
 
         /* =========================================
            RESPONSIVO
@@ -3404,11 +3525,20 @@ function renderAchievements() {
 /* =========================================
    MEMÓRIAS
 ========================================= */
+/* =========================================
+   MEMÓRIAS
+========================================= */
 
 function renderMemories() {
 
     memoryInfo.innerHTML = "";
 
+    let current = 0;
+
+
+    /* =========================================
+       CRIAR MEMÓRIAS
+    ========================================= */
 
     family.memories.forEach(
         (
@@ -3416,11 +3546,8 @@ function renderMemories() {
             index
         ) => {
 
-
             const slide =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
 
             slide.className =
@@ -3440,7 +3567,6 @@ function renderMemories() {
                     onerror="this.style.display='none';"
                 >
 
-
                 <div class="memory-content">
 
                     <h4>
@@ -3456,6 +3582,20 @@ function renderMemories() {
             `;
 
 
+            /* CLICAR NA MEMÓRIA */
+
+            slide.addEventListener(
+                "click",
+                () => {
+
+                    openMemoryModal(
+                        index
+                    );
+
+                }
+            );
+
+
             memoryInfo.appendChild(
                 slide
             );
@@ -3464,86 +3604,474 @@ function renderMemories() {
     );
 
 
+    /* =========================================
+       CONTROLES DAS MEMÓRIAS
+    ========================================= */
+
     if (
         family.memories.length > 1
     ) {
 
+        const controls =
+            document.createElement("div");
 
-        const counter =
+
+        controls.className =
+            "memory-controls";
+
+
+        controls.innerHTML = `
+
+            <button
+                type="button"
+                class="memory-arrow"
+                id="memoryPrev"
+                aria-label="Memória anterior"
+            >
+                ←
+            </button>
+
+
+            <div
+                class="memory-counter"
+                id="memoryCounter"
+            >
+                1 / ${family.memories.length}
+            </div>
+
+
+            <button
+                type="button"
+                class="memory-arrow"
+                id="memoryNext"
+                aria-label="Próxima memória"
+            >
+                →
+            </button>
+
+        `;
+
+
+        memoryInfo.appendChild(
+            controls
+        );
+
+
+        const updateMemory =
+            () => {
+
+                const slides =
+                    memoryInfo.querySelectorAll(
+                        ".memory-slide"
+                    );
+
+
+                slides.forEach(
+                    slide => {
+
+                        slide.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                slides[current]
+                    .classList.add(
+                        "active"
+                    );
+
+
+                document
+                    .getElementById(
+                        "memoryCounter"
+                    )
+                    .textContent =
+                    `${current + 1} / ${slides.length}`;
+
+            };
+
+
+        document
+            .getElementById(
+                "memoryPrev"
+            )
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+                    current =
+                        (
+                            current -
+                            1 +
+                            family.memories.length
+                        )
+                        %
+                        family.memories.length;
+
+
+                    updateMemory();
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "memoryNext"
+            )
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+                    current =
+                        (
+                            current + 1
+                        )
+                        %
+                        family.memories.length;
+
+
+                    updateMemory();
+
+                }
+            );
+
+    }
+
+
+    /* =========================================
+       CRIAR MODAL
+    ========================================= */
+
+    let modal =
+        document.getElementById(
+            "memoryModal"
+        );
+
+
+    if (!modal) {
+
+        modal =
             document.createElement(
                 "div"
             );
 
 
-        counter.className =
-            "memory-counter";
+        modal.id =
+            "memoryModal";
 
 
-        counter.id =
-            "memoryCounter";
+        modal.className =
+            "memory-modal";
 
 
-        memoryInfo.appendChild(
-            counter
+        modal.innerHTML = `
+
+            <div
+                class="memory-modal-content"
+                role="dialog"
+                aria-modal="true"
+            >
+
+                <button
+                    type="button"
+                    class="memory-modal-close"
+                    onclick="closeMemoryModal()"
+                    aria-label="Fechar"
+                >
+                    ✕
+                </button>
+
+
+                <img
+                    id="memoryModalImage"
+                    class="memory-modal-image"
+                    src=""
+                    alt=""
+                >
+
+
+                <div
+                    id="memoryModalTitle"
+                    class="memory-modal-title"
+                ></div>
+
+
+                <div
+                    id="memoryModalDescription"
+                    class="memory-modal-description"
+                ></div>
+
+
+                <div
+                    class="memory-modal-controls"
+                >
+
+                    <button
+                        type="button"
+                        class="memory-modal-arrow"
+                        id="memoryModalPrev"
+                        aria-label="Memória anterior"
+                    >
+                        ←
+                    </button>
+
+
+                    <div
+                        class="memory-modal-counter"
+                        id="memoryModalCounter"
+                    >
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="memory-modal-arrow"
+                        id="memoryModalNext"
+                        aria-label="Próxima memória"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        document.body.appendChild(
+            modal
         );
 
 
-        let current = 0;
+        /* FECHAR CLICANDO FORA */
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeMemoryModal();
+
+                }
+
+            }
+        );
 
 
-        const updateMemory = () => {
+        /* SETA ESQUERDA */
+
+        document
+            .getElementById(
+                "memoryModalPrev"
+            )
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
 
 
-            const slides =
-                memoryInfo.querySelectorAll(
-                    ".memory-slide"
-                );
+                    current =
+                        (
+                            current -
+                            1 +
+                            family.memories.length
+                        )
+                        %
+                        family.memories.length;
 
 
-            slides.forEach(
-                slide =>
-                    slide.classList.remove(
-                        "active"
-                    )
+                    updateMemoryModal(
+                        current
+                    );
+
+                }
             );
 
 
-            slides[current]
+        /* SETA DIREITA */
+
+        document
+            .getElementById(
+                "memoryModalNext"
+            )
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+
+                    current =
+                        (
+                            current + 1
+                        )
+                        %
+                        family.memories.length;
+
+
+                    updateMemoryModal(
+                        current
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* =========================================
+       ATUALIZAR MODAL
+    ========================================= */
+
+    function updateMemoryModal(
+        index
+    ) {
+
+        const memory =
+            family.memories[index];
+
+
+        document
+            .getElementById(
+                "memoryModalImage"
+            )
+            .src =
+            memory.image;
+
+
+        document
+            .getElementById(
+                "memoryModalImage"
+            )
+            .alt =
+            memory.title;
+
+
+        document
+            .getElementById(
+                "memoryModalTitle"
+            )
+            .textContent =
+            memory.title;
+
+
+        document
+            .getElementById(
+                "memoryModalDescription"
+            )
+            .textContent =
+            memory.description;
+
+
+        document
+            .getElementById(
+                "memoryModalCounter"
+            )
+            .textContent =
+            `${index + 1} / ${family.memories.length}`;
+
+    }
+
+
+    /* =========================================
+       ABRIR MODAL
+    ========================================= */
+
+    window.openMemoryModal =
+        function(index) {
+
+            current = index;
+
+
+            updateMemoryModal(
+                current
+            );
+
+
+            document
+                .getElementById(
+                    "memoryModal"
+                )
                 .classList.add(
                     "active"
                 );
 
 
-            counter.textContent =
-                `${current + 1} / ${slides.length}`;
+            document.body.style.overflow =
+                "hidden";
 
         };
 
 
-        updateMemory();
+    /* =========================================
+       FECHAR MODAL
+    ========================================= */
+
+    window.closeMemoryModal =
+        function() {
+
+            document
+                .getElementById(
+                    "memoryModal"
+                )
+                .classList.remove(
+                    "active"
+                );
 
 
-        setInterval(
-            () => {
+            document.body.style.overflow =
+                "";
 
-                current =
-                    (
-                        current + 1
-                    )
-                    %
-                    family.memories.length;
-
-
-                updateMemory();
-
-            },
-            4000
-        );
-
-    }
+        };
 
 }
 
+
+/* =========================================
+   ESC PARA FECHAR MEMÓRIA
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            const modal =
+                document.getElementById(
+                    "memoryModal"
+                );
+
+
+            if (
+                modal &&
+                modal.classList.contains(
+                    "active"
+                )
+            ) {
+
+                closeMemoryModal();
+
+            }
+
+        }
+
+    }
+);
 
 
 /* =========================================
