@@ -1537,6 +1537,9 @@
    FERIADOS NACIONAIS DE ANGOLA
 ========================================= */
 
+/* =========================================
+   FERIADOS E PONTOS LEGAIS DE ANGOLA 2027
+========================================= */
 
 const angolaNationalHolidays = [
 
@@ -1756,22 +1759,22 @@ const families = [
             {
                 name: "Suzana",
                 date: "2004-04-04",
-                relation: "Parente"
+                relation: "Filha"
             },
               {
                 name: "Leonor",
                 date: "2004-07-29",
-                relation: "Parente"
+                relation: "Filha"
             },
               {
                 name: "Pedro Teca",
                 date: "2004-02-19",
-                relation: "Parente"
+                relation: "Filho"
             },
              {
                 name: "Esmara Carneiro",
                 date: "2004-08-31",
-                relation: "Parente"
+                relation: "Filha"
             }
             
 
@@ -1791,12 +1794,12 @@ const families = [
             },
 
             {
-                date: "2010-10-20",
+                date: "2010-08-20",
                 title: "Nosso Casamento"
             },
 
             {
-                date: "2015-08-13",
+                date: "2000-12-12",
                 title: "Consagração Divina"
             }
 
@@ -3695,6 +3698,20 @@ function renderNationalLegend() {
 ========================================= */
 
 document
+    .getElementById("downloadPdf")
+    .addEventListener("click", () => {
+        const pdfUrl = "Calendario DIMA_AF(1).pdf";
+
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = "Calendario-DIMA-2027.pdf";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    });
+
+/*
+document
     .getElementById(
         "downloadPdf"
     )
@@ -3773,6 +3790,7 @@ document
 
         }
     );
+*/
 
 
 /* =========================================
