@@ -4237,103 +4237,59 @@ function renderNationalLegend() {
 /* =========================================
    PDF A3
 ========================================= */
-
 document
     .getElementById("downloadPdf")
     .addEventListener("click", () => {
-        const pdfUrl = "Calendario DIMA_AF(1).pdf";
 
-        const link = document.createElement("a");
-        link.href = pdfUrl;
-        link.download = "pdf/Calendario DIMA_AF.pdf";
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-    });
-
-/*
-document
-    .getElementById(
-        "downloadPdf"
-    )
-    .addEventListener(
-        "click",
-        async () => {
-
-
-            const element =
-                document.querySelector(
-                    ".family-calendar-container"
-                );
-
-
-            const canvas =
-                await html2canvas(
-                    element,
-                    {
-
-                        scale: 2,
-
-                        useCORS: true,
-
-                        backgroundColor:
-                            "#ffffff"
-
-                    }
-                );
-
-
-            const {
-                jsPDF
-            } = window.jspdf;
-
-
-            const pdf =
-                new jsPDF({
-
-                    orientation:
-                        "landscape",
-
-                    unit:
-                        "mm",
-
-                    format:
-                        "a3"
-
-                });
-
-
-            const image =
-                canvas.toDataURL(
-                    "image/jpeg",
-                    .95
-                );
-
-
-            pdf.addImage(
-                image,
-                "JPEG",
-                0,
-                0,
-                420,
-                297
+        const params =
+            new URLSearchParams(
+                window.location.search
             );
 
+        const familia =
+            (params.get("familia") || "dima")
+            .toLowerCase();
 
-            pdf.save(
-                `${family.name
-                    .replace(
-                        /\s+/g,
-                        "-"
-                    )
-                }-Calendario-${family.year}.pdf`
+
+        const pdfs = {
+
+            dima:
+                "pdf/Calendario-DIMA-2027.pdf",
+
+            silva:
+                "pdf/Calendario-SILVA-2027.pdf",
+
+            costa:
+                "pdf/Calendario-COSTA-2027.pdf",
+
+            mateus:
+                "pdf/Calendario-MATEUS-2027.pdf"
+
+        };
+
+
+        const pdfUrl =
+            pdfs[familia];
+
+
+        if (!pdfUrl) {
+
+            alert(
+                "PDF desta família ainda não está disponível."
             );
+
+            return;
 
         }
-    );
-*/
 
 
+        // Abre o PDF em uma nova página/aba
+        window.open(
+            pdfUrl,
+            "_blank"
+        );
+
+    });
 /* =========================================
    INICIALIZAR
 ========================================= */
