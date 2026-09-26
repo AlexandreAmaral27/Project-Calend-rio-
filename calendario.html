@@ -1357,7 +1357,7 @@
             class="btn btn-primary"
             id="downloadPdf"
         >
-            📄 Baixar PDF A3
+            📄 Baixar PDF
         </button>
 
     </div>
@@ -1748,6 +1748,11 @@ const families = [
                 name: "Rodeth Dima",
                 date: "1980-09-26",
                 relation: "Mãe"
+            },
+                {
+                name: "Aneth Dima",
+                date: "1980-10-18",
+                relation: "Filha"
             },
 
             {
@@ -3704,7 +3709,7 @@ document
 
         const link = document.createElement("a");
         link.href = pdfUrl;
-        link.download = "Calendario-DIMA-2027.pdf";
+        link.download = "pdf/Calendario DIMA_AF.pdf";
         document.body.appendChild(link);
         link.click();
         link.remove();
