@@ -849,13 +849,7 @@
         </div>
 
 
-        <a
-            href="index.html#familias"
-            class="back-button"
-        >
-            ← Voltar às famílias
-        </a>
-
+ 
     </header>
 
 
@@ -933,7 +927,7 @@
                 <ul id="birthdayInfo"></ul>
             </div>
             <div class="info-card">
-                <h3>🎉 Datas comemorativas</h3>
+                <h3>🎉 Datas marcantes</h3>
                 <ul id="eventInfo"></ul>
             </div>
         </div>
@@ -1869,10 +1863,45 @@ function renderEvents() {
 
     eventInfo.innerHTML = "";
 
-    const allEvents = [
-        ...family.events.map(event => ({ ...event, national: false })),
-        ...angolaNationalHolidays.map(event => ({ ...event, national: true }))
-    ].sort((a,b) => a.date.localeCompare(b.date));
+    /*
+       Junta as datas da família com os feriados nacionais.
+       Quando a mesma data já existir em family.events e também
+       nos feriados nacionais, mantém apenas uma ocorrência.
+    */
+    const eventMap = new Map();
+
+    family.events.forEach(event => {
+        // Se houver duas datas da família no mesmo dia,
+        // mantém somente a primeira.
+        if (!eventMap.has(event.date)) {
+            eventMap.set(event.date, {
+                ...event,
+                national: false
+            });
+        }
+    });
+
+    angolaNationalHolidays.forEach(holiday => {
+        if (eventMap.has(holiday.date)) {
+            // A data já existe: transforma a existente em nacional
+            // para não aparecer duas vezes.
+            eventMap.set(holiday.date, {
+                ...eventMap.get(holiday.date),
+                national: true,
+                nationalTitle: holiday.title,
+                className: holiday.className,
+                color: holiday.color
+            });
+        } else {
+            eventMap.set(holiday.date, {
+                ...holiday,
+                national: true
+            });
+        }
+    });
+
+    const allEvents = Array.from(eventMap.values())
+        .sort((a,b) => a.date.localeCompare(b.date));
 
     allEvents.forEach(
         event => {
