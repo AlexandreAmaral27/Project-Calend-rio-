@@ -5832,24 +5832,15 @@ document
 /* =====================================================
    QR CODE
 ===================================================== */
-
-function getFamilyURL(
-    family
-){
+function getFamilyURL(family){
 
     const base =
-        window.location.origin +
-        window.location.pathname;
-
+        "https://alexandreamaral27.github.io/calendario-familiar/calendario.html";
 
     return (
-
         base +
         "?familia=" +
-        encodeURIComponent(
-            family.id
-        )
-
+        encodeURIComponent(family.id)
     );
 
 }

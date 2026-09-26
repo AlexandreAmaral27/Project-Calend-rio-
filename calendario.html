@@ -620,44 +620,99 @@
 
         }
 
+/* =========================================
+   CORES DO CALENDÁRIO
+========================================= */
 
-        .national-jan {
-            background:#2563eb !important;
-        }
+/* Datas da família */
+.family-day.family-date {
 
-        .national-feb {
-            background:#dc2626 !important;
-        }
+    background: #2563eb;
 
-        .national-mar {
-            background:#db2777 !important;
-        }
+    color: white;
 
-        .national-apr {
-            background:#16a34a !important;
-        }
+    font-weight: 800;
 
-        .national-may {
-            background:#f59e0b !important;
-            color:#172033 !important;
-        }
+}
 
-        .national-jun {
-            background:#7c3aed !important;
-        }
 
-        .national-sep {
-            background:#0891b2 !important;
-        }
+/* Feriados / Pontos legais */
 
-        .national-nov {
-            background:#ea580c !important;
-        }
+.family-day.national {
 
-        .national-dec {
-            background:#475569 !important;
-        }
+    color: white;
 
+    font-weight: 800;
+
+    border: 2px solid transparent;
+
+}
+
+
+/* Quando existe feriado + data familiar */
+.family-day.national.family-date {
+
+    color: white;
+
+    font-weight: 800;
+
+}
+
+
+/* Pequeno indicador no canto */
+
+.family-day.national::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 4px;
+
+    right: 5px;
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.95);
+
+}
+
+
+/* Marcador das datas familiares */
+
+.family-day.family-date .event-dot {
+
+    background: white;
+
+}
+
+
+/* Legenda */
+
+.national-color {
+
+    width: 12px;
+
+    height: 12px;
+
+    border-radius: 50%;
+
+    flex: none;
+
+}
+
+
+/* Azul = família */
+
+.family-color {
+
+    background: #2563eb;
+
+}
 
         .national-legend {
 
@@ -1222,74 +1277,171 @@
    FERIADOS NACIONAIS DE ANGOLA
 ========================================= */
 
+/* =========================================
+   FERIADOS E PONTOS LEGAIS DE ANGOLA 2027
+========================================= */
+
 const angolaNationalHolidays = [
+
+    /* ===============================
+       JANEIRO
+    =============================== */
 
     {
         date: "2027-01-01",
         title: "Ano Novo",
-        className: "national-jan",
-        color: "#2563eb"
+        type: "FN",
+        color: "#dc2626"
     },
+
+
+    /* ===============================
+       FEVEREIRO
+    =============================== */
 
     {
         date: "2027-02-04",
-        title: "Dia do Início da Luta Armada de Libertação Nacional",
-        className: "national-feb",
+        title: "Início da Luta Armada",
+        type: "FN",
         color: "#dc2626"
     },
 
     {
+        date: "2027-02-05",
+        title: "Início da Luta Armada",
+        type: "PL",
+        color: "#a3a52b"
+    },
+
+    {
+        date: "2027-02-08",
+        title: "Carnaval",
+        type: "PL",
+        color: "#a3a52b"
+    },
+
+    {
+        date: "2027-02-09",
+        title: "Carnaval",
+        type: "FN",
+        color: "#dc2626"
+    },
+
+
+    /* ===============================
+       MARÇO
+    =============================== */
+
+    {
         date: "2027-03-08",
         title: "Dia Internacional da Mulher",
-        className: "national-mar",
-        color: "#db2777"
+        type: "FN",
+        color: "#dc2626"
     },
+
+    {
+        date: "2027-03-22",
+        title: "Libertação da África Austral",
+        type: "PL",
+        color: "#a3a52b"
+    },
+
+    {
+        date: "2027-03-23",
+        title: "Dia da Libertação da África Austral",
+        type: "FN",
+        color: "#dc2626"
+    },
+
+    {
+        date: "2027-03-26",
+        title: "Sexta-feira Santa",
+        type: "FN",
+        color: "#dc2626"
+    },
+
+
+    /* ===============================
+       ABRIL
+    =============================== */
 
     {
         date: "2027-04-04",
         title: "Dia da Paz e da Reconciliação Nacional",
-        className: "national-apr",
-        color: "#16a34a"
+        type: "FN",
+        color: "#dc2626"
     },
+
+
+    /* ===============================
+       MAIO
+    =============================== */
 
     {
         date: "2027-05-01",
         title: "Dia Internacional do Trabalhador",
-        className: "national-may",
-        color: "#f59e0b"
+        type: "FN",
+        color: "#dc2626"
     },
 
-    {
-        date: "2027-06-01",
-        title: "Dia Internacional da Criança",
-        className: "national-jun",
-        color: "#7c3aed"
-    },
+
+    /* ===============================
+       SETEMBRO
+    =============================== */
 
     {
         date: "2027-09-17",
         title: "Dia do Herói Nacional",
-        className: "national-sep",
-        color: "#0891b2"
+        type: "FN",
+        color: "#dc2626"
+    },
+
+
+    /* ===============================
+       NOVEMBRO
+    =============================== */
+
+    {
+        date: "2027-11-01",
+        title: "Dia dos Finados",
+        type: "PL",
+        color: "#a3a52b"
+    },
+
+    {
+        date: "2027-11-02",
+        title: "Dia dos Finados",
+        type: "FN",
+        color: "#dc2626"
     },
 
     {
         date: "2027-11-11",
         title: "Dia da Independência Nacional",
-        className: "national-nov",
-        color: "#ea580c"
+        type: "FN",
+        color: "#dc2626"
     },
 
     {
+        date: "2027-11-12",
+        title: "Dia da Independência Nacional",
+        type: "PL",
+        color: "#a3a52b"
+    },
+
+
+    /* ===============================
+       DEZEMBRO
+    =============================== */
+
+    {
         date: "2027-12-25",
-        title: "Dia de Natal",
-        className: "national-dec",
-        color: "#475569"
+        title: "Dia de Natal da Família",
+        type: "FN",
+        color: "#dc2626"
     }
 
 ];
-
-
 /* =========================================
    FAMÍLIAS
 ========================================= */
@@ -2140,6 +2292,10 @@ const monthNames = [
 ];
 
 
+/* =========================================
+   CALENDÁRIO
+========================================= */
+
 function renderCalendar() {
 
     familyMonths.innerHTML = "";
@@ -2201,6 +2357,10 @@ function renderCalendar() {
             `;
 
 
+            /* =================================
+               ESPAÇOS ANTES DO PRIMEIRO DIA
+            ================================= */
+
             for (
                 let i = 0;
                 i < firstDay.getDay();
@@ -2213,6 +2373,10 @@ function renderCalendar() {
 
             }
 
+
+            /* =================================
+               DIAS DO MÊS
+            ================================= */
 
             for (
                 let day = 1;
@@ -2228,6 +2392,10 @@ function renderCalendar() {
                         day
                     ).padStart(2,"0")}`;
 
+
+                /* =============================
+                   ANIVERSÁRIO
+                ============================= */
 
                 const birthday =
                     family.birthdays.find(
@@ -2256,6 +2424,10 @@ function renderCalendar() {
                     );
 
 
+                /* =============================
+                   DATAS MARCANTES
+                ============================= */
+
                 const events =
                     family.events.filter(
                         event =>
@@ -2263,68 +2435,216 @@ function renderCalendar() {
                     );
 
 
+                /* =============================
+                   CONQUISTAS
+                ============================= */
+
+                const achievements =
+                    (
+                        family.achievements ||
+                        []
+                    ).filter(
+                        achievement =>
+                            achievement.date === date
+                    );
+
+
+                /* =============================
+                   FERIADO / PONTO LEGAL
+                ============================= */
+
+                const national =
+                    angolaNationalHolidays.find(
+                        holiday =>
+                            holiday.date === date
+                    );
+
+
+                /* =============================
+                   EXISTE DATA DA FAMÍLIA?
+                ============================= */
+
+                const hasFamilyDate =
+                    Boolean(
+                        birthday ||
+                        events.length ||
+                        achievements.length
+                    );
+
+
+                /* =============================
+                   CLASSE BASE
+                ============================= */
+
                 let classes =
                     "family-day";
 
 
-                if (birthday) {
+                if (national) {
 
                     classes +=
-                        " birthday";
+                        " national";
 
                 }
 
 
-                if (events.length) {
+                if (hasFamilyDate) {
 
                     classes +=
-                        " event";
+                        " family-date";
 
                 }
 
 
-                let title = "";
+                /* =============================
+                   COR DO DIA
+                ============================= */
+
+                let background = "#f8fafc";
+
+
+                /*
+                 * SOMENTE FAMÍLIA
+                 */
+
+                if (
+                    hasFamilyDate &&
+                    !national
+                ) {
+
+                    background =
+                        "#2563eb";
+
+                }
+
+
+                /*
+                 * SOMENTE FERIADO / PL
+                 */
+
+                if (
+                    national &&
+                    !hasFamilyDate
+                ) {
+
+                    background =
+                        national.color;
+
+                }
+
+
+                /*
+                 * FERIADO + FAMÍLIA
+                 *
+                 * METADE:
+                 * Feriado = vermelho/verde
+                 *
+                 * METADE:
+                 * Família = azul
+                 */
+
+                if (
+                    national &&
+                    hasFamilyDate
+                ) {
+
+                    background =
+                        `linear-gradient(
+                            135deg,
+                            ${national.color} 0%,
+                            ${national.color} 50%,
+                            #2563eb 50%,
+                            #2563eb 100%
+                        )`;
+
+                }
+
+
+                /* =============================
+                   TEXTO / TOOLTIP
+                ============================= */
+
+                let titleParts = [];
+
+
+                if (national) {
+
+                    titleParts.push(
+                        `🇦🇴 ${national.title} - ${national.type}`
+                    );
+
+                }
 
 
                 if (birthday) {
 
-                    title +=
-                        `🎂 ${birthday.name}`;
+                    titleParts.push(
+                        `🎂 ${birthday.name} - Aniversário`
+                    );
 
                 }
 
 
-                if (events.length) {
+                events.forEach(
+                    event => {
 
-                    if (title)
-                        title += " | ";
+                        titleParts.push(
+                            `🎉 ${event.title} - Data marcante`
+                        );
+
+                    }
+                );
 
 
-                    title +=
-                        events
-                            .map(
-                                event =>
-                                    `🎉 ${event.title}`
-                            )
-                            .join(" | ");
+                achievements.forEach(
+                    achievement => {
 
-                }
+                        titleParts.push(
+                            `🏆 ${achievement.title} - Conquista familiar`
+                        );
 
+                    }
+                );
+
+
+                const title =
+                    titleParts.join(" | ");
+
+
+                /* =============================
+                   MARCADOR AZUL DA FAMÍLIA
+                ============================= */
+
+                const familyDot =
+                    hasFamilyDate
+                    ? `
+                        <span
+                            class="event-dot"
+                            style="
+                                background:#ffffff;
+                            "
+                        ></span>
+                    `
+                    : "";
+
+
+                /* =============================
+                   DIA
+                ============================= */
 
                 html += `
 
                     <span
                         class="${classes}"
                         title="${title}"
+                        style="
+                            background:${background};
+                        "
                     >
 
                         ${day}
 
-                        ${
-                            title
-                            ? `<span class="event-dot"></span>`
-                            : ""
-                        }
+                        ${familyDot}
 
                     </span>
 
@@ -2350,8 +2670,6 @@ function renderCalendar() {
     );
 
 }
-
-
 /* =========================================
    ANIVERSÁRIOS
 ========================================= */
@@ -2736,18 +3054,103 @@ function renderMemories() {
 }
 
 
-/* =========================================
-   LEGENDA DOS FERIADOS NACIONAIS
-========================================= */
 
 /* =========================================
-   LEGENDA DOS FERIADOS NACIONAIS
+   LEGENDA DOS FERIADOS E PONTOS LEGAIS
 ========================================= */
 
 function renderNationalLegend() {
 
     nationalLegend.innerHTML = "";
 
+
+    /* ===============================
+       IDENTIFICAÇÃO DAS CORES
+    =============================== */
+
+    const identification =
+        document.createElement("div");
+
+
+    identification.style.display =
+        "flex";
+
+    identification.style.flexWrap =
+        "wrap";
+
+    identification.style.gap =
+        "12px";
+
+    identification.style.marginBottom =
+        "18px";
+
+
+    identification.innerHTML = `
+
+        <div class="national-legend-item">
+
+            <span
+                class="national-color"
+                style="
+                    background:#dc2626;
+                "
+            ></span>
+
+            <strong>
+                FN
+            </strong>
+
+            — Feriado Nacional
+
+        </div>
+
+
+        <div class="national-legend-item">
+
+            <span
+                class="national-color"
+                style="
+                    background:#a3a52b;
+                "
+            ></span>
+
+            <strong>
+                PL
+            </strong>
+
+            — Ponto Legal
+
+        </div>
+
+
+        <div class="national-legend-item">
+
+            <span
+                class="national-color"
+                style="
+                    background:#2563eb;
+                "
+            ></span>
+
+            <strong>
+                Azul
+            </strong>
+
+            — Data Familiar
+
+        </div>
+
+    `;
+
+
+    nationalLegend.appendChild(
+        identification
+    );
+
+
+    /* ===============================
+       DATAS
+    =============================== */
 
     angolaNationalHolidays.forEach(
         holiday => {
@@ -2764,7 +3167,8 @@ function renderNationalLegend() {
 
             const date =
                 new Date(
-                    holiday.date + "T00:00:00"
+                    holiday.date +
+                    "T00:00:00"
                 );
 
 
@@ -2772,7 +3176,7 @@ function renderNationalLegend() {
                 date.toLocaleDateString(
                     "pt-PT",
                     {
-                        day: "2-digit",
+                        day: "numeric",
                         month: "long"
                     }
                 );
@@ -2782,14 +3186,22 @@ function renderNationalLegend() {
 
                 <span
                     class="national-color"
-                    style="background:${holiday.color}"
+                    style="
+                        background:${holiday.color};
+                    "
                 ></span>
+
 
                 <strong>
                     ${formattedDate}
                 </strong>
 
-                — ${holiday.title}
+
+                <span>
+                    ${holiday.title}
+                    -
+                    ${holiday.type}
+                </span>
 
             `;
 
@@ -2802,7 +3214,6 @@ function renderNationalLegend() {
     );
 
 }
-
 /* =========================================
    PDF A3
 ========================================= */
