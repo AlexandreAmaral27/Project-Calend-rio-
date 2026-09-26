@@ -505,14 +505,21 @@
            INFORMAÇÕES
         ========================================= */
 
-.family-info-top {
+        .family-info-top {
+
             margin-top: 0;
+
             margin-bottom: 30px;
+
         }
 
+
         .family-info-top .info-card {
+
             min-height: 100%;
+
         }
+
 
         .family-info {
 
@@ -577,128 +584,282 @@
         ========================================= */
 
         .family-day.national {
+
             color: white;
+
             font-weight: 800;
+
             border: 2px solid transparent;
+
         }
+
 
         .family-day.national::after {
+
             content: "";
+
             position: absolute;
+
             top: 4px;
+
             right: 5px;
+
             width: 6px;
+
             height: 6px;
+
             border-radius: 50%;
-            background: rgba(255,255,255,.9);
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .9
+                );
+
         }
 
-        .national-jan { background:#2563eb !important; }
-        .national-feb { background:#dc2626 !important; }
-        .national-mar { background:#db2777 !important; }
-        .national-apr { background:#16a34a !important; }
-        .national-may { background:#f59e0b !important; color:#172033 !important; }
-        .national-jun { background:#7c3aed !important; }
-        .national-sep { background:#0891b2 !important; }
-        .national-nov { background:#ea580c !important; }
-        .national-dec { background:#475569 !important; }
+
+        .national-jan {
+            background:#2563eb !important;
+        }
+
+        .national-feb {
+            background:#dc2626 !important;
+        }
+
+        .national-mar {
+            background:#db2777 !important;
+        }
+
+        .national-apr {
+            background:#16a34a !important;
+        }
+
+        .national-may {
+            background:#f59e0b !important;
+            color:#172033 !important;
+        }
+
+        .national-jun {
+            background:#7c3aed !important;
+        }
+
+        .national-sep {
+            background:#0891b2 !important;
+        }
+
+        .national-nov {
+            background:#ea580c !important;
+        }
+
+        .national-dec {
+            background:#475569 !important;
+        }
+
 
         .national-legend {
+
             margin-top: 25px;
+
             padding: 20px;
+
             background: white;
-            border: 1px solid #e4eaf1;
+
+            border:
+                1px solid
+                #e4eaf1;
+
             border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(15,23,42,.05);
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .05
+                );
+
         }
+
 
         .national-legend h3 {
+
             margin: 0 0 15px;
+
             color:#0f2f52;
+
         }
+
 
         .national-legend-list {
+
             display:flex;
+
             flex-wrap:wrap;
+
             gap:10px;
+
         }
+
 
         .national-legend-item {
+
             display:flex;
+
             align-items:center;
+
             gap:8px;
+
             padding:8px 12px;
+
             border-radius:10px;
+
             background:#f8fafc;
+
             color:#475569;
+
             font-size:12px;
+
             font-weight:700;
+
         }
 
+
         .national-color {
+
             width:12px;
+
             height:12px;
+
             border-radius:50%;
+
             flex:none;
+
         }
+
 
         /* =========================================
            MEMÓRIAS EM DESTAQUE
         ========================================= */
 
         .memory-slider {
+
             position:relative;
+
             overflow:hidden;
+
             border-radius:16px;
+
         }
+
 
         .memory-slide {
+
             display:none;
-            animation: memoryFade .7s ease;
+
+            animation:
+                memoryFade .7s ease;
+
         }
+
 
         .memory-slide.active {
+
             display:block;
+
         }
+
 
         .memory-image {
+
             width:100%;
+
             height:210px;
+
             object-fit:cover;
+
             display:block;
+
             border-radius:14px;
+
             background:#e8f1fa;
+
         }
+
 
         .memory-content {
-            padding:14px 4px 4px;
+
+            padding:
+                14px 4px 4px;
+
         }
+
 
         .memory-content h4 {
-            margin:0 0 6px;
+
+            margin:
+                0 0 6px;
+
             color:#0f2f52;
+
             font-size:17px;
+
         }
+
 
         .memory-content p {
+
             margin:0;
+
             color:#64748b;
+
             line-height:1.6;
+
             font-size:13px;
+
         }
+
 
         .memory-counter {
+
             margin-top:12px;
+
             text-align:center;
+
             color:#94a3b8;
+
             font-size:12px;
+
             font-weight:700;
+
         }
 
+
         @keyframes memoryFade {
-            from { opacity:0; transform:translateX(12px); }
-            to { opacity:1; transform:translateX(0); }
+
+            from {
+
+                opacity:0;
+
+                transform:
+                    translateX(12px);
+
+            }
+
+            to {
+
+                opacity:1;
+
+                transform:
+                    translateX(0);
+
+            }
+
         }
+
 
         /* =========================================
            RESPONSIVO
@@ -712,6 +873,7 @@
                     repeat(2,1fr);
 
             }
+
 
             .family-info {
 
@@ -732,17 +894,21 @@
 
             }
 
+
             .family-page-header {
 
-                padding: 25px 5%;
+                padding:
+                    25px 5%;
 
             }
+
 
             .calendar-title h2 {
 
-                font-size: 30px;
+                font-size:30px;
 
             }
+
 
             .family-profile {
 
@@ -751,9 +917,10 @@
 
             }
 
+
             .family-photo {
 
-                height: 250px;
+                height:250px;
 
             }
 
@@ -768,41 +935,45 @@
 
             @page {
 
-                size: A3 landscape;
+                size:A3 landscape;
 
-                margin: 10mm;
+                margin:10mm;
 
             }
+
 
             .family-page-header,
             .family-actions {
 
-                display: none;
+                display:none;
 
             }
+
 
             .family-calendar-container {
 
-                max-width: none;
+                max-width:none;
 
-                padding: 0;
+                padding:0;
 
             }
+
 
             .family-months {
 
                 grid-template-columns:
                     repeat(4,1fr);
 
-                gap: 8mm;
+                gap:8mm;
 
             }
 
+
             .family-month {
 
-                box-shadow: none;
+                box-shadow:none;
 
-                break-inside: avoid;
+                break-inside:avoid;
 
             }
 
@@ -834,11 +1005,13 @@
                 FB
             </div>
 
+
             <div>
 
                 <h1 id="familyName">
                     Família
                 </h1>
+
 
                 <p id="familyYear">
                     Calendário 2027
@@ -848,8 +1021,6 @@
 
         </div>
 
-
- 
     </header>
 
 
@@ -903,15 +1074,19 @@
                     CALENDÁRIO FAMILIAR
                 </span>
 
+
                 <h2 id="calendarTitle">
                     Família
                 </h2>
+
 
                 <p id="calendarDescription">
                     Calendário familiar completo
                 </p>
 
+
                 <p id="familyLocation"></p>
+
 
                 <p id="familyPhrase"></p>
 
@@ -920,43 +1095,88 @@
         </div>
 
 
-        <!-- ANIVERSÁRIOS E DATAS COMEMORATIVAS -->
+        <!-- =====================================
+             ANIVERSÁRIOS / DATAS / CONQUISTAS
+        ====================================== -->
+
         <div class="family-info family-info-top">
+
+
+            <!-- ANIVERSÁRIOS -->
+
             <div class="info-card">
-                <h3>🎂 Aniversários</h3>
+
+                <h3>
+                    🎂 Aniversários
+                </h3>
+
                 <ul id="birthdayInfo"></ul>
-            </div>
-            <div class="info-card">
-                <h3>🎉 Datas marcantes</h3>
-                <ul id="eventInfo"></ul>
+
             </div>
 
-           <div class="info-card">
-    <h3>🏆 Conquistas familiar</h3>
-    <ul id="achievementInfo"></ul>
-</div>
+
+            <!-- DATAS MARCANTES -->
+
+            <div class="info-card">
+
+                <h3>
+                    🎉 Datas marcantes
+                </h3>
+
+                <ul id="eventInfo"></ul>
+
+            </div>
+
+
+            <!-- CONQUISTAS -->
+
+            <div class="info-card">
+
+                <h3>
+                    🏆 Conquistas familiar
+                </h3>
+
+                <ul id="achievementInfo"></ul>
+
+            </div>
+
         </div>
+
+
+        <!-- =====================================
+             MESES
+        ====================================== -->
 
         <div
             class="family-months"
             id="familyMonths"
         ></div>
 
+
+        <!-- =====================================
+             FERIADOS NACIONAIS
+        ====================================== -->
+
         <div class="national-legend">
-            <h3>🇦🇴 Feriados nacionais de Angola</h3>
-            <div class="national-legend-list" id="nationalLegend"></div>
+
+            <h3>
+                🇦🇴 Feriados nacionais de Angola
+            </h3>
+
+            <div
+                class="national-legend-list"
+                id="nationalLegend"
+            ></div>
+
         </div>
 
 
-        <!-- =================================
-             INFORMAÇÕES
-        ================================== -->
+        <!-- =====================================
+             MEMÓRIAS
+        ====================================== -->
 
         <div class="family-info">
 
-
-
-            <!-- MEMÓRIAS -->
 
             <div class="info-card">
 
@@ -964,7 +1184,11 @@
                     ❤️ Memórias
                 </h3>
 
-                <div id="memoryInfo" class="memory-slider"></div>
+
+                <div
+                    id="memoryInfo"
+                    class="memory-slider"
+                ></div>
 
             </div>
 
@@ -982,54 +1206,123 @@
      PDF LIBRARIES
 ========================================= -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
 
 
 <script>
 
 /* =========================================
-   DADOS
+   FERIADOS NACIONAIS DE ANGOLA
 ========================================= */
 
 const angolaNationalHolidays = [
 
-    { date: "2027-01-01", title: "Ano Novo", className: "national-jan", color: "#2563eb" },
-    { date: "2027-02-04", title: "Dia do Início da Luta Armada de Libertação Nacional", className: "national-feb", color: "#dc2626" },
-    { date: "2027-03-08", title: "Dia Internacional da Mulher", className: "national-mar", color: "#db2777" },
-    { date: "2027-04-04", title: "Dia da Paz e da Reconciliação Nacional", className: "national-apr", color: "#16a34a" },
-    { date: "2027-05-01", title: "Dia Internacional do Trabalhador", className: "national-may", color: "#f59e0b" },
-    { date: "2027-06-01", title: "Dia Internacional da Criança", className: "national-jun", color: "#7c3aed" },
-    { date: "2027-09-17", title: "Dia do Herói Nacional", className: "national-sep", color: "#0891b2" },
-    { date: "2027-11-11", title: "Dia da Independência Nacional", className: "national-nov", color: "#ea580c" },
-    { date: "2027-12-25", title: "Dia de Natal", className: "national-dec", color: "#475569" }
+    {
+        date: "2027-01-01",
+        title: "Ano Novo",
+        className: "national-jan",
+        color: "#2563eb"
+    },
+
+    {
+        date: "2027-02-04",
+        title: "Dia do Início da Luta Armada de Libertação Nacional",
+        className: "national-feb",
+        color: "#dc2626"
+    },
+
+    {
+        date: "2027-03-08",
+        title: "Dia Internacional da Mulher",
+        className: "national-mar",
+        color: "#db2777"
+    },
+
+    {
+        date: "2027-04-04",
+        title: "Dia da Paz e da Reconciliação Nacional",
+        className: "national-apr",
+        color: "#16a34a"
+    },
+
+    {
+        date: "2027-05-01",
+        title: "Dia Internacional do Trabalhador",
+        className: "national-may",
+        color: "#f59e0b"
+    },
+
+    {
+        date: "2027-06-01",
+        title: "Dia Internacional da Criança",
+        className: "national-jun",
+        color: "#7c3aed"
+    },
+
+    {
+        date: "2027-09-17",
+        title: "Dia do Herói Nacional",
+        className: "national-sep",
+        color: "#0891b2"
+    },
+
+    {
+        date: "2027-11-11",
+        title: "Dia da Independência Nacional",
+        className: "national-nov",
+        color: "#ea580c"
+    },
+
+    {
+        date: "2027-12-25",
+        title: "Dia de Natal",
+        className: "national-dec",
+        color: "#475569"
+    }
 
 ];
 
+
+/* =========================================
+   FAMÍLIAS
+========================================= */
+
 const families = [
+
 
     /* =========================================
        FAMÍLIA BARROSO
     ========================================= */
 
     {
+
         id: "barroso",
 
         name: "Família Barroso",
 
         year: 2027,
 
-        photo: "imagens/familias/familia-barros.jpg",
+        photo:
+            "imagens/familias/familia-barros.jpg",
 
-        location: "Luanda, Angola",
+        location:
+            "Luanda, Angola",
 
-        phrase: "Onde existe família, existe amor.",
+        phrase:
+            "Onde existe família, existe amor.",
 
         description:
             "Uma família unida por amor, respeito e muitos momentos especiais.",
 
         members: 12,
+
 
         birthdays: [
 
@@ -1059,12 +1352,13 @@ const families = [
 
         ],
 
-        events: [
 
-            {
-                date: "2027-01-01",
-                title: "Ano Novo"
-            },
+        /*
+         * SOMENTE 3 DATAS MARCANTES
+         * Os feriados nacionais NÃO ficam aqui.
+         */
+
+        events: [
 
             {
                 date: "2027-02-14",
@@ -1077,55 +1371,77 @@ const families = [
             },
 
             {
-                date: "2027-05-01",
-                title: "Dia do Trabalhador"
-            },
-
-            {
                 date: "2027-06-01",
                 title: "Dia da Criança"
-            },
-
-            {
-                date: "2027-11-11",
-                title: "Independência de Angola"
-            },
-
-            {
-                date: "2027-12-25",
-                title: "Natal"
             }
 
         ],
 
+
         achievements: [
-    {
-        title: "Conclusão dos estudos",
-        date: "2027-01-20",
-        description: "Um importante passo alcançado por um dos membros da família."
-    },
-    {
-        title: "Compra da primeira casa",
-        date: "2027-03-15",
-        description: "Uma grande conquista para toda a família."
-    },
-    {
-        title: "Novo emprego",
-        date: "2027-05-10",
-        description: "Celebração de uma nova oportunidade profissional."
-    },
-  
-    {
-        title: "Primeira viagem internacional",
-        date: "2027-10-08",
-        description: "Uma experiência especial vivida pela família."
-    }
-],
+
+            {
+                title: "Conclusão dos estudos",
+
+                date: "2027-01-20",
+
+                description:
+                    "Um importante passo alcançado por um dos membros da família."
+            },
+
+            {
+                title: "Compra da primeira casa",
+
+                date: "2027-03-15",
+
+                description:
+                    "Uma grande conquista para toda a família."
+            },
+
+            {
+                title: "Novo emprego",
+
+                date: "2027-05-10",
+
+                description:
+                    "Celebração de uma nova oportunidade profissional."
+            }
+
+        ],
+
 
         memories: [
-            { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
-            { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
-            { title: "Festa de aniversário", image: "imagens/familias/Reuniao-Familiar.webp", description: "Um aniversário cheio de alegria, carinho e boas lembranças." }
+
+            {
+                title: "Almoço de família",
+
+                image:
+                    "imagens/familias/familia-barros.jpg",
+
+                description:
+                    "Um momento especial reunindo toda a família à mesa."
+            },
+
+            {
+                title: "Viagem em família",
+
+                image:
+                    "imagens/familias/images.jpeg",
+
+                description:
+                    "Recordações de uma viagem vivida juntos."
+            },
+
+            {
+                title: "Festa de aniversário",
+
+                image:
+                    "imagens/familias/Reuniao-Familiar.webp",
+
+                description:
+                    "Um aniversário cheio de alegria, carinho e boas lembranças."
+            }
+
         ]
 
     },
@@ -1136,22 +1452,27 @@ const families = [
     ========================================= */
 
     {
+
         id: "silva",
 
         name: "Família Silva",
 
         year: 2027,
 
-        photo: "imagens/familias/familia-silva.jpg",
+        photo:
+            "imagens/familias/familia-silva.jpg",
 
-        location: "Luanda, Angola",
+        location:
+            "Luanda, Angola",
 
-        phrase: "Juntos somos mais fortes.",
+        phrase:
+            "Juntos somos mais fortes.",
 
         description:
             "Uma família unida por amor, carinho e momentos inesquecíveis.",
 
         members: 9,
+
 
         birthdays: [
 
@@ -1175,12 +1496,8 @@ const families = [
 
         ],
 
-        events: [
 
-            {
-                date: "2027-01-01",
-                title: "Ano Novo"
-            },
+        events: [
 
             {
                 date: "2027-03-08",
@@ -1188,31 +1505,82 @@ const families = [
             },
 
             {
-                date: "2027-05-01",
-                title: "Dia do Trabalhador"
+                date: "2027-07-15",
+                title: "Reunião Familiar"
             },
 
             {
-                date: "2027-11-11",
-                title: "Independência de Angola"
-            },
-
-            {
-                date: "2027-12-25",
-                title: "Natal"
+                date: "2027-10-22",
+                title: "Aniversário da Família"
             }
 
         ],
 
+
         achievements: [
-            // Adicione aqui as conquistas desta família.
-            // Exemplo: { title: "Conquista da família", date: "2027-03-20", description: "Descrição da conquista." }
+
+            {
+                title: "Conclusão dos estudos",
+
+                date: "2027-02-10",
+
+                description:
+                    "Uma nova etapa alcançada por um membro da família."
+            },
+
+            {
+                title: "Primeiro negócio da família",
+
+                date: "2027-06-18",
+
+                description:
+                    "Um momento importante de crescimento e união."
+            },
+
+            {
+                title: "Nova conquista profissional",
+
+                date: "2027-09-12",
+
+                description:
+                    "Celebração de uma nova oportunidade profissional."
+            }
+
         ],
 
+
         memories: [
-           { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
-            { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
-            { title: "Festa de aniversário", image: "imagens/familias/Reuniao-Familiar.webp", description: "Um aniversário cheio de alegria, carinho e boas lembranças." }
+
+            {
+                title: "Almoço de família",
+
+                image:
+                    "imagens/familias/familia-barros.jpg",
+
+                description:
+                    "Um momento especial reunindo toda a família à mesa."
+            },
+
+            {
+                title: "Viagem em família",
+
+                image:
+                    "imagens/familias/images.jpeg",
+
+                description:
+                    "Recordações de uma viagem vivida juntos."
+            },
+
+            {
+                title: "Festa de aniversário",
+
+                image:
+                    "imagens/familias/Reuniao-Familiar.webp",
+
+                description:
+                    "Um aniversário cheio de alegria, carinho e boas lembranças."
+            }
+
         ]
 
     },
@@ -1223,15 +1591,18 @@ const families = [
     ========================================= */
 
     {
+
         id: "costa",
 
         name: "Família Costa",
 
         year: 2027,
 
-        photo: "imagens/familias/familia-costa.jpg",
+        photo:
+            "imagens/familias/familia-costa.jpg",
 
-        location: "Luanda, Angola",
+        location:
+            "Luanda, Angola",
 
         phrase:
             "Família é onde a vida começa e o amor nunca termina.",
@@ -1240,6 +1611,7 @@ const families = [
             "Uma família cheia de união, alegria e momentos especiais.",
 
         members: 15,
+
 
         birthdays: [
 
@@ -1269,21 +1641,12 @@ const families = [
 
         ],
 
-        events: [
 
-            {
-                date: "2027-01-01",
-                title: "Ano Novo"
-            },
+        events: [
 
             {
                 date: "2027-02-14",
                 title: "Dia dos Namorados"
-            },
-
-            {
-                date: "2027-05-01",
-                title: "Dia do Trabalhador"
             },
 
             {
@@ -1292,28 +1655,78 @@ const families = [
             },
 
             {
-                date: "2027-11-11",
-                title: "Independência de Angola"
-            },
-
-            {
-                date: "2027-12-25",
-                title: "Natal"
+                date: "2027-09-30",
+                title: "Encontro Familiar"
             }
 
         ],
 
+
         achievements: [
-            // Adicione aqui as conquistas desta família.
-            // Exemplo: { title: "Conquista da família", date: "2027-03-20", description: "Descrição da conquista." }
+
+            {
+                title: "Conclusão de uma formação",
+
+                date: "2027-03-05",
+
+                description:
+                    "Uma conquista importante para um dos membros da família."
+            },
+
+            {
+                title: "Aquisição de um novo veículo",
+
+                date: "2027-07-20",
+
+                description:
+                    "Uma conquista celebrada por toda a família."
+            },
+
+            {
+                title: "Promoção profissional",
+
+                date: "2027-11-05",
+
+                description:
+                    "Uma nova etapa de crescimento profissional."
+            }
+
         ],
 
-        memories: [
-           { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
-            { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
-            { title: "Festa de aniversário", image: "imagens/familias/Reuniao-Familiar.webp", description: "Um aniversário cheio de alegria, carinho e boas lembranças." }
-        ]
 
+        memories: [
+
+            {
+                title: "Almoço de família",
+
+                image:
+                    "imagens/familias/familia-barros.jpg",
+
+                description:
+                    "Um momento especial reunindo toda a família à mesa."
+            },
+
+            {
+                title: "Viagem em família",
+
+                image:
+                    "imagens/familias/images.jpeg",
+
+                description:
+                    "Recordações de uma viagem vivida juntos."
+            },
+
+            {
+                title: "Festa de aniversário",
+
+                image:
+                    "imagens/familias/Reuniao-Familiar.webp",
+
+                description:
+                    "Um aniversário cheio de alegria, carinho e boas lembranças."
+            }
+
+        ]
 
     },
 
@@ -1323,15 +1736,18 @@ const families = [
     ========================================= */
 
     {
+
         id: "mateus",
 
         name: "Família Mateus",
 
         year: 2027,
 
-        photo: "imagens/familias/familia-mateus.jpg",
+        photo:
+            "imagens/familias/familia-mateus.jpg",
 
-        location: "Luanda, Angola",
+        location:
+            "Luanda, Angola",
 
         phrase:
             "O amor da família é o nosso maior tesouro.",
@@ -1340,6 +1756,7 @@ const families = [
             "Uma família que valoriza a união, o carinho e os momentos partilhados.",
 
         members: 7,
+
 
         birthdays: [
 
@@ -1357,34 +1774,91 @@ const families = [
 
         ],
 
+
         events: [
 
             {
-                date: "2027-01-01",
-                title: "Ano Novo"
+                date: "2027-04-11",
+                title: "Dia Especial da Família"
             },
 
             {
-                date: "2027-05-01",
-                title: "Dia do Trabalhador"
+                date: "2027-08-20",
+                title: "Reunião Familiar"
             },
 
             {
-                date: "2027-11-11",
-                title: "Independência de Angola"
+                date: "2027-12-18",
+                title: "Confraternização Familiar"
             }
 
         ],
 
-           achievements: [
-            // Adicione aqui as conquistas desta família.
-            // Exemplo: { title: "Conquista da família", date: "2027-03-20", description: "Descrição da conquista." }
+
+        achievements: [
+
+            {
+                title: "Conclusão dos estudos",
+
+                date: "2027-01-25",
+
+                description:
+                    "Uma nova etapa alcançada por um membro da família."
+            },
+
+            {
+                title: "Primeira grande viagem em família",
+
+                date: "2027-08-05",
+
+                description:
+                    "Uma experiência especial partilhada por todos."
+            },
+
+            {
+                title: "Nova conquista profissional",
+
+                date: "2027-10-15",
+
+                description:
+                    "Celebração de uma importante conquista profissional."
+            }
+
         ],
 
+
         memories: [
-           { title: "Almoço de família", image: "imagens/familias/familia-barros.jpg", description: "Um momento especial reunindo toda a família à mesa." },
-            { title: "Viagem em família", image: "imagens/familias/images.jpeg", description: "Recordações de uma viagem vivida juntos." },
-            { title: "Festa de aniversário", image: "imagens/familias/Reuniao-Familiar.webp", description: "Um aniversário cheio de alegria, carinho e boas lembranças." }
+
+            {
+                title: "Almoço de família",
+
+                image:
+                    "imagens/familias/familia-barros.jpg",
+
+                description:
+                    "Um momento especial reunindo toda a família à mesa."
+            },
+
+            {
+                title: "Viagem em família",
+
+                image:
+                    "imagens/familias/images.jpeg",
+
+                description:
+                    "Recordações de uma viagem vivida juntos."
+            },
+
+            {
+                title: "Festa de aniversário",
+
+                image:
+                    "imagens/familias/Reuniao-Familiar.webp",
+
+                description:
+                    "Um aniversário cheio de alegria, carinho e boas lembranças."
+            }
+
         ]
 
     }
@@ -1534,53 +2008,18 @@ const eventInfo =
         "eventInfo"
     );
 
-const achievementInfo = document.getElementById("achievementInfo");
 
-function renderAchievements() {
+const achievementInfo =
+    document.getElementById(
+        "achievementInfo"
+    );
 
-    achievementInfo.innerHTML = "";
-
-    if (!family.achievements || family.achievements.length === 0) {
-        achievementInfo.innerHTML =
-            "<li>Nenhuma conquista registada ainda.</li>";
-        return;
-    }
-
-    family.achievements
-        .sort((a, b) => a.date.localeCompare(b.date))
-        .forEach(achievement => {
-
-            const li = document.createElement("li");
-
-            const date = new Date(
-                achievement.date + "T00:00:00"
-            );
-
-            const formatted = date.toLocaleDateString(
-                "pt-PT",
-                {
-                    day: "2-digit",
-                    month: "long"
-                }
-            );
-
-            li.innerHTML = `
-                <strong>🏆 ${achievement.title}</strong>
-                — ${formatted}
-
-                <small style="display:block; margin-top:3px;">
-                    ${achievement.description}
-                </small>
-            `;
-
-            achievementInfo.appendChild(li);
-        });
-}
 
 const memoryInfo =
     document.getElementById(
         "memoryInfo"
     );
+
 
 const nationalLegend =
     document.getElementById(
@@ -1759,7 +2198,6 @@ function renderCalendar() {
                 const birthday =
                     family.birthdays.find(
                         person => {
-
 
                             const d =
                                 new Date(
@@ -1942,53 +2380,68 @@ function renderBirthdays() {
 
 
 /* =========================================
-   EVENTOS
+   DATAS MARCANTES
+   SOMENTE 3 DATAS DA FAMÍLIA
+   SEM FERIADOS NACIONAIS
 ========================================= */
 
 function renderEvents() {
 
     eventInfo.innerHTML = "";
 
-    const allEvents = [
-        ...family.events.map(event => ({ ...event, national: false })),
-        ...angolaNationalHolidays.map(event => ({ ...event, national: true }))
-    ].sort((a,b) => a.date.localeCompare(b.date));
 
-    allEvents.forEach(
-        event => {
+    family.events
+        .slice(0, 3)
+        .sort(
+            (a, b) =>
+                a.date.localeCompare(b.date)
+        )
+        .forEach(
+            event => {
 
-            const li =
-                document.createElement(
-                    "li"
+
+                const li =
+                    document.createElement(
+                        "li"
+                    );
+
+
+                const date =
+                    new Date(
+                        event.date +
+                        "T00:00:00"
+                    );
+
+
+                const formatted =
+                    date.toLocaleDateString(
+                        "pt-PT",
+                        {
+                            day: "2-digit",
+                            month: "long"
+                        }
+                    );
+
+
+                li.innerHTML = `
+
+                    🎉
+
+                    <strong>
+                        ${formatted}
+                    </strong>
+
+                    — ${event.title}
+
+                `;
+
+
+                eventInfo.appendChild(
+                    li
                 );
 
-            const date =
-                new Date(
-                    event.date +
-                    "T00:00:00"
-                );
-
-            const formatted =
-                date.toLocaleDateString(
-                    "pt-PT",
-                    {
-                        day: "2-digit",
-                        month: "long"
-                    }
-                );
-
-            li.innerHTML = `
-                ${event.national ? "🇦🇴 " : "🎉 "}
-                <strong>${formatted}</strong>
-                — ${event.title}
-            `;
-
-            eventInfo.appendChild(
-                li
-            );
-
-        }
-    );
+            }
+        );
 
 }
 
@@ -2001,46 +2454,106 @@ function renderAchievements() {
 
     achievementInfo.innerHTML = "";
 
-    if (!family.achievements || family.achievements.length === 0) {
 
-        const li = document.createElement("li");
+    if (
+        !family.achievements ||
+        family.achievements.length === 0
+    ) {
 
-        li.textContent = "Nenhuma conquista registada ainda.";
+        const li =
+            document.createElement(
+                "li"
+            );
 
-        achievementInfo.appendChild(li);
+
+        li.textContent =
+            "Nenhuma conquista registada ainda.";
+
+
+        achievementInfo.appendChild(
+            li
+        );
+
 
         return;
 
     }
 
+
     family.achievements
         .slice()
-        .sort((a, b) => (a.date || "").localeCompare(b.date || ""))
-        .forEach(achievement => {
+        .sort(
+            (a, b) =>
+                (a.date || "")
+                .localeCompare(
+                    b.date || ""
+                )
+        )
+        .forEach(
+            achievement => {
 
-            const li = document.createElement("li");
 
-            let dateText = "";
+                const li =
+                    document.createElement(
+                        "li"
+                    );
 
-            if (achievement.date) {
-                const date = new Date(achievement.date + "T00:00:00");
 
-                dateText = date.toLocaleDateString("pt-PT", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric"
-                });
+                let dateText = "";
+
+
+                if (achievement.date) {
+
+                    const date =
+                        new Date(
+                            achievement.date +
+                            "T00:00:00"
+                        );
+
+
+                    dateText =
+                        date.toLocaleDateString(
+                            "pt-PT",
+                            {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric"
+                            }
+                        );
+
+                }
+
+
+                li.innerHTML = `
+
+                    <strong>
+                        🏆 ${achievement.title}
+                    </strong>
+
+                    ${
+                        dateText
+                        ? ` — ${dateText}`
+                        : ""
+                    }
+
+                    ${
+                        achievement.description
+                        ? `<br>
+                           <small>
+                               ${achievement.description}
+                           </small>`
+                        : ""
+                    }
+
+                `;
+
+
+                achievementInfo.appendChild(
+                    li
+                );
+
             }
-
-            li.innerHTML = `
-                <strong>🏆 ${achievement.title}</strong>
-                ${dateText ? ` — ${dateText}` : ""}
-                ${achievement.description ? `<br><small>${achievement.description}</small>` : ""}
-            `;
-
-            achievementInfo.appendChild(li);
-
-        });
+        );
 
 }
 
@@ -2053,16 +2566,30 @@ function renderMemories() {
 
     memoryInfo.innerHTML = "";
 
+
     family.memories.forEach(
-        (memory, index) => {
+        (
+            memory,
+            index
+        ) => {
+
 
             const slide =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             slide.className =
-                `memory-slide ${index === 0 ? "active" : ""}`;
+                `memory-slide ${
+                    index === 0
+                    ? "active"
+                    : ""
+                }`;
+
 
             slide.innerHTML = `
+
                 <img
                     class="memory-image"
                     src="${memory.image}"
@@ -2070,47 +2597,106 @@ function renderMemories() {
                     onerror="this.style.display='none';"
                 >
 
+
                 <div class="memory-content">
-                    <h4>${memory.title}</h4>
-                    <p>${memory.description}</p>
+
+                    <h4>
+                        ${memory.title}
+                    </h4>
+
+                    <p>
+                        ${memory.description}
+                    </p>
+
                 </div>
+
             `;
 
-            memoryInfo.appendChild(slide);
+
+            memoryInfo.appendChild(
+                slide
+            );
 
         }
     );
 
-    if (family.memories.length > 1) {
-        const counter = document.createElement("div");
-        counter.className = "memory-counter";
-        counter.id = "memoryCounter";
-        memoryInfo.appendChild(counter);
+
+    if (
+        family.memories.length > 1
+    ) {
+
+
+        const counter =
+            document.createElement(
+                "div"
+            );
+
+
+        counter.className =
+            "memory-counter";
+
+
+        counter.id =
+            "memoryCounter";
+
+
+        memoryInfo.appendChild(
+            counter
+        );
+
 
         let current = 0;
 
-        const updateMemory = () => {
-            const slides =
-                memoryInfo.querySelectorAll(".memory-slide");
 
-            slides.forEach(slide =>
-                slide.classList.remove("active")
+        const updateMemory = () => {
+
+
+            const slides =
+                memoryInfo.querySelectorAll(
+                    ".memory-slide"
+                );
+
+
+            slides.forEach(
+                slide =>
+                    slide.classList.remove(
+                        "active"
+                    )
             );
 
-            slides[current].classList.add("active");
+
+            slides[current]
+                .classList.add(
+                    "active"
+                );
+
 
             counter.textContent =
                 `${current + 1} / ${slides.length}`;
+
         };
+
 
         updateMemory();
 
-        setInterval(() => {
-            current =
-                (current + 1) % family.memories.length;
 
-            updateMemory();
-        }, 4000);
+        setInterval(
+            () => {
+
+                current =
+                    (
+                        current + 1
+                    )
+                    %
+                    family.memories.length;
+
+
+                updateMemory();
+
+            },
+            4000
+        );
+
     }
 
 }
@@ -2124,23 +2710,39 @@ function renderNationalLegend() {
 
     nationalLegend.innerHTML = "";
 
-    angolaNationalHolidays.forEach(holiday => {
 
-        const item = document.createElement("div");
+    angolaNationalHolidays.forEach(
+        holiday => {
 
-        item.className = "national-legend-item";
 
-        item.innerHTML = `
-            <span
-                class="national-color"
-                style="background:${holiday.color}"
-            ></span>
-            ${holiday.title}
-        `;
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-        nationalLegend.appendChild(item);
 
-    });
+            item.className =
+                "national-legend-item";
+
+
+            item.innerHTML = `
+
+                <span
+                    class="national-color"
+                    style="background:${holiday.color}"
+                ></span>
+
+                ${holiday.title}
+
+            `;
+
+
+            nationalLegend.appendChild(
+                item
+            );
+
+        }
+    );
 
 }
 
@@ -2150,7 +2752,9 @@ function renderNationalLegend() {
 ========================================= */
 
 document
-    .getElementById("downloadPdf")
+    .getElementById(
+        "downloadPdf"
+    )
     .addEventListener(
         "click",
         async () => {
@@ -2217,7 +2821,10 @@ document
 
             pdf.save(
                 `${family.name
-                    .replace(/\s+/g,"-")
+                    .replace(
+                        /\s+/g,
+                        "-"
+                    )
                 }-Calendario-${family.year}.pdf`
             );
 
@@ -2240,7 +2847,6 @@ renderAchievements();
 renderMemories();
 
 renderNationalLegend();
-renderAchievements();
 
 </script>
 
