@@ -2078,22 +2078,7 @@ footer small{
             Famílias
         </a>
 
-        <a href="#calendario">
-            Calendário
-        </a>
-
-        <a href="#aniversarios">
-            Aniversários
-        </a>
-
-        <a href="#memorias">
-            Memórias
-        </a>
-
-        <a href="#dedicatorias">
-            Dedicatórias
-        </a>
-
+       
     </nav>
 
 
@@ -2155,12 +2140,7 @@ footer small{
                 Ver famílias
             </a>
 
-            <button
-                class="btn btn-light"
-                onclick="openCurrentQR()"
-            >
-                ▣ QR Code
-            </button>
+        
 
         </div>
 
@@ -2170,7 +2150,7 @@ footer small{
     <div class="family-box">
 
         <div class="family-icon">
-            FB
+            S.N
         </div>
 
         <small>
@@ -2178,7 +2158,7 @@ footer small{
         </small>
 
         <h2>
-            Família Barroso
+            SpotNow
         </h2>
 
         <p>
@@ -2284,258 +2264,6 @@ footer small{
 
 </section>
 
-
-
-<!-- =====================================================
-     CALENDÁRIO
-===================================================== -->
-
-<section
-    class="section"
-    id="calendario"
->
-
-    <div class="section-header">
-
-        <div>
-
-            <span class="section-tag">
-                CALENDÁRIO ANUAL
-            </span>
-
-            <h2 id="calendarFamilyTitle">
-                Calendário Famíliar
-            </h2>
-
-            <p id="calendarYear">
-                Calendário 2027
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <button
-                class="btn btn-outline"
-                onclick="scrollToToday()"
-            >
-                Hoje
-            </button>
-
-            <button
-                class="btn btn-primary"
-                onclick="downloadCurrentPDF()"
-            >
-                📄 Baixar PDF A3
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="calendar-layout">
-
-
-        <!-- MESES -->
-
-        <div
-            class="months"
-            id="months"
-        ></div>
-
-
-        <!-- SIDEBAR -->
-
-        <aside class="sidebar">
-
-
-            <div class="side-card">
-
-                <div class="side-title">
-
-                    <span>🎂</span>
-
-                    <h3>
-                        Aniversários
-                    </h3>
-
-                </div>
-
-                <div
-                    id="birthdayList"
-                ></div>
-
-            </div>
-
-
-            <div class="side-card">
-
-                <div class="side-title">
-
-                    <span>♥</span>
-
-                    <h3>
-                        Memórias
-                    </h3>
-
-                </div>
-
-                <div
-                    id="memoryList"
-                ></div>
-
-            </div>
-
-
-            <div class="qr-card">
-
-                <div id="qrSmall"></div>
-
-                <h3>
-                    CALENDÁRIO DIGITAL
-                </h3>
-
-                <p>
-
-                    Aponte a câmera para
-                    abrir este calendário.
-
-                </p>
-
-                <button
-                    class="qr-button"
-                    onclick="openCurrentQR()"
-                >
-                    Ver QR Code
-                </button>
-
-            </div>
-
-        </aside>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     ANIVERSÁRIOS
-===================================================== -->
-
-<section
-    class="section blue-section"
-    id="aniversarios"
->
-
-    <div class="section-header">
-
-        <div>
-
-            <span class="section-tag">
-                PESSOAS ESPECIAIS
-            </span>
-
-            <h2>
-                Aniversários
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="birthday-grid"
-        id="birthdayCards"
-    ></div>
-
-</section>
-
-
-
-<!-- =====================================================
-     MEMÓRIAS
-===================================================== -->
-
-<section
-    class="section"
-    id="memorias"
->
-
-    <div class="section-header">
-
-        <div>
-
-            <span class="section-tag">
-                MOMENTOS ESPECIAIS
-            </span>
-
-            <h2>
-                Memórias
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="memory-grid"
-        id="memoryCards"
-    ></div>
-
-</section>
-
-
-
-<!-- =====================================================
-     DEDICATÓRIAS
-===================================================== -->
-
-<section
-    class="dedication-section"
-    id="dedicatorias"
->
-
-    <div class="dedication-container">
-
-        <div>
-
-            <span class="section-tag">
-                MENSAGENS
-            </span>
-
-            <h2>
-                Deixe uma dedicatória ❤️
-            </h2>
-
-            <p>
-                Escreva uma mensagem especial
-                para alguém da família.
-            </p>
-
-        </div>
-
-
-        <button
-            class="btn btn-primary"
-            onclick="openDedicationModal()"
-        >
-            + Escrever dedicatória
-        </button>
-
-    </div>
-
-
-    <div
-        class="dedications"
-        id="dedications"
-    ></div>
-
-</section>
 
 
 
@@ -3246,7 +2974,6 @@ footer small{
 
 </div>
 
-<img src="" alt="">
 <script>
 
 /* =====================================================
