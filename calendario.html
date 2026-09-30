@@ -2565,15 +2565,8 @@ const families = [
    PEGAR ID DA URL
 ========================================= */
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const familyId =
-    params.get("familia");
-
+const params = new URLSearchParams(window.location.search);
+const familyId = params.get("familia");
 
 /* =========================================
    CARREGAR CALENDÁRIOS CRIADOS NO INDEX
@@ -2582,71 +2575,80 @@ const familyId =
 let storedFamilies = [];
 
 try {
-
-    storedFamilies =
-        JSON.parse(
-            localStorage.getItem("familyCalendars")
-        ) || [];
-
+    storedFamilies = JSON.parse(
+        localStorage.getItem("familyCalendars")
+    ) || [];
 } catch (error) {
-
-    console.error(
-        "Erro ao carregar calendários:",
-        error
-    );
-
+    console.error("Erro ao carregar calendários:", error);
+    storedFamilies = [];
 }
 
-
 /* =========================================
-   JUNTAR CALENDÁRIOS PREDEFINIDOS +
-   CALENDÁRIOS CRIADOS PELO UTILIZADOR
+   JUNTAR CALENDÁRIOS PREDEFINIDOS + NOVOS
 ========================================= */
 
-const allFamilies = [
-    ...families
-];
+const allFamilies = families.map(item => ({
+    ...item,
+    birthdays: item.birthdays || [],
+    events: item.events || [],
+    achievements: item.achievements || [],
+    memories: item.memories || [],
+    dedications: item.dedications || []
+}));
 
-storedFamilies.forEach(
-    storedFamily => {
+storedFamilies.forEach(storedFamily => {
+    if (!storedFamily || storedFamily.id == null) return;
 
-        const position =
-            allFamilies.findIndex(
-                item =>
-                    item.id === storedFamily.id
-            );
+    const position = allFamilies.findIndex(
+        item => String(item.id).toLowerCase() === String(storedFamily.id).toLowerCase()
+    );
 
-        if (position >= 0) {
+    if (position >= 0) {
+        const originalFamily = allFamilies[position];
 
-            // Mantém os dados mais recentes
-            allFamilies[position] = {
-                ...allFamilies[position],
-                ...storedFamily
-            };
-
-        } else {
-
-            // Calendário criado no INDEX
-            allFamilies.push(
-                storedFamily
-            );
-
-        }
-
+        allFamilies[position] = {
+            ...originalFamily,
+            ...storedFamily,
+            name: storedFamily.name || originalFamily.name,
+            year: Number(storedFamily.year) || originalFamily.year || 2027,
+            photo: storedFamily.photo || originalFamily.photo || "",
+            location: storedFamily.location || originalFamily.location || "Luanda, Angola",
+            phrase: storedFamily.phrase || originalFamily.phrase || "Momentos especiais merecem ser lembrados.",
+            description: storedFamily.description || originalFamily.description || "Calendário personalizado 2027.",
+            members: storedFamily.members ?? originalFamily.members ?? 0,
+            birthdays: Array.isArray(storedFamily.birthdays) && storedFamily.birthdays.length ? storedFamily.birthdays : (originalFamily.birthdays || []),
+            events: Array.isArray(storedFamily.events) && storedFamily.events.length ? storedFamily.events : (originalFamily.events || []),
+            achievements: Array.isArray(storedFamily.achievements) && storedFamily.achievements.length ? storedFamily.achievements : (originalFamily.achievements || []),
+            memories: Array.isArray(storedFamily.memories) && storedFamily.memories.length ? storedFamily.memories : (originalFamily.memories || []),
+            dedications: Array.isArray(storedFamily.dedications) ? storedFamily.dedications : (originalFamily.dedications || [])
+        };
+    } else {
+        allFamilies.push({
+            id: storedFamily.id,
+            name: storedFamily.name || "Novo Calendário",
+            year: Number(storedFamily.year) || 2027,
+            photo: storedFamily.photo || "",
+            location: storedFamily.location || "Luanda, Angola",
+            phrase: storedFamily.phrase || "Momentos especiais merecem ser lembrados.",
+            description: storedFamily.description || "Calendário personalizado 2027.",
+            members: storedFamily.members ?? 0,
+            birthdays: Array.isArray(storedFamily.birthdays) ? storedFamily.birthdays : [],
+            events: Array.isArray(storedFamily.events) ? storedFamily.events : [],
+            achievements: Array.isArray(storedFamily.achievements) ? storedFamily.achievements : [],
+            memories: Array.isArray(storedFamily.memories) ? storedFamily.memories : [],
+            dedications: Array.isArray(storedFamily.dedications) ? storedFamily.dedications : []
+        });
     }
+});
+
+/* =========================================
+   ENCONTRAR CALENDÁRIO PELO ID DA URL
+========================================= */
+
+const family = allFamilies.find(
+    item => String(item.id).toLowerCase() === String(familyId || "").toLowerCase()
 );
 
-
-/* =========================================
-   ENCONTRAR FAMÍLIA PELO LINK
-========================================= */
-
-const family =
-    allFamilies.find(
-        item =>
-            String(item.id).toLowerCase() ===
-            String(familyId || "").toLowerCase()
-    );
 /* =========================================
    VALIDAR
 ========================================= */

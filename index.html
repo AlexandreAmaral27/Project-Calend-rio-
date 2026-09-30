@@ -2329,31 +2329,33 @@ footer small{
 </div>
 
 
-
 <!-- =====================================================
-     MODAL CRIAR FAMÍLIA
+     MODAL CRIAR / EDITAR CALENDÁRIO
 ===================================================== -->
 
-<div
-    class="modal"
-    id="familyModal"
->
+<div class="modal" id="familyModal">
 
-    <div class="modal-content small">
+    <div class="modal-content">
 
         <button
             class="close"
+            type="button"
             onclick="closeModal('familyModal')"
         >
             ×
         </button>
 
-
-        <span class="section-tag">
-            NOVA FAMÍLIA
+        <span
+            class="section-tag"
+            id="familyModalTag"
+        >
+            NOVO CALENDÁRIO
         </span>
 
-        <h2 style="margin-top:12px;">
+        <h2
+            id="familyModalTitle"
+            style="margin-top:12px;"
+        >
             Criar calendário
         </h2>
 
@@ -2363,10 +2365,12 @@ footer small{
             class="form-grid"
         >
 
+            <!-- NOME -->
+
             <div class="form-group full">
 
                 <label>
-                    Nome da família
+                    Nome da família / empresa
                 </label>
 
                 <input
@@ -2378,6 +2382,8 @@ footer small{
 
             </div>
 
+
+            <!-- ANO -->
 
             <div class="form-group">
 
@@ -2397,6 +2403,8 @@ footer small{
             </div>
 
 
+            <!-- DESCRIÇÃO -->
+
             <div class="form-group">
 
                 <label>
@@ -2412,6 +2420,217 @@ footer small{
             </div>
 
 
+            <!-- FOTO DE PERFIL -->
+
+            <div class="form-group full">
+
+                <label>
+                    Foto de perfil
+                </label>
+
+                <input
+                    type="file"
+                    id="familyPhoto"
+                    accept="image/*"
+                >
+
+                <div
+                    id="familyPhotoPreview"
+                    style="
+                        margin-top:12px;
+                        display:none;
+                    "
+                >
+                    <img
+                        id="familyPhotoPreviewImage"
+                        alt="Foto de perfil"
+                        style="
+                            width:100px;
+                            height:100px;
+                            object-fit:cover;
+                            border-radius:50%;
+                            border:3px solid #e2e8f0;
+                        "
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 ANIVERSÁRIOS
+            ====================================== -->
+
+            <div class="form-group full">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:15px;
+                    margin-bottom:12px;
+                ">
+
+                    <div>
+                        <strong>
+                            🎂 Aniversários
+                        </strong>
+
+                        <div style="
+                            font-size:12px;
+                            color:#64748b;
+                            margin-top:4px;
+                        ">
+                            Adicione os aniversários da família.
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="addNewFamilyBirthday()"
+                    >
+                        + Adicionar
+                    </button>
+
+                </div>
+
+                <div id="newFamilyBirthdays"></div>
+
+            </div>
+
+
+            <!-- =====================================
+                 DATAS MARCANTES
+            ====================================== -->
+
+            <div class="form-group full">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:15px;
+                    margin-bottom:12px;
+                ">
+
+                    <div>
+                        <strong>
+                            📅 Datas marcantes
+                        </strong>
+
+                        <div style="
+                            font-size:12px;
+                            color:#64748b;
+                            margin-top:4px;
+                        ">
+                            Casamentos, viagens, celebrações e outras datas.
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="addNewFamilyEvent()"
+                    >
+                        + Adicionar
+                    </button>
+
+                </div>
+
+                <div id="newFamilyEvents"></div>
+
+            </div>
+
+
+            <!-- =====================================
+                 REALIZAÇÕES
+            ====================================== -->
+
+            <div class="form-group full">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:15px;
+                    margin-bottom:12px;
+                ">
+
+                    <div>
+                        <strong>
+                            🏆 Realizações
+                        </strong>
+
+                        <div style="
+                            font-size:12px;
+                            color:#64748b;
+                            margin-top:4px;
+                        ">
+                            Registe conquistas e momentos importantes.
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="addNewFamilyAchievement()"
+                    >
+                        + Adicionar
+                    </button>
+
+                </div>
+
+                <div id="newFamilyAchievements"></div>
+
+            </div>
+
+
+            <!-- =====================================
+                 MEMÓRIAS
+            ====================================== -->
+
+            <div class="form-group full">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:15px;
+                    margin-bottom:12px;
+                ">
+
+                    <div>
+                        <strong>
+                            📸 Memórias
+                        </strong>
+
+                        <div style="
+                            font-size:12px;
+                            color:#64748b;
+                            margin-top:4px;
+                        ">
+                            Adicione fotografias e recordações especiais.
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="addNewFamilyMemory()"
+                    >
+                        + Adicionar
+                    </button>
+
+                </div>
+
+                <div id="newFamilyMemories"></div>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
             <div class="form-actions full">
 
                 <button
@@ -2425,8 +2644,9 @@ footer small{
                 <button
                     type="submit"
                     class="btn btn-primary"
+                    id="familySubmitButton"
                 >
-                    Criar família
+                    Criar calendário
                 </button>
 
             </div>
@@ -2436,7 +2656,6 @@ footer small{
     </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -5229,6 +5448,1074 @@ function prepareNewFamily(){
         submitButton.textContent =
             "Criar família";
     }
+
+}/* =====================================================
+   CRIAR NOVO CALENDÁRIO
+===================================================== */
+
+document
+    .getElementById(
+        "createFamilyBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            resetNewFamilyForm();
+
+            document
+                .getElementById(
+                    "familyModalTitle"
+                )
+                .textContent =
+                "Criar calendário";
+
+
+            document
+                .getElementById(
+                    "familyModalTag"
+                )
+                .textContent =
+                "NOVO CALENDÁRIO";
+
+
+            document
+                .getElementById(
+                    "familySubmitButton"
+                )
+                .textContent =
+                "Criar calendário";
+
+
+            openModal(
+                "familyModal"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "familyForm"
+    )
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById(
+                        "familyName"
+                    )
+                    .value
+                    .trim();
+
+
+            const year =
+                Number(
+                    document
+                        .getElementById(
+                            "familyYear"
+                        )
+                        .value
+                ) || 2027;
+
+
+            const description =
+                document
+                    .getElementById(
+                        "familyDescription"
+                    )
+                    .value
+                    .trim();
+
+
+            if(!name){
+
+                alert(
+                    "Digite o nome do calendário."
+                );
+
+                return;
+
+            }
+
+
+            const id =
+                name
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(
+                        /[\u0300-\u036f]/g,
+                        ""
+                    )
+                    .replace(
+                        /[^a-z0-9]+/g,
+                        "-"
+                    )
+                    .replace(
+                        /^-+|-+$/g,
+                        ""
+                    )
+                +
+                "-" +
+                Date.now();
+
+
+            /* REMOVER CAMPOS VAZIOS */
+
+            const birthdays =
+                newFamilyBirthdays
+                    .filter(
+                        item =>
+                            item.name &&
+                            item.date
+                    )
+                    .map(
+                        item => ({
+
+                            name:
+                                item.name,
+
+                            date:
+                                item.date,
+
+                            relation:
+                                item.relation
+
+                        })
+                    );
+
+
+            const events =
+                newFamilyEvents
+                    .filter(
+                        item =>
+                            item.title &&
+                            item.date
+                    )
+                    .map(
+                        item => ({
+
+                            title:
+                                item.title,
+
+                            date:
+                                item.date,
+
+                            type:
+                                "comemorativa",
+
+                            description:
+                                item.description
+
+                        })
+                    );
+
+
+            const achievements =
+                newFamilyAchievements
+                    .filter(
+                        item =>
+                            item.title
+                    )
+                    .map(
+                        item => ({
+
+                            title:
+                                item.title,
+
+                            date:
+                                item.date,
+
+                            description:
+                                item.description
+
+                        })
+                    );
+
+
+            const memories =
+                newFamilyMemories
+                    .filter(
+                        item =>
+                            item.title ||
+                            item.image
+                    )
+                    .map(
+                        item => ({
+
+                            title:
+                                item.title ||
+                                "Memória especial",
+
+                            description:
+                                item.description,
+
+                            image:
+                                item.image
+
+                        })
+                    );
+
+
+            /* =========================================
+               CRIAR OBJETO COMPLETO
+            ========================================= */
+
+            const newFamily = {
+
+                id,
+
+                name,
+
+                year,
+
+                photo:
+                    newFamilyProfilePhoto,
+
+                location:
+                    "Luanda, Angola",
+
+                phrase:
+                    "Momentos especiais merecem ser lembrados.",
+
+                description:
+                    description ||
+                    "Calendário personalizado 2027.",
+
+                members:
+                    birthdays.length,
+
+                birthdays,
+
+                events,
+
+                achievements,
+
+                memories,
+
+                dedications: []
+
+            };
+
+
+            families.push(
+                newFamily
+            );
+
+
+            saveFamilies();
+
+
+            renderFamilies();
+
+
+            closeModal(
+                "familyModal"
+            );
+
+
+            resetNewFamilyForm();
+
+
+            openFamily(
+                newFamily.id
+            );
+
+        }
+    );
+/* =====================================================
+   FOTO DE PERFIL
+===================================================== */
+
+document
+    .getElementById("familyPhoto")
+    .addEventListener(
+        "change",
+        async function(){
+
+            const file =
+                this.files[0];
+
+            if(!file)
+                return;
+
+            newFamilyProfilePhoto =
+                await fileToBase64(file);
+
+            const preview =
+                document.getElementById(
+                    "familyPhotoPreview"
+                );
+
+            const image =
+                document.getElementById(
+                    "familyPhotoPreviewImage"
+                );
+
+            image.src =
+                newFamilyProfilePhoto;
+
+            preview.style.display =
+                "block";
+
+        }
+    );
+
+
+/* =====================================================
+   ANIVERSÁRIOS
+===================================================== */
+
+function addNewFamilyBirthday(
+    data = {}
+){
+
+    const id =
+        "birthday-" +
+        Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .slice(2);
+
+
+    newFamilyBirthdays.push({
+
+        id,
+
+        name:
+            data.name || "",
+
+        date:
+            data.date || "",
+
+        relation:
+            data.relation || ""
+
+    });
+
+
+    renderNewFamilyBirthdays();
+
+}
+
+
+function renderNewFamilyBirthdays(){
+
+    const container =
+        document.getElementById(
+            "newFamilyBirthdays"
+        );
+
+
+    container.innerHTML = "";
+
+
+    newFamilyBirthdays.forEach(
+        (birthday, index) => {
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.style.cssText = `
+                padding:15px;
+                border:1px solid #e2e8f0;
+                border-radius:12px;
+                margin-bottom:10px;
+                background:#f8fafc;
+            `;
+
+
+            box.innerHTML = `
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:2fr 1fr 1fr auto;
+                    gap:10px;
+                    align-items:end;
+                ">
+
+                    <div>
+                        <label>Nome</label>
+
+                        <input
+                            type="text"
+                            value="${birthday.name}"
+                            placeholder="Nome"
+                            oninput="
+                                newFamilyBirthdays[${index}].name =
+                                this.value
+                            "
+                        >
+                    </div>
+
+
+                    <div>
+                        <label>Data</label>
+
+                        <input
+                            type="date"
+                            value="${birthday.date}"
+                            oninput="
+                                newFamilyBirthdays[${index}].date =
+                                this.value
+                            "
+                        >
+                    </div>
+
+
+                    <div>
+                        <label>
+                            Relação / Cargo
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${birthday.relation}"
+                            placeholder="Filho, Mãe..."
+                            oninput="
+                                newFamilyBirthdays[${index}].relation =
+                                this.value
+                            "
+                        >
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="
+                            removeNewFamilyBirthday(${index})
+                        "
+                    >
+                        🗑️
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                box
+            );
+
+        }
+    );
+
+}
+
+
+function removeNewFamilyBirthday(
+    index
+){
+
+    newFamilyBirthdays.splice(
+        index,
+        1
+    );
+
+    renderNewFamilyBirthdays();
+
+}
+
+
+/* =====================================================
+   DATAS MARCANTES
+===================================================== */
+
+function addNewFamilyEvent(
+    data = {}
+){
+
+    newFamilyEvents.push({
+
+        title:
+            data.title || "",
+
+        date:
+            data.date || "",
+
+        type:
+            data.type ||
+            "comemorativa",
+
+        description:
+            data.description || ""
+
+    });
+
+
+    renderNewFamilyEvents();
+
+}
+
+
+function renderNewFamilyEvents(){
+
+    const container =
+        document.getElementById(
+            "newFamilyEvents"
+        );
+
+
+    container.innerHTML = "";
+
+
+    newFamilyEvents.forEach(
+        (event, index) => {
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.style.cssText = `
+                padding:15px;
+                border:1px solid #e2e8f0;
+                border-radius:12px;
+                margin-bottom:10px;
+                background:#f8fafc;
+            `;
+
+
+            box.innerHTML = `
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:1.5fr 1fr 2fr auto;
+                    gap:10px;
+                    align-items:end;
+                ">
+
+                    <div>
+
+                        <label>
+                            Título
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${event.title}"
+                            placeholder="Ex.: Casamento"
+                            oninput="
+                                newFamilyEvents[${index}].title =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Data
+                        </label>
+
+                        <input
+                            type="date"
+                            value="${event.date}"
+                            oninput="
+                                newFamilyEvents[${index}].date =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Descrição
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${event.description}"
+                            placeholder="Descrição"
+                            oninput="
+                                newFamilyEvents[${index}].description =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="
+                            removeNewFamilyEvent(${index})
+                        "
+                    >
+                        🗑️
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                box
+            );
+
+        }
+    );
+
+}
+
+
+function removeNewFamilyEvent(
+    index
+){
+
+    newFamilyEvents.splice(
+        index,
+        1
+    );
+
+    renderNewFamilyEvents();
+
+}
+
+
+/* =====================================================
+   REALIZAÇÕES
+===================================================== */
+
+function addNewFamilyAchievement(
+    data = {}
+){
+
+    newFamilyAchievements.push({
+
+        title:
+            data.title || "",
+
+        date:
+            data.date || "",
+
+        description:
+            data.description || ""
+
+    });
+
+
+    renderNewFamilyAchievements();
+
+}
+
+
+function renderNewFamilyAchievements(){
+
+    const container =
+        document.getElementById(
+            "newFamilyAchievements"
+        );
+
+
+    container.innerHTML = "";
+
+
+    newFamilyAchievements.forEach(
+        (achievement, index) => {
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.style.cssText = `
+                padding:15px;
+                border:1px solid #e2e8f0;
+                border-radius:12px;
+                margin-bottom:10px;
+                background:#f8fafc;
+            `;
+
+
+            box.innerHTML = `
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:1.5fr 1fr 2fr auto;
+                    gap:10px;
+                    align-items:end;
+                ">
+
+                    <div>
+
+                        <label>
+                            Realização
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${achievement.title}"
+                            placeholder="Ex.: Casa própria"
+                            oninput="
+                                newFamilyAchievements[${index}].title =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Data
+                        </label>
+
+                        <input
+                            type="date"
+                            value="${achievement.date}"
+                            oninput="
+                                newFamilyAchievements[${index}].date =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Descrição
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${achievement.description}"
+                            placeholder="Descrição da conquista"
+                            oninput="
+                                newFamilyAchievements[${index}].description =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="
+                            removeNewFamilyAchievement(${index})
+                        "
+                    >
+                        🗑️
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                box
+            );
+
+        }
+    );
+
+}
+
+
+function removeNewFamilyAchievement(
+    index
+){
+
+    newFamilyAchievements.splice(
+        index,
+        1
+    );
+
+    renderNewFamilyAchievements();
+
+}
+
+
+/* =====================================================
+   MEMÓRIAS
+===================================================== */
+
+function addNewFamilyMemory(
+    data = {}
+){
+
+    newFamilyMemories.push({
+
+        title:
+            data.title || "",
+
+        description:
+            data.description || "",
+
+        image:
+            data.image || ""
+
+    });
+
+
+    renderNewFamilyMemories();
+
+}
+
+
+function renderNewFamilyMemories(){
+
+    const container =
+        document.getElementById(
+            "newFamilyMemories"
+        );
+
+
+    container.innerHTML = "";
+
+
+    newFamilyMemories.forEach(
+        (memory, index) => {
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.style.cssText = `
+                padding:15px;
+                border:1px solid #e2e8f0;
+                border-radius:12px;
+                margin-bottom:10px;
+                background:#f8fafc;
+            `;
+
+
+            box.innerHTML = `
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:1.3fr 1.7fr 1.5fr auto;
+                    gap:10px;
+                    align-items:end;
+                ">
+
+                    <div>
+
+                        <label>
+                            Título
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${memory.title}"
+                            placeholder="Ex.: Férias em família"
+                            oninput="
+                                newFamilyMemories[${index}].title =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Descrição
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${memory.description}"
+                            placeholder="Descrição da memória"
+                            oninput="
+                                newFamilyMemories[${index}].description =
+                                this.value
+                            "
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Fotografia
+                        </label>
+
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onchange="
+                                setNewFamilyMemoryImage(
+                                    ${index},
+                                    this
+                                )
+                            "
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="
+                            removeNewFamilyMemory(${index})
+                        "
+                    >
+                        🗑️
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="memory-preview-${index}"
+                    style="
+                        margin-top:10px;
+                        ${memory.image
+                            ? ""
+                            : "display:none;"
+                        }
+                    "
+                >
+
+                    <img
+                        src="${memory.image}"
+                        alt=""
+                        style="
+                            width:120px;
+                            height:80px;
+                            object-fit:cover;
+                            border-radius:10px;
+                        "
+                    >
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                box
+            );
+
+        }
+    );
+
+}
+
+
+async function setNewFamilyMemoryImage(
+    index,
+    input
+){
+
+    const file =
+        input.files[0];
+
+    if(!file)
+        return;
+
+
+    newFamilyMemories[index].image =
+        await fileToBase64(file);
+
+
+    renderNewFamilyMemories();
+
+}
+
+
+function removeNewFamilyMemory(
+    index
+){
+
+    newFamilyMemories.splice(
+        index,
+        1
+    );
+
+    renderNewFamilyMemories();
+
+}
+
+
+/* =====================================================
+   LIMPAR FORMULÁRIO
+===================================================== */
+
+function resetNewFamilyForm(){
+
+    editingFamilyId =
+        null;
+
+    newFamilyProfilePhoto =
+        "";
+
+    newFamilyBirthdays =
+        [];
+
+    newFamilyEvents =
+        [];
+
+    newFamilyAchievements =
+        [];
+
+    newFamilyMemories =
+        [];
+
+
+    document
+        .getElementById(
+            "familyForm"
+        )
+        .reset();
+
+
+    document
+        .getElementById(
+            "familyYear"
+        )
+        .value =
+        2027;
+
+
+    document
+        .getElementById(
+            "familyPhotoPreview"
+        )
+        .style.display =
+        "none";
+
+
+    renderNewFamilyBirthdays();
+
+    renderNewFamilyEvents();
+
+    renderNewFamilyAchievements();
+
+    renderNewFamilyMemories();
 
 }
 /* =====================================================
