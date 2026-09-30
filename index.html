@@ -3119,11 +3119,11 @@ const defaultFamilies = [
 
 
     /* =====================================================
-       FAMÍLIA SILVA
+       FAMÍLIA BFA
     ===================================================== */
 
     {
-        id: "silva",
+        id: "bfa",
 
         name: "Banco BFA",
 
@@ -3219,13 +3219,13 @@ const defaultFamilies = [
 
 
     /* =====================================================
-       FAMÍLIA COSTA
+       FAMÍLIA BPC
     ===================================================== */
 
     {
-        id: "costa",
+        id: "bpc",
 
-        name: "Família Costa",
+        name: "Banco BPC",
 
         year: 2027,
 
@@ -3336,7 +3336,7 @@ const defaultFamilies = [
     ===================================================== */
 
     {
-        id: "mateus",
+        id: "dsla",
 
         name: "Família Mateus",
 
@@ -3420,62 +3420,48 @@ let families =
         ? JSON.parse(storedFamilies)
         : defaultFamilies;
 
-
 /* =====================================================
-   MIGRAÇÃO BARROSO → DIMA
+   ATUALIZAR NOMES E IDs DAS FAMÍLIAS
 ===================================================== */
 
-/*
-   Se o navegador ainda tiver a família antiga
-   com id "barroso", ela será automaticamente
-   convertida para "dima".
-*/
+families.forEach(family => {
 
-let oldBarrosoFamily =
-    families.find(
-        family =>
-            family.id === "barroso"
-    );
+    // SILVA → BANCO BFA
+    if (
+        family.id === "silva" ||
+        family.id === "Silva"
+    ) {
+        family.id = "bfa";
+        family.name = "Banco BFA";
+    }
 
+    // BFA
+    if (family.id === "bfa") {
+        family.name = "Banco BFA";
+    }
 
-if(oldBarrosoFamily){
-
-    oldBarrosoFamily.id = "dima";
-
-    oldBarrosoFamily.name =
-        "Família Dima";
-
+   
+   // COSTA → BANCO BPC
+if (
+    family.id === "costa" ||
+    family.id === "bpc"
+) {
+    family.id = "bpc";
+    family.name = "Banco BPC";
 }
 
+    // MATEUS → DSLA & FILHOS
+    if (family.id === "mateus") {
+        family.id = "dsla";
+        family.name = "DSLA & FILHOS";
+    }
 
-/*
-   Caso exista uma família "Dima" com D maiúsculo,
-   também normalizamos para "dima".
-*/
+    // DSLA
+    if (family.id === "dsla") {
+        family.name = "DSLA & FILHOS";
+    }
 
-let uppercaseDima =
-    families.find(
-        family =>
-            family.id === "Dima"
-    );
-
-
-if(
-    uppercaseDima &&
-    !families.some(
-        family =>
-            family.id === "dima"
-    )
-){
-
-    uppercaseDima.id = "dima";
-
-    uppercaseDima.name =
-        "Família Dima";
-
-}
-
-
+});
 /* =====================================================
    GARANTIR FAMÍLIA DIMA
 ===================================================== */
@@ -3825,35 +3811,7 @@ function renderFamilies(
                     </div>
 
 
-                    ${
-                        next
-                        ?
-
-                        `
-
-                        <div class="next-birthday">
-
-                            <small>
-                                🎂 Próximo aniversário
-                            </small>
-
-                            <strong>
-                                ${next.name}
-                            </strong>
-
-                            <small>
-                                ${formatDate(next.date)}
-                            </small>
-
-                        </div>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
+                
 
 
                     <div class="family-card-buttons">
@@ -3897,6 +3855,20 @@ function renderFamilies(
                             📄 PDF
 
                         </button>
+
+                        <button
+    class="btn btn-outline"
+    onclick="editFamily('${family.id}')"
+>
+    ✏️ Editar
+</button>
+
+<button
+    class="btn btn-danger"
+    onclick="deleteFamily('${family.id}')"
+>
+    🗑️ Excluir
+</button>
 
                     </div>
 
@@ -5075,10 +5047,192 @@ function openOverview(
     );
 
 }
+/* =====================================================
+   EDITAR / EXCLUIR CALENDÁRIO
+===================================================== */
+
+let editingFamilyId = null;
 
 
 /* =====================================================
-   CRIAR FAMÍLIA
+   EDITAR
+===================================================== */
+
+function editFamily(id){
+
+    const family =
+        families.find(
+            item => item.id === id
+        );
+
+    if(!family){
+        alert("Calendário não encontrado.");
+        return;
+    }
+
+    editingFamilyId = id;
+
+    document.getElementById(
+        "familyName"
+    ).value =
+        family.name || "";
+
+    document.getElementById(
+        "familyYear"
+    ).value =
+        family.year || 2027;
+
+    document.getElementById(
+        "familyDescription"
+    ).value =
+        family.description || "";
+
+    const modal =
+        document.getElementById(
+            "familyModal"
+        );
+
+    const title =
+        modal.querySelector("h2");
+
+    if(title){
+        title.textContent =
+            "Editar calendário";
+    }
+
+    const tag =
+        modal.querySelector(
+            ".section-tag"
+        );
+
+    if(tag){
+        tag.textContent =
+            "EDITAR CALENDÁRIO";
+    }
+
+    const submitButton =
+        document.querySelector(
+            '#familyForm button[type="submit"]'
+        );
+
+    if(submitButton){
+        submitButton.textContent =
+            "Guardar alterações";
+    }
+
+    openModal(
+        "familyModal"
+    );
+
+}
+
+
+/* =====================================================
+   EXCLUIR
+===================================================== */
+
+function deleteFamily(id){
+
+    const family =
+        families.find(
+            item => item.id === id
+        );
+
+    if(!family){
+        alert("Calendário não encontrado.");
+        return;
+    }
+
+    const confirmation =
+        confirm(
+            `Tem certeza que deseja excluir o calendário "${family.name}"?\n\nEsta ação não poderá ser desfeita.`
+        );
+
+    if(!confirmation){
+        return;
+    }
+
+    families =
+        families.filter(
+            item => item.id !== id
+        );
+
+    saveFamilies();
+
+    if(
+        currentFamily &&
+        currentFamily.id === id
+    ){
+        currentFamily =
+            families.length
+                ? families[0]
+                : null;
+    }
+
+    renderFamilies();
+
+    alert(
+        `O calendário "${family.name}" foi excluído.`
+    );
+
+}
+
+
+/* =====================================================
+   PREPARAR FORMULÁRIO PARA NOVO CALENDÁRIO
+===================================================== */
+
+function prepareNewFamily(){
+
+    editingFamilyId = null;
+
+    const form =
+        document.getElementById(
+            "familyForm"
+        );
+
+    form.reset();
+
+    document.getElementById(
+        "familyYear"
+    ).value = 2027;
+
+    const modal =
+        document.getElementById(
+            "familyModal"
+        );
+
+    const title =
+        modal.querySelector("h2");
+
+    if(title){
+        title.textContent =
+            "Criar calendário";
+    }
+
+    const tag =
+        modal.querySelector(
+            ".section-tag"
+        );
+
+    if(tag){
+        tag.textContent =
+            "NOVA FAMÍLIA";
+    }
+
+    const submitButton =
+        document.querySelector(
+            '#familyForm button[type="submit"]'
+        );
+
+    if(submitButton){
+        submitButton.textContent =
+            "Criar família";
+    }
+
+}
+/* =====================================================
+   CRIAR / EDITAR FAMÍLIA
 ===================================================== */
 
 document
@@ -5088,6 +5242,8 @@ document
     .addEventListener(
         "click",
         () => {
+
+            prepareNewFamily();
 
             openModal(
                 "familyModal"
@@ -5119,7 +5275,7 @@ document
                     document.getElementById(
                         "familyYear"
                     ).value
-                );
+                ) || 2027;
 
 
             const description =
@@ -5127,6 +5283,94 @@ document
                     "familyDescription"
                 ).value.trim();
 
+
+            /* =========================================
+               SE ESTIVER EDITANDO
+            ========================================= */
+
+            if(editingFamilyId){
+
+                const family =
+                    families.find(
+                        item =>
+                            item.id === editingFamilyId
+                    );
+
+
+                if(!family){
+
+                    alert(
+                        "Calendário não encontrado."
+                    );
+
+                    return;
+
+                }
+
+
+                family.name =
+                    name;
+
+                family.year =
+                    year;
+
+                family.description =
+                    description;
+
+
+                /*
+                   IMPORTANTE:
+                   NÃO alteramos o ID.
+
+                   Assim o link próprio do calendário
+                   continua funcionando mesmo que
+                   o nome seja alterado.
+                */
+
+
+                saveFamilies();
+
+                renderFamilies();
+
+
+                if(
+                    currentFamily &&
+                    currentFamily.id === family.id
+                ){
+
+                    currentFamily =
+                        family;
+
+                    renderAllCurrent();
+
+                }
+
+
+                closeModal(
+                    "familyModal"
+                );
+
+
+                this.reset();
+
+
+                editingFamilyId =
+                    null;
+
+
+                alert(
+                    "Calendário atualizado com sucesso."
+                );
+
+
+                return;
+
+            }
+
+
+            /* =========================================
+               CRIAR NOVO CALENDÁRIO
+            ========================================= */
 
             const id =
                 name
@@ -5139,6 +5383,10 @@ document
                 .replace(
                     /[^a-z0-9]+/g,
                     "-"
+                )
+                .replace(
+                    /^-+|-+$/g,
+                    ""
                 )
                 +
                 "-" +
@@ -5153,13 +5401,25 @@ document
 
                 year,
 
-                description,
+                photo: "",
+
+                location:
+                    "Luanda, Angola",
+
+                phrase:
+                    "Momentos especiais merecem ser lembrados.",
+
+                description:
+                    description ||
+                    "Calendário personalizado 2027.",
 
                 members: 0,
 
                 birthdays: [],
 
                 events: [],
+
+                achievements: [],
 
                 memories: [],
 
@@ -5175,7 +5435,6 @@ document
 
             saveFamilies();
 
-
             renderFamilies();
 
 
@@ -5185,6 +5444,10 @@ document
 
 
             this.reset();
+
+
+            editingFamilyId =
+                null;
 
 
             openFamily(

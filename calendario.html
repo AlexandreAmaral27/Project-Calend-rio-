@@ -1631,6 +1631,57 @@
 
 
 <!-- =========================================
+     POP-UP DAS DATAS MARCADAS
+========================================= -->
+
+<div
+    id="dateModal"
+    class="date-modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="date-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dateModalTitle"
+    >
+
+        <div class="date-modal-header">
+
+            <div>
+
+                <h3 id="dateModalTitle">
+                    Informações da data
+                </h3>
+
+                <p
+                    id="dateModalDate"
+                    class="date-modal-date"
+                ></p>
+
+            </div>
+
+            <button
+                type="button"
+                class="date-modal-close"
+                onclick="closeDateModal()"
+                aria-label="Fechar"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            id="dateModalItems"
+            class="date-modal-items"
+        ></div>
+
+    </div>
+
+</div>
+<!-- =========================================
      PDF LIBRARIES
 ========================================= -->
 
@@ -2017,12 +2068,12 @@ const families = [
 
 
     /* =========================================
-       Coorporação BFA
+       Banco BFA
     ========================================= */
 
     {
 
-        id: "silva",
+        id: "bfa",
 
         name: "Banco BFA",
 
@@ -2175,12 +2226,12 @@ const families = [
 
 
     /* =========================================
-       Coorporação BPC
+       Banco BPC
     ========================================= */
 
     {
 
-        id: "costa",
+        id: "bpc",
 
         name: "Banco BPC",
 
@@ -2337,7 +2388,7 @@ const families = [
 
     {
 
-        id: "mateus",
+        id: "dsla",
 
         name: "DSLA & FILHOS",
 
@@ -2525,16 +2576,77 @@ const familyId =
 
 
 /* =========================================
-   ENCONTRAR FAMÍLIA
+   CARREGAR CALENDÁRIOS CRIADOS NO INDEX
+========================================= */
+
+let storedFamilies = [];
+
+try {
+
+    storedFamilies =
+        JSON.parse(
+            localStorage.getItem("familyCalendars")
+        ) || [];
+
+} catch (error) {
+
+    console.error(
+        "Erro ao carregar calendários:",
+        error
+    );
+
+}
+
+
+/* =========================================
+   JUNTAR CALENDÁRIOS PREDEFINIDOS +
+   CALENDÁRIOS CRIADOS PELO UTILIZADOR
+========================================= */
+
+const allFamilies = [
+    ...families
+];
+
+storedFamilies.forEach(
+    storedFamily => {
+
+        const position =
+            allFamilies.findIndex(
+                item =>
+                    item.id === storedFamily.id
+            );
+
+        if (position >= 0) {
+
+            // Mantém os dados mais recentes
+            allFamilies[position] = {
+                ...allFamilies[position],
+                ...storedFamily
+            };
+
+        } else {
+
+            // Calendário criado no INDEX
+            allFamilies.push(
+                storedFamily
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   ENCONTRAR FAMÍLIA PELO LINK
 ========================================= */
 
 const family =
-    families.find(
+    allFamilies.find(
         item =>
-            item.id === familyId
+            String(item.id).toLowerCase() ===
+            String(familyId || "").toLowerCase()
     );
-
-
 /* =========================================
    VALIDAR
 ========================================= */
@@ -4374,57 +4486,6 @@ renderNationalLegend();
 
 
 
-<!-- =========================================
-     POP-UP DAS DATAS MARCADAS
-========================================= -->
-
-<div
-    id="dateModal"
-    class="date-modal"
-    aria-hidden="true"
->
-
-    <div
-        class="date-modal-content"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="dateModalTitle"
-    >
-
-        <div class="date-modal-header">
-
-            <div>
-
-                <h3 id="dateModalTitle">
-                    Informações da data
-                </h3>
-
-                <p
-                    id="dateModalDate"
-                    class="date-modal-date"
-                ></p>
-
-            </div>
-
-            <button
-                type="button"
-                class="date-modal-close"
-                onclick="closeDateModal()"
-                aria-label="Fechar"
-            >
-                ✕
-            </button>
-
-        </div>
-
-        <div
-            id="dateModalItems"
-            class="date-modal-items"
-        ></div>
-
-    </div>
-
-</div>
 
 </body>
 
