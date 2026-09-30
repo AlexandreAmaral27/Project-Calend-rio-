@@ -3061,7 +3061,180 @@ const families = [
     },
 
 
+    /* =========================================
 
+       FAMÍLIA MAINO
+
+    ========================================= */
+
+
+    {
+
+        id: "maino",
+
+        name: "Família Maino",
+
+        year: 2027,
+
+        photo:
+
+            "imagens/familia Maino/maino.jpeg",
+
+        location:
+
+            "Luanda, Angola",
+
+        phrase:
+
+            "Juntos, construímos uma história de amor, união e felicidade.",
+
+        description:
+
+            "Uma família de cinco integrantes, formada por pai, mãe e três filhos, unida pelo amor, respeito e pelos momentos partilhados.",
+
+        members: 5,
+
+
+        birthdays: [
+
+
+            {
+
+                name: "Nome do Pai",
+
+                date: "1990-01-01",
+
+                relation: "Pai"
+
+            },
+
+
+            {
+
+                name: "Nome da Mãe",
+
+                date: "1990-02-01",
+
+                relation: "Mãe"
+
+            },
+
+
+            {
+
+                name: "Nome do Filho 1",
+
+                date: "2010-03-01",
+
+                relation: "Filho"
+
+            },
+
+
+            {
+
+                name: "Nome do Filho 2",
+
+                date: "2013-04-01",
+
+                relation: "Filho"
+
+            },
+
+
+            {
+
+                name: "Nome do Filho 3",
+
+                date: "2016-05-01",
+
+                relation: "Filho"
+
+            }
+
+
+        ],
+
+
+        events: [
+
+
+            {
+
+                date: "2027-01-01",
+
+                title: "Início de um novo ano em família"
+
+            },
+
+
+            {
+
+                date: "2027-12-25",
+
+                title: "Natal em família"
+
+            }
+
+
+        ],
+
+
+        achievements: [
+
+
+            {
+
+                title: "Família Maino",
+
+                date: "2027-01-01",
+
+                description:
+
+                    "Uma família unida, construindo novas memórias e celebrando cada conquista juntos."
+
+            }
+
+
+        ],
+
+
+        memories: [
+
+
+            {
+
+                title: "Momento em família",
+
+                image:
+
+                    "imagens/familia Maino/maino.jpeg",
+
+                description:
+
+                    "Um momento especial vivido e partilhado por toda a Família Maino."
+
+            },
+
+
+            {
+
+                title: "Memórias especiais",
+
+                image:
+
+                    "imagens/familia Maino/maino.jpeg",
+
+                description:
+
+                    "Recordações de momentos importantes e inesquecíveis da família."
+
+            }
+
+        ]
+
+
+    },
 
 
     /* =========================================
@@ -3452,9 +3625,9 @@ const officialFamilyIds = new Set([
     "dima",
     "bfa",
     "bpc",
+    "maino",
     "dsla"
 ]);
-
 const requestedFamilyId =
     String(familyId || "")
         .trim()
@@ -7205,36 +7378,21 @@ document
 
 
 
-        const pdfs = {
+      const pdfs = {
 
+    dima:
+        "pdf/Calendario-DIMA-2027.pdf",
 
+    bfa:
+        "pdf/Calendario-BFA-2027.pdf",
 
-            dima:
+    costa:
+        "pdf/Calendario-BPC-2027.pdf",
 
-                "pdf/Calendario-DIMA-2027.pdf",
+    dsla:
+        "pdf/Calendario-DSLA-2027.pdf"
 
-
-
-            silva:
-
-                "pdf/Calendario-SILVA-2027.pdf",
-
-
-
-            costa:
-
-                "pdf/Calendario-COSTA-2027.pdf",
-
-
-
-            mateus:
-
-                "pdf/Calendario-MATEUS-2027.pdf"
-
-
-
-        };
-
+};
 
 
 
