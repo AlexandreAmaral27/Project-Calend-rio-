@@ -1978,6 +1978,7 @@ footer small{
         <div id="dayContent"></div>
     </div>
 </div>
+
 <script>
 /* =====================================================
    DADOS
@@ -2304,18 +2305,16 @@ const defaultFamilies = [
         dedications: []
     }
 ];
-
-/* CINCO NOVAS FAMÍLIAS PARA PERSONALIZAR.
-   Os IDs ficam iguais mesmo quando o nome é alterado.
-   Pode preencher estes dados no código ou usar o botão Editar no index. */
 const customizableFamilies = [
 
-    // =====================================================
-    // FAMÍLIA 01
-    // =====================================================
+    /* =====================================================
+       Família Maino
+    ===================================================== */
     {
-        id: "familia01",
-        name: "Família 01",
+        id: "maino",
+
+        name: "Família Maino",
+
         year: 2027,
 
         photo: "",
@@ -2324,13 +2323,31 @@ const customizableFamilies = [
 
         phrase: "Momentos especiais merecem ser lembrados.",
 
-        description: "Calendário familiar personalizado.",
+        description: "Calendário da Família Maino",
 
-        members: 0,
+        members: 5,
 
-        birthdays: [],
+        birthdays: [
+            {
+                name: "José Maino",
+                date: "1985-03-15",
+                relation: "Pai"
+            },
+            {
+                name: "Maria Maino",
+                date: "1988-08-20",
+                relation: "Mãe"
+            }
+        ],
 
-        events: [],
+        events: [
+            {
+                date: "2027-12-25",
+                title: "Natal em Família",
+                type: "especial",
+                description: "Encontro anual da família."
+            }
+        ],
 
         achievements: [],
 
@@ -2340,19 +2357,22 @@ const customizableFamilies = [
     },
 
 
-    // =====================================================
-    // FAMÍLIA 02
-    // =====================================================
+    /* =====================================================
+       FAMÍLIA 02
+       ALTERA OS DADOS AQUI
+    ===================================================== */
     {
         id: "familia02",
+
         name: "Família 02",
+
         year: 2027,
 
         photo: "",
 
         location: "Luanda, Angola",
 
-        phrase: "Momentos especiais merecem ser lembrados.",
+        phrase: "Juntos somos mais fortes.",
 
         description: "Calendário familiar personalizado.",
 
@@ -2370,19 +2390,22 @@ const customizableFamilies = [
     },
 
 
-    // =====================================================
-    // FAMÍLIA 03
-    // =====================================================
+    /* =====================================================
+       FAMÍLIA 03
+       ALTERA OS DADOS AQUI
+    ===================================================== */
     {
         id: "familia03",
+
         name: "Família 03",
+
         year: 2027,
 
         photo: "",
 
         location: "Luanda, Angola",
 
-        phrase: "Momentos especiais merecem ser lembrados.",
+        phrase: "A família é o nosso maior tesouro.",
 
         description: "Calendário familiar personalizado.",
 
@@ -2400,19 +2423,22 @@ const customizableFamilies = [
     },
 
 
-    // =====================================================
-    // FAMÍLIA 04
-    // =====================================================
+    /* =====================================================
+       FAMÍLIA 04
+       ALTERA OS DADOS AQUI
+    ===================================================== */
     {
         id: "familia04",
+
         name: "Família 04",
+
         year: 2027,
 
         photo: "",
 
         location: "Luanda, Angola",
 
-        phrase: "Momentos especiais merecem ser lembrados.",
+        phrase: "Memórias que ficam para sempre.",
 
         description: "Calendário familiar personalizado.",
 
@@ -2430,12 +2456,15 @@ const customizableFamilies = [
     },
 
 
-    // =====================================================
-    // FAMÍLIA 05
-    // =====================================================
+    /* =====================================================
+       FAMÍLIA 05
+       ALTERA OS DADOS AQUI
+    ===================================================== */
     {
         id: "familia05",
+
         name: "Família 05",
+
         year: 2027,
 
         photo: "",
@@ -2460,105 +2489,64 @@ const customizableFamilies = [
     }
 
 ];
+/* =====================================================
+   CARREGAR FAMÍLIAS DIRETAMENTE DO CÓDIGO
+===================================================== */
+
+// Os dados definidos em defaultFamilies e customizableFamilies
+// são a fonte principal sempre que a página é carregada.
+let families = [
+    ...structuredClone(defaultFamilies),
+    ...structuredClone(customizableFamilies)
+];
 
 /* =====================================================
-   LOCAL STORAGE
+   NORMALIZAR ESTRUTURA
 ===================================================== */
-// Guardar registos existentes e acrescentar só os IDs que ainda não existem.
-let storedFamilies = null;
-let families = [];
-try {
-    storedFamilies = localStorage.getItem("familyCalendars");
-    const parsed = storedFamilies ? JSON.parse(storedFamilies) : null;
-    families = Array.isArray(parsed) ? parsed.filter(item => item && typeof item === 'object' && item.id != null) : structuredClone(defaultFamilies);
-} catch (error) {
-    console.warn("Não foi possível ler os calendários guardados.", error);
-    families = structuredClone(defaultFamilies);
-}
-for (const seed of [...defaultFamilies, ...customizableFamilies]) {
-    const equivalents = {bfa:['bfa','silva'],bpc:['bpc','costa'],dsla:['dsla','mateus'],dima:['dima']};
-    const ids = equivalents[seed.id] || [seed.id];
-    if (!families.some(item => ids.includes(String(item.id).trim().toLowerCase()))) {
-        families.push(structuredClone(seed));
-    }
-}
+families = families.map(family => ({
+    ...family,
+    id: family.id || ("familia-" + Date.now()),
+    name: family.name || "Família",
+    year: family.year || 2027,
+    photo: family.photo || "",
+    location: family.location || "Luanda, Angola",
+    phrase: family.phrase || "",
+    description: family.description || "Calendário familiar personalizado.",
+    members: Number(family.members) || 0,
+    birthdays: Array.isArray(family.birthdays) ? family.birthdays : [],
+    events: Array.isArray(family.events) ? family.events : [],
+    achievements: Array.isArray(family.achievements) ? family.achievements : [],
+    memories: Array.isArray(family.memories) ? family.memories : [],
+    dedications: Array.isArray(family.dedications) ? family.dedications : []
+}));
+
 /* =====================================================
-   ATUALIZAR NOMES E IDs DAS FAMÍLIAS
-===================================================== */
-families.forEach(family => {
-    // SILVA → BANCO BFA
-    if (
-        family.id === "silva" ||
-        family.id === "Silva"
-    ) {
-        family.id = "bfa";
-        family.name = "Banco BFA";
-    }
-    // BFA
-    if (family.id === "bfa") {
-        family.name = "Banco BFA";
-    }
-   // COSTA → BANCO BPC
-if (
-    family.id === "costa" ||
-    family.id === "bpc"
-) {
-    family.id = "bpc";
-    family.name = "Banco BPC";
-}
-    // MATEUS → DSLA & FILHOS
-    if (family.id === "mateus") {
-        family.id = "dsla";
-        family.name = "DSLA & FILHOS";
-    }
-    // DSLA
-    if (family.id === "dsla") {
-        family.name = "DSLA & FILHOS";
-    }
-});
-/* =====================================================
-   GARANTIR FAMÍLIA DIMA
-===================================================== */
-if(
-    !families.some(
-        family =>
-            family.id === "dima"
-    )
-){
-    const defaultDima =
-        defaultFamilies.find(
-            family =>
-                family.id === "dima"
-        );
-    if(defaultDima){
-        families.unshift(
-            defaultDima
-        );
-    }
-}
-/* =====================================================
-   SALVAR APÓS MIGRAÇÃO
+   GUARDAR ALTERAÇÕES FEITAS NO SITE
 ===================================================== */
 function saveFamilies(){
     try {
-        localStorage.setItem("familyCalendars", JSON.stringify(families));
+        localStorage.setItem(
+            "familyCalendars",
+            JSON.stringify(families)
+        );
         return true;
     } catch (error) {
-        console.error("Não foi possível guardar os calendários.", error);
-        alert("Não foi possível guardar. O armazenamento do navegador pode estar cheio ou bloqueado. Reduza o tamanho das fotografias e tente novamente.");
+        console.error(
+            "Não foi possível guardar os calendários.",
+            error
+        );
+        alert(
+            "Não foi possível guardar. O armazenamento do navegador pode estar cheio ou bloqueado. Reduza o tamanho das fotografias e tente novamente."
+        );
         return false;
     }
 }
-/*
-   Salva imediatamente para que a alteração
-   de barroso → dima fique permanente.
-*/
-saveFamilies();
+
 /* =====================================================
    ESTADO
 ===================================================== */
-let currentFamily =
-    families[0];
+let currentFamily = families.length ? families[0] : null;
+
 /* =====================================================
    ELEMENTOS
 ===================================================== */

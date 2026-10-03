@@ -3091,7 +3091,7 @@ const families = [
 
         photo:
 
-            "imagens/BPC/logo.jpeg",
+            "imagens/familia maino/34868B73-B37E-4B18-9BD3-D6928DE3F039.JPG",
 
         location:
 
@@ -3113,9 +3113,9 @@ const families = [
 
             {
 
-                name: "Nome do Pai",
+                name: "Paulo Maino",
 
-                date: "1990-01-01",
+                date: "1990-11-27",
 
                 relation: "Pai"
 
@@ -3124,9 +3124,9 @@ const families = [
 
             {
 
-                name: "Nome da Mãe",
+                name: "Márcia Maino",
 
-                date: "1990-02-01",
+                date: "1990-05-13",
 
                 relation: "Mãe"
 
@@ -3135,20 +3135,9 @@ const families = [
 
             {
 
-                name: "Nome do Filho 1",
+                name: "Paulo Jorge Maino",
 
-                date: "2010-03-01",
-
-                relation: "Filho"
-
-            },
-
-
-            {
-
-                name: "Nome do Filho 2",
-
-                date: "2013-04-01",
+                date: "2010-08-06",
 
                 relation: "Filho"
 
@@ -3157,9 +3146,20 @@ const families = [
 
             {
 
-                name: "Nome do Filho 3",
+                name: "Bless Maino",
 
-                date: "2016-05-01",
+                date: "2013-08-28",
+
+                relation: "Filho"
+
+            },
+
+
+            {
+
+                name: "Marcelo Maino",
+
+                date: "2016-12-30",
 
                 relation: "Filho"
 
@@ -7619,7 +7619,7 @@ renderNationalLegend();
     calendarItems.sort((a,b) => a.date.localeCompare(b.date) || String(a.title).localeCompare(String(b.title),'pt'));
 
     const actions = document.querySelector('.family-actions');
-    const buttons = [['spotShare','Partilhar link'],['spotExport','Exportar agenda (.ics)'],['spotPrint','Imprimir']];
+    const buttons = [['spotShare','Partilhar link'],];
     buttons.forEach(([id,label]) => {
         const button = document.createElement('button');
         button.id=id;button.type='button';button.className='btn btn-primary';button.textContent=label;actions.appendChild(button);
