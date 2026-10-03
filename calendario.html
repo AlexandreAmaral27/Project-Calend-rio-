@@ -1479,17 +1479,6 @@
     <!-- =====================================
          AÇÕES
     ====================================== -->
-
-    <div class="family-actions">
-
-        <button
-            class="btn btn-primary"
-            id="downloadPdf"
-        >
-            📄 Baixar PDF
-        </button>
-
-    </div>
 <div class="family-actions">
 
     <!-- Mantém este botão porque o JavaScript atual depende dele -->
@@ -7593,7 +7582,6 @@ renderMemories();
 
 renderNationalLegend();
 
-
 /* =========================================
    PARTILHAR CALENDÁRIO
 ========================================= */
@@ -7669,6 +7657,7 @@ if (shareLinkButton) {
     });
 
 }
+
 </script>
 
 
@@ -7715,7 +7704,7 @@ if (shareLinkButton) {
     calendarItems.sort((a,b) => a.date.localeCompare(b.date) || String(a.title).localeCompare(String(b.title),'pt'));
 
     const actions = document.querySelector('.family-actions');
-    const buttons = [['spotShare','Partilhar link'],];
+    
     buttons.forEach(([id,label]) => {
         const button = document.createElement('button');
         button.id=id;button.type='button';button.className='btn btn-primary';button.textContent=label;actions.appendChild(button);
