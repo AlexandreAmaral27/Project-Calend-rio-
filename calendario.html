@@ -24,6 +24,9 @@
 
     <style>
 
+         #downloadPdf {
+    display: none !important;
+}
         /* =========================================
            PÁGINA DO CALENDÁRIO
         ========================================= */
@@ -1487,7 +1490,26 @@
         </button>
 
     </div>
+<div class="family-actions">
 
+    <!-- Mantém este botão porque o JavaScript atual depende dele -->
+    <button
+        class="btn btn-primary"
+        id="downloadPdf"
+    >
+        📄 Baixar PDF
+    </button>
+
+    <!-- BOTÃO PARTILHAR -->
+    <button
+        type="button"
+        class="btn btn-primary"
+        id="shareLink"
+    >
+        🔗 Partilhar link
+    </button>
+
+</div>
 
     <!-- =====================================
          CALENDÁRIO
@@ -3091,7 +3113,7 @@ const families = [
 
         photo:
 
-            "imagens/familia maino/34868B73-B37E-4B18-9BD3-D6928DE3F039.JPG",
+            "imagens/familia maino/familia-maino.jpg",
 
         location:
 
@@ -7572,7 +7594,81 @@ renderMemories();
 renderNationalLegend();
 
 
+/* =========================================
+   PARTILHAR CALENDÁRIO
+========================================= */
 
+const shareLinkButton = document.getElementById("shareLink");
+
+if (shareLinkButton) {
+
+    shareLinkButton.addEventListener("click", async function () {
+
+        const familyName =
+            document.getElementById("familyName")?.textContent.trim()
+            || "Calendário Familiar";
+
+        const shareUrl = window.location.href;
+
+        const shareText =
+            `📅 ${familyName}\n\n` +
+            `Veja o nosso Calendário Familiar 2027 ❤️\n\n` +
+            `Aceda através do link:`;
+
+        /* PARTILHA NATIVA
+           WhatsApp, Messenger, Facebook, etc.
+        */
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+                    title: familyName,
+                    text: shareText,
+                    url: shareUrl
+                });
+
+                return;
+
+            } catch (error) {
+
+                /*
+                 Se o utilizador simplesmente cancelar
+                 a partilha, não fazemos nada.
+                */
+                if (error.name === "AbortError") {
+                    return;
+                }
+
+                console.error(
+                    "Erro ao partilhar:",
+                    error
+                );
+            }
+        }
+
+
+        /* =========================================
+           FALLBACK PARA COMPUTADOR
+           Abre WhatsApp Web
+        ========================================= */
+
+        const whatsappText =
+            `${shareText}\n${shareUrl}`;
+
+        const whatsappUrl =
+            "https://wa.me/?text=" +
+            encodeURIComponent(whatsappText);
+
+        window.open(
+            whatsappUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+    });
+
+}
 </script>
 
 
