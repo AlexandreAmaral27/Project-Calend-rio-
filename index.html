@@ -1184,6 +1184,24 @@ footer small{
         margin:0;
     }
 }
+.logo,
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.crown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crown img,
+.footer-logo img {
+    display: block;
+    object-fit: contain;
+}
 </style>
 </head>
 <body>
@@ -1192,10 +1210,16 @@ footer small{
 ===================================================== -->
 <header class="header">
     <div class="logo">
-        <span class="crown">♛</span>
+       <span class="crown">
+    <img
+        src="imagens/BPC/logo1.jpeg"
+        alt="Logotipo BPC"
+        style="width: 50px; height: 50px; object-fit: contain; border-radius: 10px;"
+    >
+</span>
         <div>
             <span class="logo-family">
-                CALENDÁRIO E AGENDA
+                CALENDÁRIO & AGENDA
             </span>
             <strong>
                 Institucional
@@ -1254,18 +1278,16 @@ footer small{
     </div>
     <div class="family-box">
         <div class="family-icon">
-            BCI
+        <img src="imagens/BPC/logo1.jpeg" alt="" style="width: 90px; border-radius: 20%;">
         </div>
-        <small>
-            O nosso maior tesouro
-        </small>
+        
         <h2>
-            SpotNow
+            BPC
         </h2>
         <p>
-            Mais sonhos.<br>
+            Mais Organização.<br>
             Mais conquistas.<br>
-            Mais momentos juntos.
+            Mais Comunicação.
         </p>
     </div>
 </section>
@@ -1278,7 +1300,7 @@ footer small{
 >
     <div class="families-header">
         <span class="section-tag">
-            CALENDÁRIOS INSTITUCIONAL
+            CALENDÁRIOS & AGENDA INSTITUCIONAL
         </span>
         <h2>
             Momentos que nos unem.
@@ -1294,7 +1316,7 @@ footer small{
             <input
                 type="text"
                 id="familySearch"
-                placeholder="Pesquisar Realização..."
+                placeholder="Pesquisar Repartição..."
             >
         </div>
     </div>
@@ -1309,7 +1331,7 @@ footer small{
             </span>
             <div>
                 <h3>
-                    Crie o calendário da sua família
+                   Calendário & AGENDA Institucional
                 </h3>
                 <p>
                     Adicione membros, aniversários,
@@ -1330,9 +1352,15 @@ footer small{
 ===================================================== -->
 <footer>
     <div class="footer-logo">
-        <span>♛</span>
+     <span>
+    <img
+        src="imagens/BPC/logo1.jpeg"
+        alt="Logotipo BPC"
+        style="width: 45px; height: 45px; object-fit: contain; border-radius: 10px;"
+    >
+</span>
         <strong>
-            Calendário Institucional
+            Calendário & AGENDA Institucional
         </strong>
     </div>
     <p>
@@ -1983,10 +2011,14 @@ footer small{
 /* =====================================================
    DADOS
 ===================================================== */
+
+/* =====================================================
+       Direção  de Marketing
+    ===================================================== */
 const defaultFamilies = [
     {
         id: "dima",
-        name: "Família Dima",
+        name: "Direção de Marketing",
         year: 2027,
         description: "Nossa família, nossas memórias.",
         members: 7,
@@ -2006,26 +2038,7 @@ const defaultFamilies = [
                 date: "1980-10-18",
                 relation: "Filha"
             },
-            {
-                name: "Rúben Dima",
-                date: "1975-12-17",
-                relation: "Filho"
-            },
-            {
-                name: "Suzana",
-                date: "2004-04-04",
-                relation: "Filha"
-            },
-              {
-                name: "Leonor",
-                date: "2004-07-29",
-                relation: "Filha"
-            },
-              {
-                name: "Pedro Teca",
-                date: "2004-02-19",
-                relation: "Filho"
-            },
+       
              {
                 name: "Esmara Carneiro",
                 date: "2004-08-31",
@@ -2093,11 +2106,11 @@ const defaultFamilies = [
         dedications: []
     },
     /* =====================================================
-       FAMÍLIA BFA
+       Direção de Tecnologia e Informática
     ===================================================== */
     {
         id: "bfa",
-        name: "Banco BFA",
+        name: "Direção de Tecnologia e Informática",
         year: 2027,
         description: "Uma família unida.",
         members: 9,
@@ -2167,11 +2180,11 @@ const defaultFamilies = [
         dedications: []
     },
     /* =====================================================
-       FAMÍLIA BPC
+      Direção de Recursos Humanos
     ===================================================== */
     {
         id: "bpc",
-        name: "Banco BPC",
+        name: "Direção de Recursos Humanos",
         year: 2027,
         description: "Família, amor e união.",
         members: 15,
@@ -2252,11 +2265,11 @@ const defaultFamilies = [
         dedications: []
     },
     /* =====================================================
-       FAMÍLIA DSLA & FILHOS
+       Direção de Control e Qualidade
     ===================================================== */
     {
         id: "dsla",
-        name: "DSLA & FILHOS",
+        name: "Direção de Control e Qualidade",
         year: 2027,
         description: "Sempre juntos.",
         members: 7,
@@ -2305,188 +2318,15 @@ const defaultFamilies = [
         dedications: []
     }
 ];
+
+
+
 const customizableFamilies = [
 
-    /* =====================================================
-       Família Maino
-    ===================================================== */
-    {
-        id: "maino",
-
-        name: "Família Maino",
-
-        year: 2027,
-
-        photo: "",
-
-        location: "Luanda, Angola",
-
-        phrase: "Momentos especiais merecem ser lembrados.",
-
-        description: "Calendário da Família Maino",
-
-        members: 5,
-
-        birthdays: [
-            {
-                name: "José Maino",
-                date: "1985-03-15",
-                relation: "Pai"
-            },
-            {
-                name: "Maria Maino",
-                date: "1988-08-20",
-                relation: "Mãe"
-            }
-        ],
-
-        events: [
-            {
-                date: "2027-12-25",
-                title: "Natal em Família",
-                type: "especial",
-                description: "Encontro anual da família."
-            }
-        ],
-
-        achievements: [],
-
-        memories: [],
-
-        dedications: []
-    },
-
-
-    /* =====================================================
-       FAMÍLIA Barroso
-    ===================================================== */
-    {
-        id: "barroso",
-
-        name: "Familia Barroso",
-
-        year: 2027,
-
-        photo: "",
-
-        location: "Luanda, Angola",
-
-        phrase: "Juntos somos mais fortes.",
-
-        description: "Calendário familiar personalizado.",
-
-        members: 7,
-
-        birthdays: [],
-
-        events: [],
-
-        achievements: [],
-
-        memories: [],
-
-        dedications: []
-    },
-
-
-    /* =====================================================
-       FAMÍLIA Prototpo
-    ===================================================== */
-    {
-        id: "fulana",
-
-        name: "Sua Familia",
-
-        year: 2027,
-
-        photo: "",
-
-        location: "Luanda, Angola",
-
-        phrase: "A família é o nosso maior tesouro.",
-
-        description: "Calendário familiar personalizado.",
-
-        members: 7,
-
-        birthdays: [],
-
-        events: [],
-
-        achievements: [],
-
-        memories: [],
-
-        dedications: []
-    },
-
-
-    /* =====================================================
-       FAMÍLIA 04
-       ALTERA OS DADOS AQUI
-    ===================================================== */
-    {
-        id: "familia04",
-
-        name: "Família 04",
-
-        year: 2027,
-
-        photo: "",
-
-        location: "Luanda, Angola",
-
-        phrase: "Memórias que ficam para sempre.",
-
-        description: "Calendário familiar personalizado.",
-
-        members: 0,
-
-        birthdays: [],
-
-        events: [],
-
-        achievements: [],
-
-        memories: [],
-
-        dedications: []
-    },
-
-
-    /* =====================================================
-       FAMÍLIA 05
-       ALTERA OS DADOS AQUI
-    ===================================================== */
-    {
-        id: "familia05",
-
-        name: "Família 05",
-
-        year: 2027,
-
-        photo: "",
-
-        location: "Luanda, Angola",
-
-        phrase: "Momentos especiais merecem ser lembrados.",
-
-        description: "Calendário familiar personalizado.",
-
-        members: 0,
-
-        birthdays: [],
-
-        events: [],
-
-        achievements: [],
-
-        memories: [],
-
-        dedications: []
-    }
-
 ];
+
+
+
 /* =====================================================
    CARREGAR FAMÍLIAS DIRETAMENTE DO CÓDIGO
 ===================================================== */
