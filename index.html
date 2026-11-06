@@ -76,7 +76,6 @@ a{
 }
 .logo-family{
     display:block;
-    font-family:Pacifico,cursive;
     font-size:15px;
     color:#174a7c;
 }
@@ -1196,7 +1195,7 @@ footer small{
         <span class="crown">♛</span>
         <div>
             <span class="logo-family">
-                CALENDÁRIO
+                CALENDÁRIO E AGENDA
             </span>
             <strong>
                 Institucional
@@ -1208,7 +1207,7 @@ footer small{
             Início
         </a>
         <a href="#familias">
-            Famílias
+            Instituições
         </a>
     </nav>
     <button
@@ -1227,7 +1226,7 @@ footer small{
 >
     <div class="hero-content">
         <span class="tag">
-            CALENDÁRIO FAMILIAR DIGITAL • 2027
+            CALENDÁRIO INSTITUCIONAL DIGITAL • 2027
         </span>
         <h1>
             As datas que
@@ -1240,7 +1239,7 @@ footer small{
         </p>
         <p>
             Crie, organize e partilhe o calendário
-            da sua família. Aniversários, feriados,
+            da sua Repartição. Aniversários, feriados,
             reuniões, memórias e momentos especiais
             num único lugar.
         </p>
@@ -1249,13 +1248,13 @@ footer small{
                 href="#familias"
                 class="btn btn-light"
             >
-                Ver famílias
+                Ver Calendários
             </a>
         </div>
     </div>
     <div class="family-box">
         <div class="family-icon">
-            S.N
+            BCI
         </div>
         <small>
             O nosso maior tesouro
@@ -1279,13 +1278,13 @@ footer small{
 >
     <div class="families-header">
         <span class="section-tag">
-            CALENDÁRIOS FAMILIARES
+            CALENDÁRIOS INSTITUCIONAL
         </span>
         <h2>
-            Momentos que unem famílias.
+            Momentos que nos unem.
         </h2>
         <p>
-            Escolha uma família para visualizar
+            Escolha uma Repartição para visualizar
             todas as informações do seu calendário.
         </p>
     </div>
@@ -1295,7 +1294,7 @@ footer small{
             <input
                 type="text"
                 id="familySearch"
-                placeholder="Pesquisar família..."
+                placeholder="Pesquisar Realização..."
             >
         </div>
     </div>
@@ -2752,18 +2751,7 @@ function renderFamilies(
                         >
                             👁 Visão geral
                         </button>
-                        <button
-                            class="btn btn-outline"
-                            onclick="openQR('${family.id}')"
-                        >
-                            ▣ QR
-                        </button>
-                        <button
-                            class="btn btn-outline"
-                            onclick="downloadFamilyPDF('${family.id}')"
-                        >
-                            📄 PDF
-                        </button>
+                    
                         <button
     class="btn btn-outline"
     onclick="editFamily('${family.id}')"
